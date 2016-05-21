@@ -1,2 +1,4 @@
-module Ziwei::Constants
+module Ziwei
+  module Constants
+  end
 end

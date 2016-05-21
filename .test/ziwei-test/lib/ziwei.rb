@@ -1,3 +1,3 @@
-class Ziwei
+module Ziwei
 
 end

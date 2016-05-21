@@ -1,2 +1,4 @@
-module Ziwei::Utils
+module Ziwei
+  module Utils
+  end
 end
