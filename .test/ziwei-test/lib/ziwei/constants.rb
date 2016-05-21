@@ -1,0 +1,2 @@
+module Ziwei::Constants
+end

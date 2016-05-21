@@ -1,0 +1,49 @@
+class Ziwei::Profile
+  attr_accessor :name
+  attr_accessor :gender
+  attr_accessor :b_hour
+  attr_accessor :b_day
+  attr_accessor :b_month
+  attr_accessor :b_year_stem
+  attr_accessor :b_year_branch
+
+  attr_reader :fate_direction
+
+  def initialize(args = {})
+    @name = args[:name] || args["name"] || "Tên"
+    
+    @gender = args[:gender] || args["gender"]
+    @gender = :male unless Ziwei::Constants::Genders::Names.keys.include?(@gender)
+
+    @b_hour = args[:b_hour] || args["b_hour"] || args[:hour] || args["hour"]
+    @b_hour = :ty unless Ziwei::Constants::Branches::Names.keys.include?(@b_hour)
+
+    @b_day = args[:b_day] || args["b_day"] || args[:day] || args["day"] || 1
+    @b_day = 1 if @b_day <= 0 || @b_day > 30
+
+    @b_month = args[:b_month] || args["b_month"] || args[:month] || args["month"]
+    @b_month = :ty unless Ziwei::Constants::Branches::Names.keys.include?(@b_month)
+
+    @b_year_stem = args[:b_year_stem] || args["b_year_stem"] || args[:year_stem] || args["year_stem"]
+    @b_year_stem = :giap unless Ziwei::Constants::Stems::Names.keys.include?(@b_year_stem)
+
+    @b_year_branch = args[:b_year_branch] || args["b_year_branch"] || args[:year_branch] || args["year_branch"]
+    @b_year_branch = :ty unless Ziwei::Constants::Branches::Names.keys.include?(@b_year_branch)
+
+    @fate_direction = Ziwei::Constants::Stems::Directions[@b_year_stem] * Ziwei::Constants::Genders::Directions[@gender]
+  end
+
+  def inspect
+    "<Ziwei::Profile - Name: %s - Gender: %s %s - Birthday: %s %d/%s/%s %s>" %
+    [
+      @name,
+      Ziwei::Constants::Stems::Yinyang[Ziwei::Constants::Stems::Directions[@b_year_stem]],
+      Ziwei::Constants::Genders::Names[@gender],
+      Ziwei::Constants::Branches::Names[@b_hour],
+      @b_day,
+      Ziwei::Constants::Branches::Names[@b_month],
+      Ziwei::Constants::Stems::Names[@b_year_stem],
+      Ziwei::Constants::Branches::Names[@b_year_branch]
+    ]
+  end
+end
