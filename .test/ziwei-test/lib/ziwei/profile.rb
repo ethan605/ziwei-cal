@@ -1,12 +1,13 @@
 module Ziwei
   class Profile
-    attr_accessor :name
-    attr_accessor :gender
-    attr_accessor :b_hour
-    attr_accessor :b_day
-    attr_accessor :b_month
-    attr_accessor :b_year_stem
-    attr_accessor :b_year_branch
+    attr_reader :name
+    attr_reader :gender
+    
+    attr_reader :b_hour
+    attr_reader :b_day
+    attr_reader :b_month
+    attr_reader :b_year_stem
+    attr_reader :b_year_branch
 
     attr_reader :fate_direction
 

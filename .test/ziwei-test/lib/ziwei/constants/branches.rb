@@ -46,7 +46,7 @@ module Ziwei
         :hoi => 12
       }
 
-      Orders = [:null, :ty, :suu, :dan, :mao, :thin, :ty2, :ngo, :mui, :than, :dau, :tuat, :hoi]
+      Orders = [:_, :ty, :suu, :dan, :mao, :thin, :ty2, :ngo, :mui, :than, :dau, :tuat, :hoi]
     end
   end
 end

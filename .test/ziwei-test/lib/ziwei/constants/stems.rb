@@ -40,7 +40,7 @@ module Ziwei
         :quy => 10
       }
 
-      Orders = [:null, :giap, :at, :binh, :dinh, :mau, :ky, :canh, :tan, :nham, :quy]
+      Orders = [:_, :giap, :at, :binh, :dinh, :mau, :ky, :canh, :tan, :nham, :quy]
 
       Directions = {
         :giap => 1,

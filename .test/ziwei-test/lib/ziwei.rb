@@ -1,3 +1,0 @@
-module Ziwei
-
-end
