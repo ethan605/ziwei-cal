@@ -3,7 +3,6 @@ module Ziwei
     attr_reader :name, :gender
     attr_reader :birth_day
     attr_reader :birth_hour, :birth_month, :birth_year
-
     attr_reader :fate_direction
 
     def initialize(args = {})
