@@ -19,12 +19,10 @@ module Ziwei
           stars_positions << pha_quan
           stars_positions += calc_thien_phu_constellation_position(pha_quan)
 
-          branches = Constants::Branches::Names.keys
-
           main_stars_positions = {}
-          branches.each {|branch| main_stars_positions[branch] = []}
 
           stars.each_with_index {|star, index|
+            main_stars_positions[stars_positions[index]] ||= []
             main_stars_positions[stars_positions[index]] << star
           }
 

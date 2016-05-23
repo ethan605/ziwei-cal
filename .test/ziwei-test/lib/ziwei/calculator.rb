@@ -23,7 +23,8 @@ module Ziwei
       thai_tue_constellation = calc_thai_tue_constellation_positions(@profile.birth_year.branch)
       trang_sinh_constellation = calc_trang_sinh_constellation_positions(cuc_number, @profile.fate_direction)
 
-      dia_khong_position, dia_kiep_position = calc_khong_kiep_positions(@profile.birth_hour)
+      loc_ton_position = :dau
+      six_deadly_stars_positions = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position)
 
       branches = Constants::Branches::Names.keys
       results = {}
@@ -37,13 +38,14 @@ module Ziwei
         }
 
         # Classify by qualities
+        star = six_deadly_stars_positions[branch]
+        results[branch][:bad_stars] << star if star
+
+        # Classify by qualities
         star = thai_tue_constellation[branch]
         quality = Constants::ThaiTueConstellation::Qualities[star]
         results[branch]["#{quality}_stars".to_sym] << star
       }
-
-      results[dia_khong_position][:bad_stars].unshift(:dia_khong)
-      results[dia_kiep_position][:bad_stars].unshift(:dia_kiep)
 
       results
     end

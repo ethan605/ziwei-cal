@@ -5,6 +5,19 @@ module Ziwei
       end
       
       module InstanceMethods
+        def calc_six_deadly_stars_positions(birth_hour, loc_ton_position)
+          dia_khong_position, dia_kiep_position = calc_khong_kiep_positions(birth_hour)
+          kinh_duong_position, da_la_position = calc_kinh_da_positions(loc_ton_position)
+
+          stars_positions = {}
+          stars_positions[dia_khong_position] = :dia_khong
+          stars_positions[dia_kiep_position] = :dia_kiep
+          stars_positions[kinh_duong_position] = :kinh_duong
+          stars_positions[da_la_position] = :da_la
+
+          stars_positions
+        end
+
         def calc_khong_kiep_positions(birth_hour)
           hoi_index = Constants::Branches::Indexes[:hoi]
           birth_hour_index = Constants::Branches::Indexes[birth_hour]
@@ -15,6 +28,18 @@ module Ziwei
           [
             Constants::Branches::Orders[dia_khong_index],
             Constants::Branches::Orders[dia_kiep_index]
+          ]
+        end
+
+        def calc_kinh_da_positions(loc_ton_position)
+          loc_ton_index = Constants::Branches::Indexes[loc_ton_position]
+
+          kinh_duong_index = limit_inc(loc_ton_index)
+          da_la_index = limit_dec(loc_ton_index)
+
+          [
+            Constants::Branches::Orders[kinh_duong_index],
+            Constants::Branches::Orders[da_la_index]
           ]
         end
       end
