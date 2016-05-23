@@ -6,31 +6,29 @@ module Ziwei
       
       module InstanceMethods
         def calc_forteen_main_stars(cuc_element, cuc_number, birth_day)
+          stars = [:tu_vi, :thien_co, :liem_trinh, :vu_khuc, :thai_duong, :thien_dong, :pha_quan, :thien_phu, :thai_am, :tham_lang, :cu_mon, :thien_tuong, :thien_luong, :that_sat]
+
+          stars_positions = []
+
           tu_vi = calc_tu_vi_position(cuc_element, cuc_number, birth_day)
-
-          thien_co, liem_trinh, vu_khuc = calc_co_liem_vu_position(tu_vi)
-          thai_duong, thien_dong = calc_nhat_dong_position(vu_khuc)
+          stars_positions << tu_vi
+          stars_positions += calc_co_liem_vu_position(tu_vi)
+          stars_positions += calc_nhat_dong_position(stars_positions[3])
+          
           pha_quan = calc_pha_quan_position(tu_vi)
+          stars_positions << pha_quan
+          stars_positions += calc_thien_phu_constellation_position(pha_quan)
 
-          thien_phu, thai_am, tham_lang, cu_mon, thien_tuong, thien_luong, that_sat =
-            calc_thien_phu_constellation_position(pha_quan)
+          branches = Constants::Branches::Names.keys
 
-          {
-            :tu_vi => tu_vi,
-            :thien_co => thien_co,
-            :liem_trinh => liem_trinh,
-            :thai_duong => thai_duong,
-            :vu_khuc => vu_khuc,
-            :thien_dong => thien_dong,
-            :thien_phu => thien_phu,
-            :thai_am => thai_am,
-            :tham_lang => tham_lang,
-            :cu_mon => cu_mon,
-            :thien_tuong => thien_tuong,
-            :thien_luong => thien_luong,
-            :that_sat => that_sat,
-            :pha_quan => pha_quan
+          main_stars_positions = {}
+          branches.each {|branch| main_stars_positions[branch] = []}
+
+          stars.each_with_index {|star, index|
+            main_stars_positions[stars_positions[index]] << star
           }
+
+          main_stars_positions
         end
 
         def calc_tu_vi_position(cuc_element, cuc_number, birth_day)

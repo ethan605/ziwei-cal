@@ -12,7 +12,7 @@ module Ziwei
       cuc_element, cuc_number = calc_cuc(menh_position, @profile.b_year_stem)
       forteen_main_stars = calc_forteen_main_stars(cuc_element, cuc_number, @profile.b_day)
 
-      
+      binding.pry
     end
   end
 end
