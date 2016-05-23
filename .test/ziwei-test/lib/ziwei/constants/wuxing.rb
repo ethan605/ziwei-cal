@@ -41,6 +41,14 @@ module Ziwei
         :tuat => :hoa,
         :hoi => :hoa
       }
+
+      KmtlnTable = {
+        :hoa => :dau,
+        :tho => :ngo,
+        :kim => :hoi,
+        :moc => :thin,
+        :thuy => :suu
+      }
     end
   end
 end
