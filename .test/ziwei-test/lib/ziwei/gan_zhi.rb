@@ -9,16 +9,16 @@ module Ziwei
       @branch = args[:branch] || args["branch"] || :ty
       @branch = :ty if @branch == :_
 
-      stem_index = Constants::Stems::Orders.index(@stem)
-      branch_index = Constants::Branches::Orders.index(@branch)
+      stem_index = Configs::Stems::Orders.index(@stem)
+      branch_index = Configs::Branches::Orders.index(@branch)
 
       raise "Invalid stem-branch pair" if (stem_index.odd? ^ branch_index.odd?)
     end
 
     def inspect
       [
-        Constants::Stems::Names[@stem],
-        Constants::Branches::Names[@branch]
+        Configs::Stems::Names[@stem],
+        Configs::Branches::Names[@branch]
       ].join(" ")
     end
   end

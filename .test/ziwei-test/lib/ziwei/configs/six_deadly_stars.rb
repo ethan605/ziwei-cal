@@ -1,5 +1,5 @@
 module Ziwei
-  module Constants
+  module Configs
     module SixDeadlyStars
       Names = {
         :dia_khong => "Địa Không",

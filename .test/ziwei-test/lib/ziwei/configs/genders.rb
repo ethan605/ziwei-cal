@@ -1,5 +1,5 @@
 module Ziwei
-  module Constants
+  module Configs
     module Genders
       Names = {
         :male => "Nam",

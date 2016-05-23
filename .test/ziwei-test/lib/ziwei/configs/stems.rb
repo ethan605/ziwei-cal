@@ -1,5 +1,5 @@
 module Ziwei
-  module Constants
+  module Configs
     module Stems
       Names = {
         :giap => "Giáp",

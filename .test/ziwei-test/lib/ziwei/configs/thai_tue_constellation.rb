@@ -1,5 +1,5 @@
 module Ziwei
-  module Constants
+  module Configs
     module ThaiTueConstellation
       Names = {
         :thai_tue => "Thái Tuế",

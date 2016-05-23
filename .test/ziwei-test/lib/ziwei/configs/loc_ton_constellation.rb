@@ -1,5 +1,5 @@
 module Ziwei
-  module Constants
+  module Configs
     module LocTonConstellation
       Names = {
         :bac_si => "Bác Sĩ",

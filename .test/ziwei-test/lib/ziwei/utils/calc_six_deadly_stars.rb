@@ -19,27 +19,27 @@ module Ziwei
         end
 
         def calc_khong_kiep_positions(birth_hour)
-          hoi_index = Constants::Branches::Indexes[:hoi]
-          birth_hour_index = Constants::Branches::Indexes[birth_hour]
+          hoi_index = Configs::Branches::Indexes[:hoi]
+          birth_hour_index = Configs::Branches::Indexes[birth_hour]
 
           dia_khong_index = limit_dec(hoi_index, 12, birth_hour_index-1)
           dia_kiep_index = limit_inc(hoi_index, 12, birth_hour_index-1)
 
           [
-            Constants::Branches::Orders[dia_khong_index],
-            Constants::Branches::Orders[dia_kiep_index]
+            Configs::Branches::Orders[dia_khong_index],
+            Configs::Branches::Orders[dia_kiep_index]
           ]
         end
 
         def calc_kinh_da_positions(loc_ton_position)
-          loc_ton_index = Constants::Branches::Indexes[loc_ton_position]
+          loc_ton_index = Configs::Branches::Indexes[loc_ton_position]
 
           kinh_duong_index = limit_inc(loc_ton_index)
           da_la_index = limit_dec(loc_ton_index)
 
           [
-            Constants::Branches::Orders[kinh_duong_index],
-            Constants::Branches::Orders[da_la_index]
+            Configs::Branches::Orders[kinh_duong_index],
+            Configs::Branches::Orders[da_la_index]
           ]
         end
       end

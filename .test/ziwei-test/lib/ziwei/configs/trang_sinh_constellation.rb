@@ -1,5 +1,5 @@
 module Ziwei
-  module Constants
+  module Configs
     module TrangSinhConstellation
       Names = {
         :trang_sinh => "Tràng Sinh",

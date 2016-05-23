@@ -1,5 +1,5 @@
 module Ziwei
-  module Constants
+  module Configs
     module Wuxing
       Names = {
         :hoa => "Hỏa",

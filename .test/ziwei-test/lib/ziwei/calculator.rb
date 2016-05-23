@@ -28,7 +28,7 @@ module Ziwei
 
       six_deadly_stars_positions = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position)
 
-      branches = Constants::Branches::Names.keys
+      branches = Configs::Branches::Names.keys
       results = {}
       branches.each {|branch|
         results[branch] = {
@@ -46,11 +46,11 @@ module Ziwei
         results[branch][:bad_stars] << star if star
 
         star = thai_tue_constellation[branch]
-        quality = Constants::ThaiTueConstellation::Qualities[star]
+        quality = Configs::ThaiTueConstellation::Qualities[star]
         results[branch]["#{quality}_stars".to_sym] << star
 
         star = loc_ton_constellation[branch]
-        quality = Constants::LocTonConstellation::Qualities[star]
+        quality = Configs::LocTonConstellation::Qualities[star]
         results[branch]["#{quality}_stars".to_sym] << star
       }
 
