@@ -1,8 +1,7 @@
 module Ziwei
   module Utils
     module CalcSequentialConstellations
-      module ClassMethods
-        
+      module ClassMethods        
       end
       
       module InstanceMethods
