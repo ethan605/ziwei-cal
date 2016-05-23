@@ -2,14 +2,24 @@ module Ziwei
   class GanZhi
     attr_reader :stem, :branch
 
-    def stem=(new_stem)
-      raise "Invalid stem" if (!Constants::Stems::Orders.include?(new_stem) || new_stem == :_)
-      @stem = new_stem
+    def initialize(args = {})
+      @stem = args[:stem] || args["stem"] || :giap
+      @stem = :giap if @stem == :_
+
+      @branch = args[:branch] || args["branch"] || :ty
+      @branch = :ty if @branch == :_
+
+      stem_index = Constants::Stems::Orders.index(@stem)
+      branch_index = Constants::Branches::Orders.index(@branch)
+
+      raise "Invalid stem-branch pair" if (stem_index.odd? ^ branch_index.odd?)
     end
 
-    def branch=(new_branch)
-      raise "Invalid branch" if (!Constants::Branches::Orders.include?(new_branch) || new_branch == :_)
-      @branch = new_branch
+    def inspect
+      [
+        Constants::Stems::Names[@stem],
+        Constants::Branches::Names[@branch]
+      ].join(" ")
     end
   end
 end
