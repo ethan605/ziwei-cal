@@ -79,9 +79,7 @@ module Ziwei
         # Phá Quân
         def calc_pha_quan_position(tu_vi_position)
           tu_vi_index = Configs::Branches::Indexes[tu_vi_position]
-          suu_index = Configs::Branches::Indexes[:suu]
-
-          Configs::Branches::Orders[limit_dec(suu_index, 12, tu_vi_index-suu_index)]
+          Configs::Branches::Orders[reflect_index(tu_vi_index)]
         end
 
         def calc_thien_phu_constellation_position(pha_quan_position)

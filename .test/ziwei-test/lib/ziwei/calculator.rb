@@ -5,6 +5,7 @@ module Ziwei
     include Utils::CalcForteenMainStars
     include Utils::CalcSequentialConstellations
     include Utils::CalcSixDeadlyStars
+    include Utils::CalcSixLuckyStars
 
     def initialize
       @profiles = {
@@ -27,6 +28,7 @@ module Ziwei
       loc_ton_constellation = calc_loc_ton_constellation_positions(loc_ton_position, @profile.fate_direction)
 
       six_deadly_stars_positions = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position)
+      six_lucky_stars_positions = calc_six_lucky_stars_positions(@profile.birth_month, @profile.birth_hour)
 
       branches = Configs::Branches::Names.keys
       results = {}
@@ -39,11 +41,14 @@ module Ziwei
           :bad_stars => []
         }
 
+        # Classify by qualities
         results[branch][:good_stars] << :loc_ton if branch == loc_ton_position
 
-        # Classify by qualities
         star = six_deadly_stars_positions[branch]
         results[branch][:bad_stars] << star if star
+
+        star = six_lucky_stars_positions[branch]
+        results[branch][:good_stars] << star if star
 
         star = thai_tue_constellation[branch]
         quality = Configs::ThaiTueConstellation::Qualities[star]
