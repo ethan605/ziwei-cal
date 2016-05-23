@@ -24,6 +24,15 @@ module Ziwei
 
           merge_sequences_from_index(branches, stars, trang_sinh_index, fate_direction == -1)
         end
+
+        def calc_loc_ton_constellation_positions(loc_ton_position, fate_direction)
+          loc_ton_index = Constants::Branches::Indexes[loc_ton_position]
+
+          branches = Constants::Branches::Names.keys
+          stars = Constants::LocTonConstellation::Orders
+
+          merge_sequences_from_index(branches, stars, loc_ton_index, fate_direction == -1)
+        end
       end
       
       def self.included(receiver)
