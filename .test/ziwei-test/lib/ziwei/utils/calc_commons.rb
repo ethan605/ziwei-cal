@@ -20,7 +20,7 @@ module Ziwei
 
         def calc_palaces_positions(self_position)
           self_index = Constants::Branches::Indexes[self_position]
-          palaces = Constants::Palaces::Names.keys.dup
+          palaces = Constants::Palaces::Orders.dup
 
           # re-arrange palaces in order of branches,
           # skip if self_index is 1 (identical order with branches)

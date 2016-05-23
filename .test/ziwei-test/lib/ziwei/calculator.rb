@@ -3,6 +3,7 @@ module Ziwei
     include Utils::ReuseUtils
     include Utils::CalcCommons
     include Utils::CalcForteenMainStars
+    include Utils::CalcThaiTueConstellation
 
     def test
       # @profile = Profile.new(name: "Test", hour: :ty2, day: 22, month: :thin, year: {stem: :tan, branch: :mui})
@@ -12,6 +13,7 @@ module Ziwei
       palaces = calc_palaces_positions(self_position)
       cuc_element, cuc_number = calc_cuc(self_position, @profile.birth_year.stem)
       forteen_main_stars = calc_forteen_main_stars(cuc_element, cuc_number, @profile.birth_day)
+      thai_tue_constellation = calc_thai_tue_constellation_positions(@profile.birth_year.branch)
 
       binding.pry
     end
