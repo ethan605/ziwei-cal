@@ -9,11 +9,12 @@ module Ziwei
     include Utils::CalcSixLuckyStars
 
     def initialize
-      @profiles = {
-        "Thanh" => Models::Profile.new(name: "Thành", hour: :ty2, day: 22, month: :thin, year: {stem: :tan, branch: :mui}),
-        "Hoa" => Models::Profile.new(name: "Hoa", gender: :female, hour: :dan, day: 28, month: :than, year: {stem: :tan, branch: :mui}),
-        "Yen" => Models::Profile.new(name: "C. Yến", gender: :female, hour: :tuat, day: 12, month: :ngo, year: {stem: :dinh, branch: :mao}),
-      }
+      # @profiles = {
+      #   "Thanh" => Models::Profile.new(name: "Thành", hour: :ty2, day: 22, month: :thin, year: {stem: :tan, branch: :mui}),
+      #   "Hoa" => Models::Profile.new(name: "Hoa", gender: :female, hour: :dan, day: 28, month: :than, year: {stem: :tan, branch: :mui}),
+      #   "Yen" => Models::Profile.new(name: "C. Yến", gender: :female, hour: :tuat, day: 12, month: :ngo, year: {stem: :dinh, branch: :mao}),
+      # }
+      prepare_profiles_data
     end
 
     def calc_result_table
@@ -72,9 +73,67 @@ module Ziwei
       Models::ResultTable.new(results)
     end
 
-    def test(profile_name = "Thanh")
+    def prepare_profiles_data
+      # [:name, :gender, :hour, :day, :month, :year_stem, :year_branch]
+      raw_data = [
+        ["anhctv", "Chu Thị Vân Anh", "Nữ", "Mão", "14", "Dần", "Bính", "Dần"],
+        ["chind", "Nguyễn Diệp Chi", "Nữ", "Mão", "23", "Tỵ", "Giáp", "Ngọ"],
+        ["dangnh", "Nguyễn Hải Đăng", "Nam", "Thân", "1", "Hợi", "Tân", "Mùi"],
+        ["ducnm", "Nguyễn Minh Đức", "Nam", "Mão", "15", "Hợi", "Mậu", "Tý"],
+        ["gianghh", "Hà Hương Giang", "Nữ", "Dần", "7", "Thìn", "Tân", "Mùi"],
+        ["hoactq", "Chu Thị Quỳnh Hoa", "Nữ", "Dần", "28", "Thân", "Tân", "Mùi"],
+        ["huyennth", "Nguyễn Thị Thu Huyền", "Nữ", "Tỵ", "5", "Thìn", "Giáp", "Tý"],
+        ["khoin", "Nguyễn Khôi", "Nam", "Mùi", "2", "Thìn", "Tân", "Mùi"],
+        ["nam_1", "Nam 1", "Nam", "Mão", "16", "Ngọ", "Quý", "Dậu"],
+        ["nam_1", "Nam 2", "Nam", "Dần", "29", "Tý", "Kỷ", "Mùi"],
+        ["ngocpb", "Phùng Bá Ngọc", "Nam", "Tý", "22", "Sửu", "Nhâm", "Thân"],
+        ["nu_1", "Nữ 1", "Nữ", "Hợi", "10", "Hợi", "Giáp", "Thìn"],
+        ["nu_2", "Nữ 2", "Nữ", "Mão", "3", "Tuất", "Canh", "Ngọ"],
+        ["nu_3", "Nữ 3", "Nữ", "Dần", "24", "Mùi", "Đinh", "Mão"],
+        ["nu_4", "Nữ 4", "Nữ", "Sửu", "29", "Dần", "Đinh", "Sửu"],
+        ["nu_5", "Nữ 5", "Nữ", "Mùi", "14", "Dậu", "Quý", "Dậu"],
+        ["nu_6", "Nữ 6", "Nữ", "Mão", "26", "Ngọ", "Tân", "Hợi"],
+        ["oanhntm", "Nguyễn Thị Mai Oanh", "Nữ", "Tỵ", "14", "Sửu", "Giáp", "Dần"],
+        ["thanhnx", "Nguyễn Xuân Thành", "Nam", "Tỵ", "22", "Thìn", "Tân", "Mùi"],
+        ["trungnt", "Trung NT", "Nam", "Tý", "10", "Ngọ", "Nhâm", "Tý"],
+        ["trungnt2", "Nguyễn Thành Trung", "Nam", "Hợi", "19", "Dậu", "Nhâm", "Tuất"],
+        ["trungpt", "Phùng Thành Trung", "Nam", "Tý", "21", "Mùi", "Quý", "Dậu"],
+        ["tuanpm", "Tuấn PM", "Nam", "Thân", "28", "Thân", "Ất", "Mão"],
+        ["yenbth", "Bùi Thị Hải Yến", "Nữ", "Tuất", "12", "Ngọ", "Đinh", "Mão"]
+      ]
+
+      @profiles = {}
+
+      raw_data.each {|arr|
+        profile_data = {
+          name: arr[1],
+          gender: Ziwei::Configs::Genders::Converts[arr[2]],
+          hour: Ziwei::Configs::Branches::Converts[arr[3]],
+          day: arr[4].to_i,
+          month: Ziwei::Configs::Branches::Converts[arr[5]],
+          year: {
+            stem: Ziwei::Configs::Stems::Converts[arr[6]],
+            branch: Ziwei::Configs::Branches::Converts[arr[7]]
+          }
+        }
+
+        @profiles[arr.first] = Ziwei::Models::Profile.new(profile_data)
+      }
+    end
+
+    def test(profile_name = "thanhnx")
       @profile = @profiles[profile_name]
-      calc_result_table
+      raise "Invalid profile key" unless @profile
+
+      result_table = calc_result_table
+      %w[full short].each {|prefix|
+        File.write(
+          "#{Rails.root}/lib/ziwei/tests/#{profile_name}_#{prefix}.json",
+          JSON.pretty_generate(result_table.send("#{prefix}_names".to_sym).as_json)
+        )
+      }
+      
+      result_table
     end
   end
 end

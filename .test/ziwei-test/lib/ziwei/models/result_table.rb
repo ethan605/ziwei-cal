@@ -65,6 +65,14 @@ module Ziwei
           [palace.position, palace.short_names]
         }]
       end
+
+      def render
+        template = File.read("#{Rails.root}/lib/ziwei/views/result_table.erb")
+        File.write(
+          "#{Rails.root}/lib/ziwei/result.html",
+          ERB.new(template).result(binding)
+        )
+      end
     end
   end
 end
