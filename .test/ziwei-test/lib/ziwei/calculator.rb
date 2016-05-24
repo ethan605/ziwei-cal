@@ -3,6 +3,7 @@ module Ziwei
     include Utils::ReuseUtils
     include Utils::CalcCommons
     include Utils::CalcForteenMainStars
+    include Utils::CalcOtherImportantStars
     include Utils::CalcSequentialConstellations
     include Utils::CalcSixDeadlyStars
     include Utils::CalcSixLuckyStars
@@ -21,7 +22,8 @@ module Ziwei
       cuc_element, cuc_number = calc_cuc(self_position, @profile.birth_year.stem)
       forteen_main_stars = calc_forteen_main_stars(cuc_element, cuc_number, @profile.birth_day)
       
-      loc_ton_position = :dau
+      other_important_stars = calc_other_important_stars(@profile.birth_year.stem, @profile.birth_year.branch)
+      loc_ton_position = other_important_stars.key(:loc_ton)
 
       thai_tue_constellation = calc_thai_tue_constellation_positions(@profile.birth_year.branch)
       trang_sinh_constellation = calc_trang_sinh_constellation_positions(cuc_number, @profile.fate_direction)
@@ -34,7 +36,8 @@ module Ziwei
       results = {}
       branches.each {|branch|
         results[branch] = {
-          :palace => palaces[branch],
+          :name => palaces[branch],
+          :is_body => (branch == body_position),
           :main_stars => forteen_main_stars[branch] || [],
           :trang_sinh_constellation => trang_sinh_constellation[branch],
           :good_stars => [],
@@ -42,7 +45,11 @@ module Ziwei
         }
 
         # Classify by qualities
-        results[branch][:good_stars] << :loc_ton if branch == loc_ton_position
+        star = other_important_stars[branch]
+        if star
+          quality = Configs::OtherImportantStars::Qualities[star]
+          results[branch]["#{quality}_stars".to_sym] << star
+        end
 
         star = six_deadly_stars_positions[branch]
         results[branch][:bad_stars] << star if star
