@@ -1,0 +1,20 @@
+<table class="palace <%= @configs[:name] == 'Mệnh' ? 'self' : '' %> <%= @configs[:body] == 'Thân' ? 'body' : '' %>" width="230px" height="160px">
+  <tr height="15%">
+    <td width="35%" class="top left"><%= @configs[:name] %></td>
+    <td width="30%" class="top center empty"></td>
+    <td width="35%" class="top right"><%= @configs[:body] %></td>
+  </tr>
+  <tr height="20%">
+    <td class="center main-stars" colspan="3"><%= @configs[:main_stars].join("<br />") %></td>
+  </tr>
+  <tr height="50%">
+    <td class="left good-stars"><%= @configs[:good_stars].join("<br />") %></td>
+    <td class="center empty"></td>
+    <td class="right good-stars"><%= @configs[:bad_stars].join("<br />") %></td>
+  </tr>
+  <tr height="15%">
+    <td class="bottom left"><%= @configs[:position] %></td>
+    <td class="bottom center"><%= @configs[:trang_sinh_constellation] %></td>
+    <td class="bottom right"><%= @configs[:opportunity_age] %></td>
+  </tr>
+</table>

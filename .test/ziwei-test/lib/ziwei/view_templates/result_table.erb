@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ziwei Calculator</title>
+  <style type="text/css">
+    body {
+      font-family: Roboto;
+    }
+    td.center {
+      text-align: center;
+    }
+    td.right {
+      text-align: right;
+    }
+    td.main-stars {
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+    td.good-stars, td.bad-stars, td.top, td.bottom {
+      font-size: 0.75em;
+    }
+    td.top, td.bottom.center {
+      font-weight: bold;
+    }
+    td.top.left {
+      font-size: 0.75em;
+      font-weight: bold;
+    }
+    table.palace {
+      background-color: lightyellow;
+    }
+    table.self.palace td.top.left, table.body.palace td.top.right {
+      color: red;
+    }
+    td.bottom.right {
+      color: blue;
+    }
+    td.bottom.left {
+      color: grey;
+    }
+  </style>
+</head>
+<body>
+  <table border="1">
+    <tr>
+      <td><%= @rendered_palaces[:ty2] %></td>
+      <td><%= @rendered_palaces[:ngo] %></td>
+      <td><%= @rendered_palaces[:mui] %></td>
+      <td><%= @rendered_palaces[:than] %></td>
+    </tr>
+    <tr>
+      <td><%= @rendered_palaces[:thin] %></td>
+      <td rowspan="2" colspan="2"></td>
+      <td><%= @rendered_palaces[:dau] %></td>
+    </tr>
+    <tr>
+      <td><%= @rendered_palaces[:mao] %></td>
+      <td><%= @rendered_palaces[:tuat] %></td>
+    </tr>
+    <tr>
+      <td><%= @rendered_palaces[:dan] %></td>
+      <td><%= @rendered_palaces[:suu] %></td>
+      <td><%= @rendered_palaces[:ty] %></td>
+      <td><%= @rendered_palaces[:hoi] %></td>
+    </tr>
+  </table>
+</body>
+</html>

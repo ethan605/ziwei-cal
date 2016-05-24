@@ -9,10 +9,14 @@ module Ziwei
           loc_ton_position = calc_loc_ton_position(birth_year_stem)
           thien_ma_position = calc_thien_ma_position(birth_year_branch)
 
-          {
-            loc_ton_position => :loc_ton,
-            thien_ma_position => :thien_ma
-          }
+          important_stars = {}
+          important_stars[loc_ton_position] ||= []
+          important_stars[loc_ton_position] << :loc_ton
+
+          important_stars[thien_ma_position] ||= []
+          important_stars[thien_ma_position] << :thien_ma
+
+          important_stars
         end
 
         def calc_loc_ton_position(birth_year_stem)

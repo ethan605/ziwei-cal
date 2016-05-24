@@ -9,12 +9,31 @@ module Ziwei
     include Utils::CalcSixLuckyStars
 
     def initialize
-      # @profiles = {
-      #   "Thanh" => Models::Profile.new(name: "Thành", hour: :ty2, day: 22, month: :thin, year: {stem: :tan, branch: :mui}),
-      #   "Hoa" => Models::Profile.new(name: "Hoa", gender: :female, hour: :dan, day: 28, month: :than, year: {stem: :tan, branch: :mui}),
-      #   "Yen" => Models::Profile.new(name: "C. Yến", gender: :female, hour: :tuat, day: 12, month: :ngo, year: {stem: :dinh, branch: :mao}),
-      # }
       prepare_profiles_data
+    end
+
+    def calc_all_profiles
+      @profiles.keys.each {|profile_key|
+        calc_profile(profile_key)
+        puts "Calculated Ziwei table for #{@profile.name}"
+      }
+    end
+
+    def calc_profile(profile_key = "thanhnx")
+      @profile = @profiles[profile_key]
+      raise "Invalid profile key" unless @profile
+
+      result_table = calc_result_table
+      %w[full short].each {|prefix|
+        use_full_names = prefix == "full"
+        File.write(
+          "#{Rails.root}/lib/ziwei/results/json/#{profile_key}#{use_full_names ? "" : "_" + prefix}.json",
+          JSON.pretty_generate(result_table.send("#{prefix}_names".to_sym).as_json)
+        )
+        result_table.render(use_full_names)
+      }
+      
+      true
     end
 
     def calc_result_table
@@ -24,7 +43,7 @@ module Ziwei
 
       forteen_main_stars = calc_forteen_main_stars(cuc_element, cuc_number, @profile.birth_day)
       other_important_stars = calc_other_important_stars(@profile.birth_year.stem, @profile.birth_year.branch)
-      loc_ton_position = other_important_stars.key(:loc_ton)
+      loc_ton_position = other_important_stars.find {|position, stars| stars.include?(:loc_ton)}.first
 
       opportunity_ages = calc_opportunity_ages(self_position, cuc_number, @profile.fate_direction)
 
@@ -49,17 +68,20 @@ module Ziwei
         }
 
         # Classify by qualities
-        star = other_important_stars[branch]
-        if star
-          quality = Configs::OtherImportantStars::Qualities[star]
-          results[branch]["#{quality}_stars".to_sym] << star
+        stars = other_important_stars[branch]
+        
+        if stars
+          stars.each {|star|
+            quality = Configs::OtherImportantStars::Qualities[star]
+            results[branch]["#{quality}_stars".to_sym] << star
+          }
         end
 
-        star = six_deadly_stars_positions[branch]
-        results[branch][:bad_stars] << star if star
+        stars = six_deadly_stars_positions[branch]
+        results[branch][:bad_stars] += stars if stars
 
-        star = six_lucky_stars_positions[branch]
-        results[branch][:good_stars] << star if star
+        stars = six_lucky_stars_positions[branch]
+        results[branch][:good_stars] += stars if stars
 
         star = thai_tue_constellation[branch]
         quality = Configs::ThaiTueConstellation::Qualities[star]
@@ -70,7 +92,7 @@ module Ziwei
         results[branch]["#{quality}_stars".to_sym] << star
       }
 
-      Models::ResultTable.new(results)
+      Models::ResultTable.new(@profile, results)
     end
 
     def prepare_profiles_data
@@ -106,6 +128,7 @@ module Ziwei
 
       raw_data.each {|arr|
         profile_data = {
+          key: arr[0],
           name: arr[1],
           gender: Ziwei::Configs::Genders::Converts[arr[2]],
           hour: Ziwei::Configs::Branches::Converts[arr[3]],
@@ -119,21 +142,6 @@ module Ziwei
 
         @profiles[arr.first] = Ziwei::Models::Profile.new(profile_data)
       }
-    end
-
-    def test(profile_name = "thanhnx")
-      @profile = @profiles[profile_name]
-      raise "Invalid profile key" unless @profile
-
-      result_table = calc_result_table
-      %w[full short].each {|prefix|
-        File.write(
-          "#{Rails.root}/lib/ziwei/tests/#{profile_name}_#{prefix}.json",
-          JSON.pretty_generate(result_table.send("#{prefix}_names".to_sym).as_json)
-        )
-      }
-      
-      result_table
     end
   end
 end

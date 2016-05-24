@@ -25,7 +25,8 @@ module Ziwei
           {
             position: full_name(@position, "Branches"),
             name: full_name(@name, "Palaces"),
-            main_stars: @main_stars.map {|star| full_name(star, "ForteenMainStars")},
+            body: @is_body ? "Thân" : "",
+            main_stars: @main_stars.map {|star| full_name(star, "ForteenMainStars") + " (#{Configs::ForteenMainStars::Places[star][@position]})"},
             good_stars: @good_stars.map {|star| full_name(star)},
             bad_stars: @bad_stars.map {|star| full_name(star)},
             trang_sinh_constellation: full_name(@trang_sinh_constellation, "TrangSinhConstellation"),
@@ -37,6 +38,7 @@ module Ziwei
           {
             position: full_name(@position, "Branches"),
             name: short_name(@name, "Palaces"),
+            body: @is_body ? "Thân" : "",
             main_stars: @main_stars.map {|star| short_name(star, "ForteenMainStars")},
             good_stars: @good_stars.map {|star| short_name(star)},
             bad_stars: @bad_stars.map {|star| short_name(star)},
@@ -44,11 +46,19 @@ module Ziwei
             opportunity_age: @opportunity_age
           }
         end
+
+        def render(use_full_names = true)
+          template = File.read("#{Rails.root}/lib/ziwei/view_templates/result_palace.erb")
+          @configs = use_full_names ? full_names : short_names
+          ERB.new(template).result(binding)
+        end
       end
 
+      attr_reader :profile
       attr_reader :palaces
 
-      def initialize(palace_configs)
+      def initialize(profile, palace_configs)
+        @profile = profile
         @palaces = palace_configs.map {|position, config|
           Palace.new(config.merge({position: position}))
         }
@@ -66,10 +76,15 @@ module Ziwei
         }]
       end
 
-      def render
-        template = File.read("#{Rails.root}/lib/ziwei/views/result_table.erb")
+      def render(use_full_names = true)
+        template = File.read("#{Rails.root}/lib/ziwei/view_templates/result_table.erb")
+        @rendered_palaces = {}
+        @palaces.each {|palace|
+          @rendered_palaces[palace.position] = palace.render(use_full_names)
+        }
+
         File.write(
-          "#{Rails.root}/lib/ziwei/result.html",
+          "#{Rails.root}/lib/ziwei/results/html/#{@profile.key}#{use_full_names ? "" : "_short"}.html",
           ERB.new(template).result(binding)
         )
       end

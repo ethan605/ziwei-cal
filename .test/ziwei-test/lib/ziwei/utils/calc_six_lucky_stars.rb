@@ -10,10 +10,16 @@ module Ziwei
           van_xuong_position, van_khuc_position = calc_xuong_khuc_positions(birth_hour)
 
           stars_positions = {}
-          stars_positions[ta_phu_position] = :ta_phu
-          stars_positions[huu_bat_position] = :huu_bat
-          stars_positions[van_xuong_position] = :van_xuong
-          stars_positions[van_khuc_position] = :van_khuc
+
+          [
+            [ta_phu_position, :ta_phu],
+            [huu_bat_position, :huu_bat],
+            [van_xuong_position, :van_xuong],
+            [van_khuc_position, :van_khuc]
+          ].each {|position, star|
+            stars_positions[position] ||= []
+            stars_positions[position] << star
+          }
 
           stars_positions
         end

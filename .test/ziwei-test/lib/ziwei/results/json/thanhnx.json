@@ -2,6 +2,7 @@
   "ty": {
     "position": "Tý",
     "name": "Phụ Mẫu",
+    "body": "",
     "main_stars": [
 
     ],
@@ -18,6 +19,7 @@
   "suu": {
     "position": "Sửu",
     "name": "Phúc Đức",
+    "body": "",
     "main_stars": [
 
     ],
@@ -34,6 +36,7 @@
   "dan": {
     "position": "Dần",
     "name": "Điền Trạch",
+    "body": "",
     "main_stars": [
 
     ],
@@ -50,6 +53,7 @@
   "mao": {
     "position": "Mão",
     "name": "Quan Lộc",
+    "body": "",
     "main_stars": [
       "Liêm Trinh",
       "Phá Quân"
@@ -66,6 +70,7 @@
   "thin": {
     "position": "Thìn",
     "name": "Nô Bộc",
+    "body": "",
     "main_stars": [
 
     ],
@@ -82,6 +87,7 @@
   "ty2": {
     "position": "Tỵ",
     "name": "Thiên Di",
+    "body": "",
     "main_stars": [
       "Thiên Phủ"
     ],
@@ -99,6 +105,7 @@
   "ngo": {
     "position": "Ngọ",
     "name": "Tật Ách",
+    "body": "",
     "main_stars": [
       "Thiên Đồng",
       "Thái Âm"
@@ -117,6 +124,7 @@
   "mui": {
     "position": "Mùi",
     "name": "Tài Bạch",
+    "body": "",
     "main_stars": [
       "Vũ Khúc",
       "Tham Lang"
@@ -133,6 +141,7 @@
   "than": {
     "position": "Thân",
     "name": "Tử Tức",
+    "body": "",
     "main_stars": [
       "Thái Dương",
       "Cự Môn"
@@ -151,6 +160,7 @@
   "dau": {
     "position": "Dậu",
     "name": "Phu Thê",
+    "body": "Thân",
     "main_stars": [
       "Thiên Tướng"
     ],
@@ -168,6 +178,7 @@
   "tuat": {
     "position": "Tuất",
     "name": "Huynh Đệ",
+    "body": "",
     "main_stars": [
       "Thiên Cơ",
       "Thiên Lương"
@@ -185,6 +196,7 @@
   "hoi": {
     "position": "Hợi",
     "name": "Mệnh",
+    "body": "",
     "main_stars": [
       "Tử Vi",
       "Thất Sát"

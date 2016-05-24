@@ -10,10 +10,16 @@ module Ziwei
           kinh_duong_position, da_la_position = calc_kinh_da_positions(loc_ton_position)
 
           stars_positions = {}
-          stars_positions[dia_khong_position] = :dia_khong
-          stars_positions[dia_kiep_position] = :dia_kiep
-          stars_positions[kinh_duong_position] = :kinh_duong
-          stars_positions[da_la_position] = :da_la
+
+          [
+            [dia_khong_position, :dia_khong],
+            [dia_kiep_position, :dia_kiep],
+            [kinh_duong_position, :kinh_duong],
+            [da_la_position, :da_la]
+          ].each {|position, star|
+            stars_positions[position] ||= []
+            stars_positions[position] << star
+          }
 
           stars_positions
         end

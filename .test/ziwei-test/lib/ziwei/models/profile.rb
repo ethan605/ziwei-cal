@@ -1,13 +1,14 @@
 module Ziwei
   module Models
     class Profile
-      attr_reader :name, :gender
+      attr_reader :key, :name, :gender
       attr_reader :birth_day
       attr_reader :birth_hour, :birth_month, :birth_year
       attr_reader :fate_direction
 
       def initialize(args = {})
-        @name = args[:name] || args["name"] || "Tên"
+        @key = args[:key] || args["key"] || "keyname"
+        @name = args[:name] || args["name"] || "Họ Và Tên"
 
         @gender = args[:gender] || args["gender"]
         @gender = :male unless Configs::Genders::Names.keys.include?(@gender)
