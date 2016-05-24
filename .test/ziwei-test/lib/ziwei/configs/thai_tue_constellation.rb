@@ -28,7 +28,7 @@ module Ziwei
         :bach_ho => "B.Hổ",
         :phuc_duc => "P.Đức",
         :dieu_khach => "Đ.Khách",
-        :truc_phu => "T.Phù"
+        :truc_phu => "Tr.Phù"
       }
 
       Orders = [:thai_tue, :thieu_duong, :tang_mon, :thieu_am, :quan_phu, :tu_phu, :tue_pha, :long_duc, :bach_ho, :phuc_duc, :dieu_khach, :truc_phu]

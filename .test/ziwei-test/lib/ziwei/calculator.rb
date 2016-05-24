@@ -10,9 +10,9 @@ module Ziwei
 
     def initialize
       @profiles = {
-        "Thanh" => Model::Profile.new(name: "Thành", hour: :ty2, day: 22, month: :thin, year: {stem: :tan, branch: :mui}),
-        "Hoa" => Model::Profile.new(name: "Hoa", gender: :female, hour: :dan, day: 28, month: :than, year: {stem: :tan, branch: :mui}),
-        "Yen" => Model::Profile.new(name: "C. Yến", gender: :female, hour: :tuat, day: 12, month: :ngo, year: {stem: :dinh, branch: :mao}),
+        "Thanh" => Models::Profile.new(name: "Thành", hour: :ty2, day: 22, month: :thin, year: {stem: :tan, branch: :mui}),
+        "Hoa" => Models::Profile.new(name: "Hoa", gender: :female, hour: :dan, day: 28, month: :than, year: {stem: :tan, branch: :mui}),
+        "Yen" => Models::Profile.new(name: "C. Yến", gender: :female, hour: :tuat, day: 12, month: :ngo, year: {stem: :dinh, branch: :mao}),
       }
     end
 
@@ -69,7 +69,7 @@ module Ziwei
         results[branch]["#{quality}_stars".to_sym] << star
       }
 
-      Model::ResultTable.new(results)
+      Models::ResultTable.new(results)
     end
 
     def test(profile_name = "Thanh")

@@ -1,5 +1,5 @@
 module Ziwei
-  module Model
+  module Models
     class Profile
       attr_reader :name, :gender
       attr_reader :birth_day
@@ -28,7 +28,7 @@ module Ziwei
       end
 
       def inspect
-        "<Ziwei::Model::Profile - Name: %s - Gender: %s %s - Birthday: %s %d/%s/%s>" %
+        "<Ziwei::Models::Profile - Name: %s - Gender: %s %s - Birthday: %s %d/%s/%s>" %
         [
           @name,
           Configs::Stems::Yinyang[Configs::Stems::Directions[@birth_year_stem]],

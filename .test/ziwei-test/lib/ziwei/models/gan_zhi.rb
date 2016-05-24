@@ -1,5 +1,5 @@
 module Ziwei
-  module Model
+  module Models
     class GanZhi
       attr_reader :stem, :branch
 
