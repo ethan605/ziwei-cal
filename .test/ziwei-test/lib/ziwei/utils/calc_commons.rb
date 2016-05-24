@@ -39,6 +39,15 @@ module Ziwei
           [cuc_element, cuc_number]
         end
 
+        def calc_opportunity_ages(self_position, cuc_number, fate_direction)
+          self_index = Configs::Branches::Indexes[self_position]
+
+          branches = Configs::Branches::Names.keys
+          ages = (0..11).map {|mult| cuc_number + 10*mult}
+
+          merge_sequences_from_index(branches, ages, self_index, fate_direction == -1)
+        end
+
         def merge_sequences_from_index(first_sequence, second_sequence, merge_index, reversed_order = false)
           second_seq = second_sequence.dup
 
