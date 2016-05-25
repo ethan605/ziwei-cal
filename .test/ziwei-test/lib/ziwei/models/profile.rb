@@ -5,6 +5,7 @@ module Ziwei
       attr_reader :birth_day
       attr_reader :birth_hour, :birth_month, :birth_year
       attr_reader :fate_direction
+      attr_reader :cuc_element, :cuc_number
 
       def initialize(args = {})
         @key = args[:key] || args["key"] || "keyname"
@@ -26,6 +27,11 @@ module Ziwei
         @birth_year = GanZhi.new(birth_year)
 
         @fate_direction = Configs::Stems::Directions[@birth_year.stem] * Configs::Genders::Directions[@gender]
+      end
+
+      def update_cuc(cuc_element, cuc_number)
+        @cuc_element = cuc_element
+        @cuc_number = cuc_number
       end
 
       def detail

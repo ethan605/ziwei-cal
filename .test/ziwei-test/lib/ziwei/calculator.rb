@@ -54,6 +54,7 @@ module Ziwei
       self_position, body_position = calc_self_body_position(@profile.birth_hour, @profile.birth_month)
       palaces = calc_palaces_positions(self_position)
       cuc_element, cuc_number = calc_cuc(self_position, @profile.birth_year.stem)
+      @profile.update_cuc(cuc_element, cuc_number)
 
       forteen_main_stars = calc_forteen_main_stars(cuc_element, cuc_number, @profile.birth_day)
       other_important_stars = calc_other_important_stars(@profile.birth_year.stem, @profile.birth_year.branch)
@@ -69,9 +70,9 @@ module Ziwei
       six_lucky_stars_positions = calc_six_lucky_stars_positions(@profile.birth_month, @profile.birth_hour)
 
       branches = Configs::Branches::Names.keys
-      results = {}
+      table = {}
       branches.each {|branch|
-        results[branch] = {
+        table[branch] = {
           :name => palaces[branch],
           :is_body => (branch == body_position),
           :main_stars => forteen_main_stars[branch] || [],
@@ -87,26 +88,26 @@ module Ziwei
         if stars
           stars.each {|star|
             quality = Configs::OtherImportantStars::Qualities[star]
-            results[branch]["#{quality}_stars".to_sym] << star
+            table[branch]["#{quality}_stars".to_sym] << star
           }
         end
 
         stars = six_deadly_stars_positions[branch]
-        results[branch][:bad_stars] += stars if stars
+        table[branch][:bad_stars] += stars if stars
 
         stars = six_lucky_stars_positions[branch]
-        results[branch][:good_stars] += stars if stars
+        table[branch][:good_stars] += stars if stars
 
         star = thai_tue_constellation[branch]
         quality = Configs::ThaiTueConstellation::Qualities[star]
-        results[branch]["#{quality}_stars".to_sym] << star
+        table[branch]["#{quality}_stars".to_sym] << star
 
         star = loc_ton_constellation[branch]
         quality = Configs::LocTonConstellation::Qualities[star]
-        results[branch]["#{quality}_stars".to_sym] << star
+        table[branch]["#{quality}_stars".to_sym] << star
       }
 
-      Models::ResultTable.new(@profile, results)
+      Models::ResultTable.new(@profile, table)
     end
 
     def prepare_profiles_data

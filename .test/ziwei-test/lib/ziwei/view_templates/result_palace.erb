@@ -7,32 +7,31 @@
   <tr height="15%">
     <td></td>
     <td rowspan="2" class="center main-stars">
-      <%=
-        @configs[:main_stars].map {|star|
-          place_quality_color = Ziwei::Configs::Wuxing::PlaceQualityColors[star[/(?!\()(\w|Đ)(?=\))/]]
-          place_quality_color_style = ""
-          place_quality_color_style = "style='color: #{place_quality_color}'" if place_quality_color
-
-          "<span class='main-star' #{place_quality_color_style}>#{star}</span>"
-        }.join("<br />")
-      %>
+      <div>
+        <%=
+          @configs[:main_stars].map {|star|
+            "<span class='main-star' style='#{get_place_quality_color_style(star)}'>#{star}</span>"
+          }.join
+        %>
+      </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-    <%=
-      %w[good bad].map {|quality|
-        alignments = {
-          "good" => "left",
-          "bad" => "right"
-        }
-        content = @configs["#{quality}_stars".to_sym].map {|star|
-          "<span class='#{quality}-star'>#{star}</span>"
-        }.join("<br />")
+      <%=
+        %w[good bad].map {|quality|
+          alignments = {
+            "good" => "left",
+            "bad" => "right"
+          }
 
-        "<td class='#{alignments[quality]} #{quality}-stars'>#{content}</td>"
-      }.join("\n")
-    %>
+          content = @configs["#{quality}_stars".to_sym].map {|star|
+            "<span class='#{quality}-star'>#{star}</span>"
+          }.join
+
+          "<td class='#{alignments[quality]} #{quality}-stars'><div>#{content}</div></td>"
+        }.join("\n")
+      %>
     <!-- <td class="left good-stars">
       <%= @configs[:good_stars].map {|star| "<span class='good-star'>#{star}</span>"}.join("<br />") %>
     </td>

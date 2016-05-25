@@ -40,6 +40,16 @@ module Ziwei
 
           all_names[symbol.to_sym]
         end
+
+        def get_element_color_style(wuxing_element)
+          color = Ziwei::Configs::Wuxing::ElementColors[wuxing_element]
+          color ? "color: #{color};" : ""
+        end
+
+        def get_place_quality_color_style(star)
+          color = Ziwei::Configs::Wuxing::PlaceQualityColors[star[/(?!\()(\w|Đ)(?=\))/]]
+          color ? "color: #{color};" : ""
+        end
       end
       
       def self.included(receiver)

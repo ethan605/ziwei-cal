@@ -1,6 +1,8 @@
 module Ziwei
   module Models
     class ResultTable
+      include Ziwei::Utils::ReuseUtils
+      
       class Palace
         include Utils::ReuseUtils
 
