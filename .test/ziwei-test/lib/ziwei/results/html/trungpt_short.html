@@ -2,10 +2,35 @@
 <html>
 <head>
   <title>Phùng Thành Trung's Ziwei Table</title>
+  <link href="data:image/x-icon;base64,
+    iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAL
+    EwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6
+    eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYg
+    eG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4K
+    ICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlm
+    Zj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRh
+    dGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9y
+    ZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAA5VJREFUOBFNk/1PW1UYx59zb2/XtWXtGJTejArS
+    DpWBIojMdCPZ5pwhZrKBW/wTSPeDQLaQGeOcv0hMSPzJXxhCGMbpFmOykUwzg8hginN1xRZ5GX3v
+    7RvQwu3dvbf3Hs/Fsfgk5yU5z+c5z/fkexD8FzRZlKf7195/73Sn232kVU/BfoPRiJ9IxdjM1OT9
+    kW9ufEdyvE/znjHaRgt9c0vLZ2OjI3x4dQXP3buDuehjLAo8jgYX8fLCPB4fvbr5igM+Jbk7jG6b
+    1ODz3d3f+v1+rKoqVhVJ+u3ehFgQeDmRiMg/3PhSXP7nL6koi9j35+/47DtvjhKG0mCkTee6ugb6
+    +y9cBJVX9paxqsG4l1lc8IEqSyBJItD6XfC8sxbWM2HJZqtkchs8qm9s+pigV7QqzZ1dnR9YrSWQ
+    ScfU/GaBuT/5I456p2ArsQJKLgm5UAACD//AQO3WZzKcXHPABde/Hu8lbAPd19PTc/KtY21FuSA7
+    nI3MgncOq+sR1HTsNNS3HgVXfTOU2SshG/ob8UIRv9zSplMVWaaQaowFQ1ndS3V1hxgGQZLj0BOJ
+    Aj6xhFpPnoXq2jpyAQCXTMKs1w+ATaBfj8PSwjxkUyu4tJSFE2+3H9IR1uZw1IBlnw0FvA+h1O4A
+    azkLi0tLYK+ogOGhIcisrUE6lYKjB1m0r4aH193tiKEQTE8/2E8hilIxViG/sQaIPKmiSCAIBbBa
+    rJDJpGF2dgacTifkcnkQRQFMJjNZeUglo0DrdEAVRCkZj4chGgxgTWtRFPFPt78Hnz8AQ1eH4dbt
+    CTjv8YAZ56Gy2oUZgxEyyQguCALkeSFKA+ZdpzrOtblq6xRFxbQgFiG9PIe+6O+G8YlfwcIAnDrx
+    BrQfPwysqxFV1b4Az1U51a0tiX63o2Nc80H9tbGx2TNnOszeBz/LCt7F6DCFc4lVlEpxQGwFdtKZ
+    xV6FDSUlqLCVlppajuuHvxrJezyeI9tGIkU+mpq8e8VWZlaJcZRy1sXEIqvEr3hbJ0/aPfBiA5Hp
+    l7OpGG3Y46Dc7sOfEO7yjqen44lEVUND46tECm0yGeT1bByX2li1vIJVI6s+1Ww2KxVsNROMJFFf
+    36VrHBfXjITJePYxtG4+HBwczPsePcKh4DLmYkG8sZbG4dAKnvrlLv58YGCT5Fz+H0PvSNA62fnO
+    moO6ensvtFr2mFhFLtKCVOSu37w1E348f5OczZOhxTbzL+FXtFV64DG6AAAAAElFTkSuQmCC"
+    rel="icon" type="image/x-icon" />
   <style type="text/css">
     body {
       font-family: Roboto;
-      margin: auto;
       width: 1120px;
     }
     td.center {
@@ -20,12 +45,16 @@
       vertical-align: top;
     }
     td.good-stars, td.bad-stars {
-      font-size: 0.75em;
+      font-size: 0.7em;
       vertical-align: top;
     }
 
     td.top, td.bottom {
       font-size: 0.75em;
+    }
+    td.bottom {
+      line-height: 2.5em;
+      vertical-align: top;
     }
     td.top, td.bottom.center {
       font-weight: bold;
@@ -34,6 +63,7 @@
       font-size: 0.75em;
       font-weight: bold;
     }
+
     table.result-table {
       border-style: groove;
       border-color: darkgreen;
@@ -59,9 +89,31 @@
       width: 70%;
       line-height: 2.5em;
     }
+
+    div.tuan-triet {
+      display: none;
+      position: absolute;
+      width: 50px;
+      text-align: center;
+      font-size: 0.8em;
+      font-weight: bold;
+      line-height: 20px;
+      color: white;
+      background: red;
+      border: 1px;
+      border-style: solid;
+      border-color: black;
+    }
   </style>
 </head>
 <body>
+  
+  <div class="tuan-triet" style='top: 162px; left: 125px;'>
+    <span>Tuần</span>
+  </div>
+  <div class="tuan-triet" style='top: 490px; left: 977px;'>
+    <span>Triệt</span>
+  </div>
   <table class="result-table" border="1">
     <tr>
       <td><table class="palace  " width="280px" height="160px">
@@ -74,20 +126,15 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Cự</span>
+        <span class='main-star' style='color: darkgrey;'>Cự (H)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div><span class='good-star'>Hữu</span><span class='good-star'>P.Liêm</span></div></td>
+    <td class='left good-stars'><div><span class='good-star'>Hữu</span>
+<span class='good-star'>P.Liêm</span></div></td>
 <td class='right bad-stars'><div><span class='bad-star'>B.Hổ</span></div></td>
-    <!-- <td class="left good-stars">
-      <span class='good-star'>Hữu</span><br /><span class='good-star'>P.Liêm</span>
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>B.Hổ</span>
-    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Tỵ</td>
@@ -105,20 +152,16 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Liêm</span><span class='main-star' style=''>Tướng</span>
+        <span class='main-star' style='color: orange;'>Liêm (V)</span>
+<span class='main-star' style='color: orange;'>Tướng (V)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div><span class='good-star'>P.Đức</span><span class='good-star'>T.Thư</span></div></td>
+    <td class='left good-stars'><div><span class='good-star'>P.Đức</span>
+<span class='good-star'>T.Thư</span></div></td>
 <td class='right bad-stars'><div></div></td>
-    <!-- <td class="left good-stars">
-      <span class='good-star'>P.Đức</span><br /><span class='good-star'>T.Thư</span>
-    </td>
-    <td class="right bad-stars">
-      
-    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Ngọ</td>
@@ -136,20 +179,14 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Lương</span>
+        <span class='main-star' style='color: yellowgreen;'>Lương (Đ)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div><span class='good-star'>T.Quân</span></div></td>
+    <td class='left good-stars'><div><span class='good-star'>T.Quân</span></div></td>
 <td class='right bad-stars'><div><span class='bad-star'>Đ.Khách</span></div></td>
-    <!-- <td class="left good-stars">
-      <span class='good-star'>T.Quân</span>
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>Đ.Khách</span>
-    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Mùi</td>
@@ -167,20 +204,15 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Sát</span>
+        <span class='main-star' style='color: red;'>Sát (M)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div></div></td>
-<td class='right bad-stars'><div><span class='bad-star'>Tr.Phù</span><span class='bad-star'>T.Hao</span></div></td>
-    <!-- <td class="left good-stars">
-      
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>Tr.Phù</span><br /><span class='bad-star'>T.Hao</span>
-    </td> -->
+    <td class='left good-stars'><div></div></td>
+<td class='right bad-stars'><div><span class='bad-star'>Tr.Phù</span>
+<span class='bad-star'>T.Hao</span></div></td>
   </tr>
   <tr height="15%">
     <td class="bottom left">Thân</td>
@@ -200,20 +232,16 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Tham</span>
+        <span class='main-star' style='color: orange;'>Tham (V)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div><span class='good-star'>Khúc</span><span class='good-star'>L.Đức</span><span class='good-star'>H.Thần</span></div></td>
+    <td class='left good-stars'><div><span class='good-star'>Khúc</span>
+<span class='good-star'>L.Đức</span>
+<span class='good-star'>H.Thần</span></div></td>
 <td class='right bad-stars'><div></div></td>
-    <!-- <td class="left good-stars">
-      <span class='good-star'>Khúc</span><br /><span class='good-star'>L.Đức</span><br /><span class='good-star'>H.Thần</span>
-    </td>
-    <td class="right bad-stars">
-      
-    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Thìn</td>
@@ -223,6 +251,31 @@
 </table></td>
       <td rowspan="2" colspan="2">
         <div class=center-info>
+  
+
+  <span>Tên: <b>Phùng Thành Trung</b></span>
+  <span>Giờ sinh: <b>Tý</b></span>
+  <span>
+    Ngày sinh: 
+    <b>21</b>
+     tháng 
+    <b>Tý</b>
+     năm 
+    <b>Quý Dậu</b>
+  </span>
+  <span>
+    Bản mệnh: 
+    <b style='color: darkgrey;'>Kiếm Phong KIM</b>
+     (Âm Nam)
+  </span>
+  <span>
+    Cục: 
+    <b style='color: red;'>
+      Hỏa (6)
+    </b>
+  </span>
+</div>
+        <!-- <div class=center-info>
           
 
           <span>Tên: <b>Phùng Thành Trung</b></span>
@@ -242,7 +295,7 @@
               Hỏa (6)
             </b>
           </span>
-        </div>
+        </div> -->
       </td>
       <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
@@ -254,20 +307,15 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Đồng</span>
+        <span class='main-star' style='color: darkgrey;'>Đồng (H)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div><span class='good-star'>Tả</span><span class='good-star'>T.Long</span></div></td>
+    <td class='left good-stars'><div><span class='good-star'>Tả</span>
+<span class='good-star'>T.Long</span></div></td>
 <td class='right bad-stars'><div><span class='bad-star'>T.Tuế</span></div></td>
-    <!-- <td class="left good-stars">
-      <span class='good-star'>Tả</span><br /><span class='good-star'>T.Long</span>
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>T.Tuế</span>
-    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Dậu</td>
@@ -287,20 +335,15 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Nguyệt</span>
+        <span class='main-star' style='color: darkgrey;'>Nguyệt (H)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div></div></td>
-<td class='right bad-stars'><div><span class='bad-star'>T.Phá</span><span class='bad-star'>B.Phù</span></div></td>
-    <!-- <td class="left good-stars">
-      
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>T.Phá</span><br /><span class='bad-star'>B.Phù</span>
-    </td> -->
+    <td class='left good-stars'><div></div></td>
+<td class='right bad-stars'><div><span class='bad-star'>T.Phá</span>
+<span class='bad-star'>B.Phù</span></div></td>
   </tr>
   <tr height="15%">
     <td class="bottom left">Mão</td>
@@ -318,20 +361,16 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Vũ</span>
+        <span class='main-star' style='color: red;'>Vũ (M)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div><span class='good-star'>Xương</span><span class='good-star'>T.Dương</span><span class='good-star'>L.Sĩ</span></div></td>
+    <td class='left good-stars'><div><span class='good-star'>Xương</span>
+<span class='good-star'>T.Dương</span>
+<span class='good-star'>L.Sĩ</span></div></td>
 <td class='right bad-stars'><div><span class='bad-star'>Đà</span></div></td>
-    <!-- <td class="left good-stars">
-      <span class='good-star'>Xương</span><br /><span class='good-star'>T.Dương</span><br /><span class='good-star'>L.Sĩ</span>
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>Đà</span>
-    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Tuất</td>
@@ -351,20 +390,16 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Tử</span><span class='main-star' style=''>Phủ</span>
+        <span class='main-star' style='color: red;'>Tử (M)</span>
+<span class='main-star' style='color: red;'>Phủ (M)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div></div></td>
-<td class='right bad-stars'><div><span class='bad-star'>T.Phù</span><span class='bad-star'>Đ.Hao</span></div></td>
-    <!-- <td class="left good-stars">
-      
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>T.Phù</span><br /><span class='bad-star'>Đ.Hao</span>
-    </td> -->
+    <td class='left good-stars'><div></div></td>
+<td class='right bad-stars'><div><span class='bad-star'>T.Phù</span>
+<span class='bad-star'>Đ.Hao</span></div></td>
   </tr>
   <tr height="15%">
     <td class="bottom left">Dần</td>
@@ -382,20 +417,15 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Cơ</span>
+        <span class='main-star' style='color: yellowgreen;'>Cơ (Đ)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div></div></td>
-<td class='right bad-stars'><div><span class='bad-star'>Q.Phù</span><span class='bad-star'>P.Binh</span></div></td>
-    <!-- <td class="left good-stars">
-      
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>Q.Phù</span><br /><span class='bad-star'>P.Binh</span>
-    </td> -->
+    <td class='left good-stars'><div></div></td>
+<td class='right bad-stars'><div><span class='bad-star'>Q.Phù</span>
+<span class='bad-star'>P.Binh</span></div></td>
   </tr>
   <tr height="15%">
     <td class="bottom left">Sửu</td>
@@ -413,20 +443,15 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Phá</span>
+        <span class='main-star' style='color: red;'>Phá (M)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div><span class='good-star'>T.Âm</span></div></td>
-<td class='right bad-stars'><div><span class='bad-star'>Kình</span><span class='bad-star'>Q.Phủ</span></div></td>
-    <!-- <td class="left good-stars">
-      <span class='good-star'>T.Âm</span>
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>Kình</span><br /><span class='bad-star'>Q.Phủ</span>
-    </td> -->
+    <td class='left good-stars'><div><span class='good-star'>T.Âm</span></div></td>
+<td class='right bad-stars'><div><span class='bad-star'>Kình</span>
+<span class='bad-star'>Q.Phủ</span></div></td>
   </tr>
   <tr height="15%">
     <td class="bottom left">Tý</td>
@@ -444,20 +469,18 @@
     <td></td>
     <td rowspan="2" class="center main-stars">
       <div>
-        <span class='main-star' style=''>Nhật</span>
+        <span class='main-star' style='color: darkgrey;'>Nhật (H)</span>
       </div>
     </td>
     <td></td>
   </tr>
   <tr height="55%">
-      <td class='left good-stars'><div><span class='good-star'>Lộc</span><span class='good-star'>Mã</span><span class='good-star'>B.Sĩ</span></div></td>
-<td class='right bad-stars'><div><span class='bad-star'>Không</span><span class='bad-star'>Kiếp</span><span class='bad-star'>T.Môn</span></div></td>
-    <!-- <td class="left good-stars">
-      <span class='good-star'>Lộc</span><br /><span class='good-star'>Mã</span><br /><span class='good-star'>B.Sĩ</span>
-    </td>
-    <td class="right bad-stars">
-      <span class='bad-star'>Không</span><br /><span class='bad-star'>Kiếp</span><br /><span class='bad-star'>T.Môn</span>
-    </td> -->
+    <td class='left good-stars'><div><span class='good-star'>Lộc</span>
+<span class='good-star'>Mã</span>
+<span class='good-star'>B.Sĩ</span></div></td>
+<td class='right bad-stars'><div><span class='bad-star'>Không</span>
+<span class='bad-star'>Kiếp</span>
+<span class='bad-star'>T.Môn</span></div></td>
   </tr>
   <tr height="15%">
     <td class="bottom left">Hợi</td>

@@ -1,7 +1,8 @@
 module Ziwei
   module Models
     class Profile
-      attr_reader :key, :name, :gender
+      attr_reader :key, :name
+      attr_reader :gender, :yinyang_gender
       attr_reader :birth_day
       attr_reader :birth_hour, :birth_month, :birth_year
       attr_reader :fate_direction
@@ -26,7 +27,14 @@ module Ziwei
         birth_year = args[:birth_year] || args["birth_year"] || args[:year] || args["year"]
         @birth_year = GanZhi.new(birth_year)
 
-        @fate_direction = Configs::Stems::Directions[@birth_year.stem] * Configs::Genders::Directions[@gender]
+        stem_direction = Configs::Stems::Directions[@birth_year.stem]
+
+        @yinyang_gender = [
+          Configs::Stems::Yinyang[stem_direction],
+          Configs::Genders::Names[@gender]
+        ].join(" ")
+
+        @fate_direction = stem_direction * Configs::Genders::Directions[@gender]
       end
 
       def update_cuc(cuc_element, cuc_number)
@@ -35,10 +43,9 @@ module Ziwei
       end
 
       def detail
-        "%s %s, sinh giờ %s ngày %d tháng %s năm %s" %
+        "%s, sinh giờ %s ngày %d tháng %s năm %s" %
         [
-          Configs::Stems::Yinyang[Configs::Stems::Directions[@birth_year.stem]],
-          Configs::Genders::Names[@gender],
+          @yinyang_gender,
           Configs::Branches::Names[@birth_hour],
           @birth_day,
           Configs::Branches::Names[@birth_month],
@@ -47,11 +54,10 @@ module Ziwei
       end
 
       def inspect
-        "<Ziwei::Models::Profile - Name: %s - Gender: %s %s - Birthday: %s %d/%s/%s>" %
+        "<Ziwei::Models::Profile - Name: %s - Gender: %s - Birthday: %s %d/%s/%s>" %
         [
           @name,
-          Configs::Stems::Yinyang[Configs::Stems::Directions[@birth_year.stem]],
-          Configs::Genders::Names[@gender],
+          @yinyang_gender,
           Configs::Branches::Names[@birth_hour],
           @birth_day,
           Configs::Branches::Names[@birth_month],

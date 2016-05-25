@@ -28,7 +28,9 @@ module Ziwei
             position: full_name(@position, "Branches"),
             name: full_name(@name, "Palaces"),
             body: @is_body ? "Thân" : "",
-            main_stars: @main_stars.map {|star| full_name(star, "ForteenMainStars") + " (#{Configs::ForteenMainStars::Places[star][@position]})"},
+            main_stars: @main_stars.map {|star|
+              full_name(star, "ForteenMainStars") + " (#{Configs::ForteenMainStars::Places[star][@position]})"
+            },
             good_stars: @good_stars.map {|star| full_name(star)},
             bad_stars: @bad_stars.map {|star| full_name(star)},
             trang_sinh_constellation: full_name(@trang_sinh_constellation, "TrangSinhConstellation"),
@@ -41,7 +43,9 @@ module Ziwei
             position: full_name(@position, "Branches"),
             name: short_name(@name, "Palaces"),
             body: @is_body ? "Thân" : "",
-            main_stars: @main_stars.map {|star| short_name(star, "ForteenMainStars")},
+            main_stars: @main_stars.map {|star|
+              short_name(star, "ForteenMainStars") + " (#{Configs::ForteenMainStars::Places[star][@position]})"
+            },
             good_stars: @good_stars.map {|star| short_name(star)},
             bad_stars: @bad_stars.map {|star| short_name(star)},
             trang_sinh_constellation: short_name(@trang_sinh_constellation, "TrangSinhConstellation"),
@@ -79,15 +83,19 @@ module Ziwei
       end
 
       def render(use_full_names = true)
-        template = File.read("#{Rails.root}/lib/ziwei/view_templates/result_table.erb")
+        table_template = File.read("#{Rails.root}/lib/ziwei/view_templates/result_table.erb")
+        center_info_template = File.read("#{Rails.root}/lib/ziwei/view_templates/center_info.erb")
+
         @rendered_palaces = {}
         @palaces.each {|palace|
           @rendered_palaces[palace.position] = palace.render(use_full_names)
         }
 
+        center_info = ERB.new(center_info_template).result(binding)
+
         File.write(
           "#{Rails.root}/lib/ziwei/results/html/#{@profile.key}#{use_full_names ? "" : "_short"}.html",
-          ERB.new(template).result(binding)
+          ERB.new(table_template).result(binding)
         )
       end
     end

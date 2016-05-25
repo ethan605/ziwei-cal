@@ -4,8 +4,8 @@
     "name": "Mệnh",
     "body": "",
     "main_stars": [
-      "Liêm",
-      "Tướng"
+      "Liêm (V)",
+      "Tướng (V)"
     ],
     "good_stars": [
       "Khúc",
@@ -22,7 +22,7 @@
     "name": "Phụ",
     "body": "",
     "main_stars": [
-      "Lương"
+      "Lương (Đ)"
     ],
     "good_stars": [
       "T.Long"
@@ -38,7 +38,7 @@
     "name": "Phúc",
     "body": "",
     "main_stars": [
-      "Sát"
+      "Sát (M)"
     ],
     "good_stars": [
       "Xương",
@@ -56,7 +56,7 @@
     "name": "Điền",
     "body": "",
     "main_stars": [
-      "Đồng"
+      "Đồng (Đ)"
     ],
     "good_stars": [
       "Lộc",
@@ -74,7 +74,7 @@
     "name": "Quan",
     "body": "Thân",
     "main_stars": [
-      "Vũ"
+      "Vũ (M)"
     ],
     "good_stars": [
       "Hữu",
@@ -92,7 +92,7 @@
     "name": "Nô",
     "body": "",
     "main_stars": [
-      "Nhật"
+      "Nhật (M)"
     ],
     "good_stars": [
       "Mã"
@@ -109,7 +109,7 @@
     "name": "Di",
     "body": "",
     "main_stars": [
-      "Phá"
+      "Phá (M)"
     ],
     "good_stars": [
       "T.Âm"
@@ -125,7 +125,7 @@
     "name": "Tật",
     "body": "",
     "main_stars": [
-      "Cơ"
+      "Cơ (Đ)"
     ],
     "good_stars": [
 
@@ -143,8 +143,8 @@
     "name": "Tài",
     "body": "",
     "main_stars": [
-      "Tử",
-      "Phủ"
+      "Tử (M)",
+      "Phủ (M)"
     ],
     "good_stars": [
       "H.Thần"
@@ -160,7 +160,7 @@
     "name": "Tử",
     "body": "",
     "main_stars": [
-      "Nguyệt"
+      "Nguyệt (M)"
     ],
     "good_stars": [
       "P.Liêm"
@@ -176,7 +176,7 @@
     "name": "Phối",
     "body": "",
     "main_stars": [
-      "Tham"
+      "Tham (V)"
     ],
     "good_stars": [
       "Tả",
@@ -194,7 +194,7 @@
     "name": "Bào",
     "body": "",
     "main_stars": [
-      "Cự"
+      "Cự (Đ)"
     ],
     "good_stars": [
       "T.Quân"
