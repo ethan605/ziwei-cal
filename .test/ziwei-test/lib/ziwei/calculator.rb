@@ -7,6 +7,7 @@ module Ziwei
     include Utils::CalcSequentialConstellations
     include Utils::CalcSixDeadlyStars
     include Utils::CalcSixLuckyStars
+    include Utils::CalcTuanTriet
 
     attr_reader :profiles
 
@@ -107,7 +108,12 @@ module Ziwei
         table[branch]["#{quality}_stars".to_sym] << star
       }
 
-      Models::ResultTable.new(@profile, table)
+      Models::ResultTable.new(
+        profile: @profile,
+        palaces: table,
+        tuan_coordinate: calc_tuan_coordinate,
+        triet_coordinate: calc_triet_coordinate
+      )
     end
 
     def prepare_profiles_data

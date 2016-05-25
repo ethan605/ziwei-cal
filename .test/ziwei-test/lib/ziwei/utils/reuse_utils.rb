@@ -50,6 +50,13 @@ module Ziwei
           color = Ziwei::Configs::Wuxing::PlaceQualityColors[star[/(?!\()(\w|Đ)(?=\))/]]
           color ? "color: #{color};" : ""
         end
+
+        def convert_coordinate_to_abs_pos(x_coord, y_coord)
+          {
+            left: (8 + 284*x_coord - 142 - 25),
+            top: (8 + 164*y_coord - 10)
+          }
+        end
       end
       
       def self.included(receiver)

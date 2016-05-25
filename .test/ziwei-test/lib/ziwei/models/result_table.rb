@@ -62,12 +62,16 @@ module Ziwei
 
       attr_reader :profile
       attr_reader :palaces
+      attr_reader :tuan_coordinate, :triet_coordinate
 
-      def initialize(profile, palace_configs)
-        @profile = profile
+      def initialize(args = {})
+        @profile = args[:profile] || args["profile"]
+        palace_configs = args[:palaces] || args["palaces"]
         @palaces = palace_configs.map {|position, config|
           Palace.new(config.merge({position: position}))
         }
+        @tuan_coordinate = args[:tuan_coordinate] || configs["tuan_coordinate"]
+        @triet_coordinate = args[:triet_coordinate] || configs["triet_coordinate"]
       end
 
       def full_names
