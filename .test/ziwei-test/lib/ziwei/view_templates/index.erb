@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ziwei Calculator Index</title>
+</head>
+<body>
+  <ul>
+    <%=
+      @profiles.map {|key, profile|
+        %{
+          <li>
+            <a href='html/#{key}.html'><b style='color: blue'>#{profile.name}</b></a> (#{profile.detail})
+          </li>
+        }
+      }.join("\n")
+    %>
+  </ul>
+</body>
+</html>

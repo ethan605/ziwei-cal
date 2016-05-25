@@ -1,16 +1,44 @@
-<table class="palace <%= @configs[:name] == 'Mệnh' ? 'self' : '' %> <%= @configs[:body] == 'Thân' ? 'body' : '' %>" width="230px" height="160px">
+<table class="palace <%= @configs[:name] == 'Mệnh' ? 'self' : '' %> <%= @configs[:body] == 'Thân' ? 'body' : '' %>" width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left"><%= @configs[:name] %></td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"><%= @configs[:body] %></td>
+    <td width="30%" class="top left"><%= @configs[:name] %></td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"><%= @configs[:body] %></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3"><%= @configs[:main_stars].join("<br />") %></td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <%=
+        @configs[:main_stars].map {|star|
+          place_quality_color = Ziwei::Configs::Wuxing::PlaceQualityColors[star[/(?!\()(\w|Đ)(?=\))/]]
+          place_quality_color_style = ""
+          place_quality_color_style = "style='color: #{place_quality_color}'" if place_quality_color
+
+          "<span class='main-star' #{place_quality_color_style}>#{star}</span>"
+        }.join("<br />")
+      %>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars"><%= @configs[:good_stars].join("<br />") %></td>
-    <td class="center empty"></td>
-    <td class="right good-stars"><%= @configs[:bad_stars].join("<br />") %></td>
+  <tr height="55%">
+    <%=
+      %w[good bad].map {|quality|
+        alignments = {
+          "good" => "left",
+          "bad" => "right"
+        }
+        content = @configs["#{quality}_stars".to_sym].map {|star|
+          "<span class='#{quality}-star'>#{star}</span>"
+        }.join("<br />")
+
+        "<td class='#{alignments[quality]} #{quality}-stars'>#{content}</td>"
+      }.join("\n")
+    %>
+    <!-- <td class="left good-stars">
+      <%= @configs[:good_stars].map {|star| "<span class='good-star'>#{star}</span>"}.join("<br />") %>
+    </td>
+    <td class="right bad-stars">
+      <%= @configs[:bad_stars].map {|star| "<span class='bad-star'>#{star}</span>"}.join("<br />") %>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left"><%= @configs[:position] %></td>

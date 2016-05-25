@@ -49,6 +49,14 @@ module Ziwei
         :moc => :thin,
         :thuy => :suu
       }
+
+      PlaceQualityColors = {
+        "M" => "red",
+        "V" => "orange",
+        "Đ" => "yellowgreen",
+        "B" => "darkgreen",
+        "H" => "darkgrey"
+      }
     end
   end
 end

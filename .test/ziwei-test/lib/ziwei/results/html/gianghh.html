@@ -5,6 +5,8 @@
   <style type="text/css">
     body {
       font-family: Roboto;
+      margin: auto;
+      width: 1120px;
     }
     td.center {
       text-align: center;
@@ -15,8 +17,14 @@
     td.main-stars {
       font-size: 0.9em;
       font-weight: bold;
+      vertical-align: top;
     }
-    td.good-stars, td.bad-stars, td.top, td.bottom {
+    td.good-stars, td.bad-stars {
+      font-size: 0.75em;
+      vertical-align: top;
+    }
+
+    td.top, td.bottom {
       font-size: 0.75em;
     }
     td.top, td.bottom.center {
@@ -25,6 +33,11 @@
     td.top.left {
       font-size: 0.75em;
       font-weight: bold;
+    }
+    table.result-table {
+      border-style: groove;
+      border-color: darkgreen;
+      border-spacing: 0px;
     }
     table.palace {
       background-color: lightyellow;
@@ -41,21 +54,30 @@
   </style>
 </head>
 <body>
-  <table border="1">
+  <table class="result-table" border="1">
     <tr>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Điền Trạch</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Điền Trạch</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Thiên Cơ (V)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: orange'>Thiên Cơ (V)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Thiên Mã</td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Điếu Khách<br />Bệnh Phù</td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Thiên Mã</span></td>
+<td class='right bad-stars'><span class='bad-star'>Điếu Khách</span><br /><span class='bad-star'>Bệnh Phù</span></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Thiên Mã</span>
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Điếu Khách</span><br /><span class='bad-star'>Bệnh Phù</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Tỵ</td>
@@ -63,19 +85,28 @@
     <td class="bottom right">33</td>
   </tr>
 </table></td>
-      <td><table class="palace  body" width="230px" height="160px">
+      <td><table class="palace  body" width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Quan Lộc</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right">Thân</td>
+    <td width="30%" class="top left">Quan Lộc</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right">Thân</td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Tử Vi (M)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: red'>Tử Vi (M)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Tả Phù<br />Văn Khúc</td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Trực Phù<br />Đại Hao</td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Tả Phù</span><br /><span class='good-star'>Văn Khúc</span></td>
+<td class='right bad-stars'><span class='bad-star'>Trực Phù</span><br /><span class='bad-star'>Đại Hao</span></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Tả Phù</span><br /><span class='good-star'>Văn Khúc</span>
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Trực Phù</span><br /><span class='bad-star'>Đại Hao</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Ngọ</td>
@@ -83,19 +114,28 @@
     <td class="bottom right">43</td>
   </tr>
 </table></td>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Nô Bộc</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Nô Bộc</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3"></td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars"></td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Thái Tuế<br />Phục Binh</td>
+  <tr height="55%">
+    <td class='left good-stars'></td>
+<td class='right bad-stars'><span class='bad-star'>Thái Tuế</span><br /><span class='bad-star'>Phục Binh</span></td>
+    <!-- <td class="left good-stars">
+      
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Thái Tuế</span><br /><span class='bad-star'>Phục Binh</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Mùi</td>
@@ -103,19 +143,28 @@
     <td class="bottom right">53</td>
   </tr>
 </table></td>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Thiên Di</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Thiên Di</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Phá Quân (H)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: darkgrey'>Phá Quân (H)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Hữu Bật<br />Văn Xương<br />Thiếu Dương</td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Đà La<br />Quan Phủ</td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Hữu Bật</span><br /><span class='good-star'>Văn Xương</span><br /><span class='good-star'>Thiếu Dương</span></td>
+<td class='right bad-stars'><span class='bad-star'>Đà La</span><br /><span class='bad-star'>Quan Phủ</span></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Hữu Bật</span><br /><span class='good-star'>Văn Xương</span><br /><span class='good-star'>Thiếu Dương</span>
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Đà La</span><br /><span class='bad-star'>Quan Phủ</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Thân</td>
@@ -125,19 +174,28 @@
 </table></td>
     </tr>
     <tr>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Phúc Đức</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Phúc Đức</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Thất Sát (H)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: darkgrey'>Thất Sát (H)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Phúc Đức<br />Hỷ Thần</td>
-    <td class="center empty"></td>
-    <td class="right good-stars"></td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Phúc Đức</span><br /><span class='good-star'>Hỷ Thần</span></td>
+<td class='right bad-stars'></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Phúc Đức</span><br /><span class='good-star'>Hỷ Thần</span>
+    </td>
+    <td class="right bad-stars">
+      
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Thìn</td>
@@ -146,19 +204,28 @@
   </tr>
 </table></td>
       <td rowspan="2" colspan="2"></td>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Tật Ách</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Tật Ách</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3"></td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Lộc Tồn<br />Bác Sĩ</td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Địa Không<br />Tang Môn</td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Lộc Tồn</span><br /><span class='good-star'>Bác Sĩ</span></td>
+<td class='right bad-stars'><span class='bad-star'>Địa Không</span><br /><span class='bad-star'>Tang Môn</span></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Lộc Tồn</span><br /><span class='good-star'>Bác Sĩ</span>
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Địa Không</span><br /><span class='bad-star'>Tang Môn</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Dậu</td>
@@ -168,19 +235,28 @@
 </table></td>
     </tr>
     <tr>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Phụ Mẫu</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Phụ Mẫu</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Thái Dương (Đ)<br />Thiên Lương (V)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: yellowgreen'>Thái Dương (Đ)</span><br /><span class='main-star' style='color: orange'>Thiên Lương (V)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Phi Liêm</td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Bạch Hổ</td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Phi Liêm</span></td>
+<td class='right bad-stars'><span class='bad-star'>Bạch Hổ</span></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Phi Liêm</span>
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Bạch Hổ</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Mão</td>
@@ -188,19 +264,28 @@
     <td class="bottom right">13</td>
   </tr>
 </table></td>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Tài Bạch</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Tài Bạch</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Liêm Trinh (H)<br />Thiên Phủ (V)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: darkgrey'>Liêm Trinh (H)</span><br /><span class='main-star' style='color: orange'>Thiên Phủ (V)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Thiếu Âm<br />Lực Sĩ</td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Kình Dương</td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Thiếu Âm</span><br /><span class='good-star'>Lực Sĩ</span></td>
+<td class='right bad-stars'><span class='bad-star'>Kình Dương</span></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Thiếu Âm</span><br /><span class='good-star'>Lực Sĩ</span>
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Kình Dương</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Tuất</td>
@@ -210,19 +295,28 @@
 </table></td>
     </tr>
     <tr>
-      <td><table class="palace self " width="230px" height="160px">
+      <td><table class="palace self " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Mệnh</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Mệnh</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Vũ Khúc (M)<br />Thiên Tướng (M)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: red'>Vũ Khúc (M)</span><br /><span class='main-star' style='color: red'>Thiên Tướng (M)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Long Đức<br />Tấu Thư</td>
-    <td class="center empty"></td>
-    <td class="right good-stars"></td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Long Đức</span><br /><span class='good-star'>Tấu Thư</span></td>
+<td class='right bad-stars'></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Long Đức</span><br /><span class='good-star'>Tấu Thư</span>
+    </td>
+    <td class="right bad-stars">
+      
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Dần</td>
@@ -230,19 +324,28 @@
     <td class="bottom right">3</td>
   </tr>
 </table></td>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Huynh Đệ</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Huynh Đệ</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Thiên Đồng (Đ)<br />Cự Môn (H)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: yellowgreen'>Thiên Đồng (Đ)</span><br /><span class='main-star' style='color: darkgrey'>Cự Môn (H)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Tướng Quân</td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Địa Kiếp<br />Tuế Phá</td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Tướng Quân</span></td>
+<td class='right bad-stars'><span class='bad-star'>Địa Kiếp</span><br /><span class='bad-star'>Tuế Phá</span></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Tướng Quân</span>
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Địa Kiếp</span><br /><span class='bad-star'>Tuế Phá</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Sửu</td>
@@ -250,19 +353,28 @@
     <td class="bottom right">113</td>
   </tr>
 </table></td>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Phu Thê</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Phu Thê</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Tham Lang (H)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: darkgrey'>Tham Lang (H)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars"></td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Tử Phù<br />Tiểu Hao</td>
+  <tr height="55%">
+    <td class='left good-stars'></td>
+<td class='right bad-stars'><span class='bad-star'>Tử Phù</span><br /><span class='bad-star'>Tiểu Hao</span></td>
+    <!-- <td class="left good-stars">
+      
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Tử Phù</span><br /><span class='bad-star'>Tiểu Hao</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Tý</td>
@@ -270,19 +382,28 @@
     <td class="bottom right">103</td>
   </tr>
 </table></td>
-      <td><table class="palace  " width="230px" height="160px">
+      <td><table class="palace  " width="280px" height="160px">
   <tr height="15%">
-    <td width="35%" class="top left">Tử Tức</td>
-    <td width="30%" class="top center empty"></td>
-    <td width="35%" class="top right"></td>
+    <td width="30%" class="top left">Tử Tức</td>
+    <td width="40%" class="top center empty"></td>
+    <td width="30%" class="top right"></td>
   </tr>
-  <tr height="20%">
-    <td class="center main-stars" colspan="3">Thái Âm (M)</td>
+  <tr height="15%">
+    <td></td>
+    <td rowspan="2" class="center main-stars">
+      <span class='main-star' style='color: red'>Thái Âm (M)</span>
+    </td>
+    <td></td>
   </tr>
-  <tr height="50%">
-    <td class="left good-stars">Thanh Long</td>
-    <td class="center empty"></td>
-    <td class="right good-stars">Quan Phù</td>
+  <tr height="55%">
+    <td class='left good-stars'><span class='good-star'>Thanh Long</span></td>
+<td class='right bad-stars'><span class='bad-star'>Quan Phù</span></td>
+    <!-- <td class="left good-stars">
+      <span class='good-star'>Thanh Long</span>
+    </td>
+    <td class="right bad-stars">
+      <span class='bad-star'>Quan Phù</span>
+    </td> -->
   </tr>
   <tr height="15%">
     <td class="bottom left">Hợi</td>

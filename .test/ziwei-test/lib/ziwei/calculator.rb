@@ -8,6 +8,8 @@ module Ziwei
     include Utils::CalcSixDeadlyStars
     include Utils::CalcSixLuckyStars
 
+    attr_reader :profiles
+
     def initialize
       prepare_profiles_data
     end
@@ -17,6 +19,9 @@ module Ziwei
         calc_profile(profile_key)
         puts "Calculated Ziwei table for #{@profile.name}"
       }
+
+      update_index_html
+      "#{profiles.count} profiles calculated"
     end
 
     def calc_profile(profile_key = "thanhnx")
@@ -33,7 +38,16 @@ module Ziwei
         result_table.render(use_full_names)
       }
       
-      true
+      update_index_html
+      result_table
+    end
+
+    def update_index_html
+      template = File.read("#{Rails.root}/lib/ziwei/view_templates/index.erb")
+      File.write(
+        "#{Rails.root}/lib/ziwei/results/index.html",
+        ERB.new(template).result(binding)
+      )
     end
 
     def calc_result_table

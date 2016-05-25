@@ -28,11 +28,23 @@ module Ziwei
         @fate_direction = Configs::Stems::Directions[@birth_year.stem] * Configs::Genders::Directions[@gender]
       end
 
+      def detail
+        "%s %s, sinh giờ %s ngày %d tháng %s năm %s" %
+        [
+          Configs::Stems::Yinyang[Configs::Stems::Directions[@birth_year.stem]],
+          Configs::Genders::Names[@gender],
+          Configs::Branches::Names[@birth_hour],
+          @birth_day,
+          Configs::Branches::Names[@birth_month],
+          @birth_year.inspect
+        ]
+      end
+
       def inspect
         "<Ziwei::Models::Profile - Name: %s - Gender: %s %s - Birthday: %s %d/%s/%s>" %
         [
           @name,
-          Configs::Stems::Yinyang[Configs::Stems::Directions[@birth_year_stem]],
+          Configs::Stems::Yinyang[Configs::Stems::Directions[@birth_year.stem]],
           Configs::Genders::Names[@gender],
           Configs::Branches::Names[@birth_hour],
           @birth_day,

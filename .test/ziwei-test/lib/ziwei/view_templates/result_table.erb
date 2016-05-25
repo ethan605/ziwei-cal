@@ -5,6 +5,8 @@
   <style type="text/css">
     body {
       font-family: Roboto;
+      margin: auto;
+      width: 1120px;
     }
     td.center {
       text-align: center;
@@ -15,8 +17,14 @@
     td.main-stars {
       font-size: 0.9em;
       font-weight: bold;
+      vertical-align: top;
     }
-    td.good-stars, td.bad-stars, td.top, td.bottom {
+    td.good-stars, td.bad-stars {
+      font-size: 0.75em;
+      vertical-align: top;
+    }
+
+    td.top, td.bottom {
       font-size: 0.75em;
     }
     td.top, td.bottom.center {
@@ -25,6 +33,11 @@
     td.top.left {
       font-size: 0.75em;
       font-weight: bold;
+    }
+    table.result-table {
+      border-style: groove;
+      border-color: darkgreen;
+      border-spacing: 0px;
     }
     table.palace {
       background-color: lightyellow;
@@ -41,7 +54,7 @@
   </style>
 </head>
 <body>
-  <table border="1">
+  <table class="result-table" border="1">
     <tr>
       <td><%= @rendered_palaces[:ty2] %></td>
       <td><%= @rendered_palaces[:ngo] %></td>
