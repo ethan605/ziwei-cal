@@ -14,6 +14,8 @@ var Ziwei = (function () {
       SixDeadlyStars: _Ziwei_Configs_SixDeadlyStars,
       SixLuckyStars: _Ziwei_Configs_SixLuckyStars,
       Stems: _Ziwei_Configs_Stems,
+      ThaiTueConstellation: _Ziwei_Configs_ThaiTueConstellation,
+      TrangSinhConstellation: _Ziwei_Configs_TrangSinhConstellation
     },
     Utils: {
       ReuseUtils: _Ziwei_Utils_ReuseUtils
