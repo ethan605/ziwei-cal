@@ -1,4 +1,13 @@
 _Ziwei_Utils_ReuseUtils = {
+  limit_inc: function(start, limit = 12, inc_step = 1, min_result = 1) {
+    return (start + inc_step - 1) % limit + min_result;
+  }
+}
+
+class _Ziwei_Test {
+  test() {
+    return limit_inc(1);
+  }
 }
 
 var Ziwei = (function () {
@@ -19,8 +28,12 @@ var Ziwei = (function () {
       TuanTriet: _Ziwei_Configs_TuanTriet,
       Wuxing: _Ziwei_Configs_Wuxing
     },
+    Models: {
+      GanZhi: _Ziwei_Models_GanZhi
+    },
     Utils: {
       ReuseUtils: _Ziwei_Utils_ReuseUtils
-    }
+    },
+    Test: _Ziwei_Test
   }
 }(Ziwei));
