@@ -17,15 +17,17 @@ module Ziwei
 
     def calc_all_profiles
       @profiles.keys.each {|profile_key|
-        calc_profile(profile_key)
+        calc_profile(profile_key, false)
         puts "Calculated Ziwei table for #{@profile.name}"
       }
 
       update_index_html
-      "#{profiles.count} profiles calculated"
+      open_result_html
+
+      puts "#{profiles.count} profiles calculated"
     end
 
-    def calc_profile(profile_key = "thanhnx")
+    def calc_profile(profile_key = "thanhnx", should_open_result = true)
       @profile = @profiles[profile_key]
       raise "Invalid profile key" unless @profile
 
@@ -33,22 +35,33 @@ module Ziwei
       %w[full short].each {|prefix|
         use_full_names = prefix == "full"
         File.write(
-          "#{Rails.root}/lib/ziwei/results/json/#{profile_key}#{use_full_names ? "" : "_" + prefix}.json",
+          "#{Constants::ROOT_DIR}/results/json/#{profile_key}#{use_full_names ? "" : "_" + prefix}.json",
           JSON.pretty_generate(result_table.send("#{prefix}_names".to_sym).as_json)
         )
         result_table.render(use_full_names)
       }
       
       update_index_html
+      open_result_html(profile_key) if should_open_result
+
       result_table
     end
 
     def update_index_html
-      template = File.read("#{Rails.root}/lib/ziwei/view_templates/index.erb")
+      template = File.read("#{Constants::ROOT_DIR}/view_templates/index.erb")
       File.write(
-        "#{Rails.root}/lib/ziwei/results/index.html",
+        "#{Constants::ROOT_DIR}/results/index.html",
         ERB.new(template).result(binding)
       )
+    end
+
+    def open_result_html(profile_key = nil)
+      case profile_key
+        when nil, "index"
+          `open #{Constants::ROOT_DIR}/results/index.html`
+        else
+          `open #{Constants::ROOT_DIR}/results/html/#{profile_key}.html`
+      end
     end
 
     def calc_result_table
@@ -112,7 +125,8 @@ module Ziwei
         profile: @profile,
         palaces: table,
         tuan_coordinate: calc_tuan_coordinate,
-        triet_coordinate: calc_triet_coordinate
+        triet_coordinate: calc_triet_coordinate,
+        connected_coordinates: calc_connected_palace_coordinates(self_position)
       )
     end
 
@@ -128,7 +142,7 @@ module Ziwei
         ["huyennth", "Nguyễn Thị Thu Huyền", "Nữ", "Tỵ", "5", "Thìn", "Giáp", "Tý"],
         ["khoin", "Nguyễn Khôi", "Nam", "Mùi", "2", "Thìn", "Tân", "Mùi"],
         ["nam_1", "Nam 1", "Nam", "Mão", "16", "Ngọ", "Quý", "Dậu"],
-        ["nam_1", "Nam 2", "Nam", "Dần", "29", "Tý", "Kỷ", "Mùi"],
+        ["nam_2", "Nam 2", "Nam", "Dần", "29", "Tý", "Kỷ", "Mùi"],
         ["ngocpb", "Phùng Bá Ngọc", "Nam", "Tý", "22", "Sửu", "Nhâm", "Thân"],
         ["nu_1", "Nữ 1", "Nữ", "Hợi", "10", "Hợi", "Giáp", "Thìn"],
         ["nu_2", "Nữ 2", "Nữ", "Mão", "3", "Tuất", "Canh", "Ngọ"],

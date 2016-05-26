@@ -1,0 +1,215 @@
+{
+  "ty": {
+    "position": "Tý",
+    "name": "Phúc",
+    "body": "",
+    "main_stars": [
+      "Đồng (V)",
+      "Nguyệt (V)"
+    ],
+    "good_stars": [
+      "Hữu",
+      "P.Liêm"
+    ],
+    "bad_stars": [
+      "T.Phù"
+    ],
+    "trang_sinh_constellation": "Q.Đới",
+    "opportunity_age": 106
+  },
+  "suu": {
+    "position": "Sửu",
+    "name": "Điền",
+    "body": "",
+    "main_stars": [
+      "Vũ (M)",
+      "Tham (M)"
+    ],
+    "good_stars": [
+      "T.Thư"
+    ],
+    "bad_stars": [
+      "Kiếp",
+      "T.Phá"
+    ],
+    "trang_sinh_constellation": "M.Dục",
+    "opportunity_age": 96
+  },
+  "dan": {
+    "position": "Dần",
+    "name": "Quan",
+    "body": "Thân",
+    "main_stars": [
+      "Nhật (V)",
+      "Cự (V)"
+    ],
+    "good_stars": [
+      "Tả",
+      "L.Đức",
+      "T.Quân"
+    ],
+    "bad_stars": [
+
+    ],
+    "trang_sinh_constellation": "Tr.Sinh",
+    "opportunity_age": 86
+  },
+  "mao": {
+    "position": "Mão",
+    "name": "Nô",
+    "body": "",
+    "main_stars": [
+      "Tướng (H)"
+    ],
+    "good_stars": [
+
+    ],
+    "bad_stars": [
+      "B.Hổ",
+      "T.Hao"
+    ],
+    "trang_sinh_constellation": "Dưỡng",
+    "opportunity_age": 76
+  },
+  "thin": {
+    "position": "Thìn",
+    "name": "Di",
+    "body": "",
+    "main_stars": [
+      "Cơ (M)",
+      "Lương (M)"
+    ],
+    "good_stars": [
+      "P.Đức",
+      "T.Long"
+    ],
+    "bad_stars": [
+
+    ],
+    "trang_sinh_constellation": "Thai",
+    "opportunity_age": 66
+  },
+  "ty2": {
+    "position": "Tỵ",
+    "name": "Tật",
+    "body": "",
+    "main_stars": [
+      "Tử (M)",
+      "Sát (V)"
+    ],
+    "good_stars": [
+      "Mã",
+      "L.Sĩ"
+    ],
+    "bad_stars": [
+      "Đà",
+      "Đ.Khách"
+    ],
+    "trang_sinh_constellation": "Tuyệt",
+    "opportunity_age": 56
+  },
+  "ngo": {
+    "position": "Ngọ",
+    "name": "Tài",
+    "body": "",
+    "main_stars": [
+
+    ],
+    "good_stars": [
+      "Lộc",
+      "Khúc",
+      "B.Sĩ"
+    ],
+    "bad_stars": [
+      "Tr.Phù"
+    ],
+    "trang_sinh_constellation": "Mộ",
+    "opportunity_age": 46
+  },
+  "mui": {
+    "position": "Mùi",
+    "name": "Tử",
+    "body": "",
+    "main_stars": [
+
+    ],
+    "good_stars": [
+
+    ],
+    "bad_stars": [
+      "Kình",
+      "T.Tuế",
+      "Q.Phủ"
+    ],
+    "trang_sinh_constellation": "Tử",
+    "opportunity_age": 36
+  },
+  "than": {
+    "position": "Thân",
+    "name": "Phối",
+    "body": "",
+    "main_stars": [
+
+    ],
+    "good_stars": [
+      "Xương",
+      "T.Dương"
+    ],
+    "bad_stars": [
+      "P.Binh"
+    ],
+    "trang_sinh_constellation": "Bệnh",
+    "opportunity_age": 26
+  },
+  "dau": {
+    "position": "Dậu",
+    "name": "Bào",
+    "body": "",
+    "main_stars": [
+      "Liêm (H)",
+      "Phá (H)"
+    ],
+    "good_stars": [
+
+    ],
+    "bad_stars": [
+      "Không",
+      "T.Môn",
+      "Đ.Hao"
+    ],
+    "trang_sinh_constellation": "Suy",
+    "opportunity_age": 16
+  },
+  "tuat": {
+    "position": "Tuất",
+    "name": "Mệnh",
+    "body": "",
+    "main_stars": [
+
+    ],
+    "good_stars": [
+      "T.Âm"
+    ],
+    "bad_stars": [
+      "B.Phù"
+    ],
+    "trang_sinh_constellation": "Đế",
+    "opportunity_age": 6
+  },
+  "hoi": {
+    "position": "Hợi",
+    "name": "Phụ",
+    "body": "",
+    "main_stars": [
+      "Phủ (Đ)"
+    ],
+    "good_stars": [
+      "H.Thần"
+    ],
+    "bad_stars": [
+      "Q.Phù"
+    ],
+    "trang_sinh_constellation": "L.Quan",
+    "opportunity_age": 116
+  }
+}

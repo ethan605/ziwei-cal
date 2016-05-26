@@ -54,7 +54,7 @@ module Ziwei
         end
 
         def render(use_full_names = true)
-          template = File.read("#{Rails.root}/lib/ziwei/view_templates/result_palace.erb")
+          template = File.read("#{Constants::ROOT_DIR}/view_templates/result_palace.erb")
           @configs = use_full_names ? full_names : short_names
           ERB.new(template).result(binding)
         end
@@ -63,6 +63,7 @@ module Ziwei
       attr_reader :profile
       attr_reader :palaces
       attr_reader :tuan_coordinate, :triet_coordinate
+      attr_reader :connected_coordinates
 
       def initialize(args = {})
         @profile = args[:profile] || args["profile"]
@@ -72,6 +73,7 @@ module Ziwei
         }
         @tuan_coordinate = args[:tuan_coordinate] || configs["tuan_coordinate"]
         @triet_coordinate = args[:triet_coordinate] || configs["triet_coordinate"]
+        @connected_coordinates = args[:connected_coordinates] || configs["connected_coordinates"]
       end
 
       def full_names
@@ -87,8 +89,8 @@ module Ziwei
       end
 
       def render(use_full_names = true)
-        table_template = File.read("#{Rails.root}/lib/ziwei/view_templates/result_table.erb")
-        center_info_template = File.read("#{Rails.root}/lib/ziwei/view_templates/center_info.erb")
+        table_template = File.read("#{Constants::ROOT_DIR}/view_templates/result_table.erb")
+        center_info_template = File.read("#{Constants::ROOT_DIR}/view_templates/center_info.erb")
 
         @rendered_palaces = {}
         @palaces.each {|palace|
@@ -98,7 +100,7 @@ module Ziwei
         center_info = ERB.new(center_info_template).result(binding)
 
         File.write(
-          "#{Rails.root}/lib/ziwei/results/html/#{@profile.key}#{use_full_names ? "" : "_short"}.html",
+          "#{Constants::ROOT_DIR}/results/html/#{@profile.key}#{use_full_names ? "" : "_short"}.html",
           ERB.new(table_template).result(binding)
         )
       end

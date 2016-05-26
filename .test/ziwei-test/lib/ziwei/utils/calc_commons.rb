@@ -48,6 +48,25 @@ module Ziwei
           merge_sequences_from_index(branches, ages, self_index, fate_direction == -1)
         end
 
+        def calc_connected_palace_coordinates(self_position)
+          self_index = Configs::Branches::Indexes[self_position]
+          self_coordinate = Configs::Palaces::DrawingRootCoordinates[self_position]
+
+          opposite_index = limit_inc(self_index, 12, 6)
+          opposite_position = Configs::Branches::Orders[opposite_index]
+          opposite_coordinate = Configs::Palaces::DrawingRootCoordinates[opposite_position]
+
+          trilogy_element = Configs::BranchSets::Trilogy::ByBranches[self_position]
+          same_set_positions = Configs::BranchSets::Trilogy::ByElements[trilogy_element] - [self_position]
+          same_set_coordinates = same_set_positions.map {|position|
+            Configs::Palaces::DrawingRootCoordinates[position]
+          }
+
+          ([opposite_coordinate] + same_set_coordinates).map {|from_coordinate|
+            [from_coordinate, self_coordinate]
+          }
+        end
+
         def merge_sequences_from_index(first_sequence, second_sequence, merge_index, reversed_order = false)
           second_seq = second_sequence.dup
 
