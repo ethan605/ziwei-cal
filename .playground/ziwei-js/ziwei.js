@@ -11,6 +11,8 @@ var Ziwei = (function () {
       LocTonConstellation: _Ziwei_Configs_LocTonConstellation,
       OtherImportantStars: _Ziwei_Configs_OtherImportantStars,
       Palaces: _Ziwei_Configs_Palaces,
+      SixDeadlyStars: _Ziwei_Configs_SixDeadlyStars,
+      SixLuckyStars: _Ziwei_Configs_SixLuckyStars,
       Stems: _Ziwei_Configs_Stems,
     },
     Utils: {
