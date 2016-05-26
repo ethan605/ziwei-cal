@@ -5,7 +5,7 @@ to_dir = "#{Dir.pwd}/../../../.."
 constant_file_content = %{
 module Ziwei
   module Constants
-    ROOT_DIR = "./"
+    ROOT_DIR = "."
   end
 end
 }

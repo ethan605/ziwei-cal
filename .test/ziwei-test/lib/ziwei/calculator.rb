@@ -36,7 +36,7 @@ module Ziwei
         use_full_names = prefix == "full"
         File.write(
           "#{Constants::ROOT_DIR}/results/json/#{profile_key}#{use_full_names ? "" : "_" + prefix}.json",
-          JSON.pretty_generate(result_table.send("#{prefix}_names".to_sym).as_json)
+          JSON.pretty_generate(result_table.send("#{prefix}_names".to_sym))
         )
         result_table.render(use_full_names)
       }
