@@ -1,0 +1,212 @@
+{
+  "ty": {
+    "position": "Tý",
+    "name": "Phu Thê",
+    "body": "",
+    "main_stars": [
+      "Tham Lang (H)"
+    ],
+    "good_stars": [
+
+    ],
+    "bad_stars": [
+      "Tử Phù",
+      "Tiểu Hao"
+    ],
+    "trang_sinh_constellation": "Mộc Dục",
+    "opportunity_age": 103
+  },
+  "suu": {
+    "position": "Sửu",
+    "name": "Huynh Đệ",
+    "body": "",
+    "main_stars": [
+      "Thiên Đồng (H)",
+      "Cự Môn (H)"
+    ],
+    "good_stars": [
+      "Tướng Quân"
+    ],
+    "bad_stars": [
+      "Địa Kiếp",
+      "Tuế Phá"
+    ],
+    "trang_sinh_constellation": "Quan Đới",
+    "opportunity_age": 113
+  },
+  "dan": {
+    "position": "Dần",
+    "name": "Mệnh",
+    "body": "",
+    "main_stars": [
+      "Vũ Khúc (V)",
+      "Thiên Tướng (M)"
+    ],
+    "good_stars": [
+      "Long Đức",
+      "Tấu Thư"
+    ],
+    "bad_stars": [
+
+    ],
+    "trang_sinh_constellation": "Lâm Quan",
+    "opportunity_age": 3
+  },
+  "mao": {
+    "position": "Mão",
+    "name": "Phụ Mẫu",
+    "body": "",
+    "main_stars": [
+      "Thái Dương (V)",
+      "Thiên Lương (V)"
+    ],
+    "good_stars": [
+      "Phi Liêm"
+    ],
+    "bad_stars": [
+      "Bạch Hổ"
+    ],
+    "trang_sinh_constellation": "Đế Vượng",
+    "opportunity_age": 13
+  },
+  "thin": {
+    "position": "Thìn",
+    "name": "Phúc Đức",
+    "body": "",
+    "main_stars": [
+      "Thất Sát (H)"
+    ],
+    "good_stars": [
+      "Phúc Đức",
+      "Hỷ Thần"
+    ],
+    "bad_stars": [
+
+    ],
+    "trang_sinh_constellation": "Suy",
+    "opportunity_age": 23
+  },
+  "ty2": {
+    "position": "Tỵ",
+    "name": "Điền Trạch",
+    "body": "",
+    "main_stars": [
+      "Thiên Cơ (V)"
+    ],
+    "good_stars": [
+      "Thiên Mã"
+    ],
+    "bad_stars": [
+      "Điếu Khách",
+      "Bệnh Phù"
+    ],
+    "trang_sinh_constellation": "Bệnh",
+    "opportunity_age": 33
+  },
+  "ngo": {
+    "position": "Ngọ",
+    "name": "Quan Lộc",
+    "body": "Thân",
+    "main_stars": [
+      "Tử Vi (M)"
+    ],
+    "good_stars": [
+      "Tả Phù",
+      "Văn Khúc"
+    ],
+    "bad_stars": [
+      "Trực Phù",
+      "Đại Hao"
+    ],
+    "trang_sinh_constellation": "Tử",
+    "opportunity_age": 43
+  },
+  "mui": {
+    "position": "Mùi",
+    "name": "Nô Bộc",
+    "body": "",
+    "main_stars": [
+
+    ],
+    "good_stars": [
+
+    ],
+    "bad_stars": [
+      "Thái Tuế",
+      "Phục Binh"
+    ],
+    "trang_sinh_constellation": "Mộ",
+    "opportunity_age": 53
+  },
+  "than": {
+    "position": "Thân",
+    "name": "Thiên Di",
+    "body": "",
+    "main_stars": [
+      "Phá Quân (H)"
+    ],
+    "good_stars": [
+      "Hữu Bật",
+      "Văn Xương",
+      "Thiếu Dương"
+    ],
+    "bad_stars": [
+      "Đà La",
+      "Quan Phủ"
+    ],
+    "trang_sinh_constellation": "Tuyệt",
+    "opportunity_age": 63
+  },
+  "dau": {
+    "position": "Dậu",
+    "name": "Tật Ách",
+    "body": "",
+    "main_stars": [
+
+    ],
+    "good_stars": [
+      "Lộc Tồn",
+      "Bác Sĩ"
+    ],
+    "bad_stars": [
+      "Địa Không",
+      "Tang Môn"
+    ],
+    "trang_sinh_constellation": "Thai",
+    "opportunity_age": 73
+  },
+  "tuat": {
+    "position": "Tuất",
+    "name": "Tài Bạch",
+    "body": "",
+    "main_stars": [
+      "Liêm Trinh (M)",
+      "Thiên Phủ (V)"
+    ],
+    "good_stars": [
+      "Thiếu Âm",
+      "Lực Sĩ"
+    ],
+    "bad_stars": [
+      "Kình Dương"
+    ],
+    "trang_sinh_constellation": "Dưỡng",
+    "opportunity_age": 83
+  },
+  "hoi": {
+    "position": "Hợi",
+    "name": "Tử Tức",
+    "body": "",
+    "main_stars": [
+      "Thái Âm (M)"
+    ],
+    "good_stars": [
+      "Thanh Long"
+    ],
+    "bad_stars": [
+      "Quan Phù"
+    ],
+    "trang_sinh_constellation": "Tràng Sinh",
+    "opportunity_age": 93
+  }
+}
