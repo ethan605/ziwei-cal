@@ -7,6 +7,8 @@ var Ziwei = (function () {
       BranchSets: _Ziwei_Configs_Branch_Sets,
       Branches: _Ziwei_Configs_Branches,
       ForteenMainStars: _Ziwei_Configs_ForteenMainStars,
+      Genders: _Ziwei_Configs_Genders,
+      LocTonConstellation: _Ziwei_Configs_LocTonConstellation,
       Stems: _Ziwei_Configs_Stems,
     },
     Utils: {
