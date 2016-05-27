@@ -61,8 +61,51 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
   _profile.updateCuc(cucElement, cucNumber);
 
   var forteenMainStars = this.calcForteenMainStars(cucElement, cucNumber, _profile.birthDay);
+  var otherImportantStars = this.calcOtherImportantStars(_profile.birthYear.stem, _profile.birthYear.branch);
+  var locTonPosition = Object.keys(otherImportantStars).find((branch) =>
+    otherImportantStars[branch].includes('loc_ton')
+  );
 
-  return forteenMainStars;
+  var opportunityAges = this.calcOpportunityAges(selfPosition, cucNumber, _profile.fateDirection);
+
+  var thaiTueConstellation = this.calcThaiTueConstellationPositions(_profile.birthYear.branch);
+  var trangSinhConstellation = this.calcTrangSinhConstellationPositions(cucNumber, _profile.fateDirection);
+  var locTonConstellation = this.calcLocTonConstellationPositions(locTonPosition, _profile.fateDirection);
+
+  var branches = Object.keys(Ziwei.Configs.Branches.Names);
+  var table = {};
+
+  branches.forEach((branch) => {
+    table[branch] = {
+      'name': palaces[branch],
+      'isBody': (branch == bodyPosition),
+      'mainStars': forteenMainStars[branch] || [],
+      'trangSinhConstellation': trangSinhConstellation[branch],
+      'goodStars': [],
+      'badStars': [],
+      'opportunityAge': opportunityAges[branch]
+    }
+
+    // Classify by qualities
+    var stars = otherImportantStars[branch];
+    var quality = undefined;
+
+    if (stars !== undefined && stars.constructor === Array)
+      stars.forEach((star) => {
+        quality = Ziwei.Configs.OtherImportantStars.Qualities[star];
+        table[branch][`${quality}Stars`].push(star);
+      });
+
+    star = thaiTueConstellation[branch];
+    quality = Ziwei.Configs.ThaiTueConstellation.Qualities[star];
+    table[branch][`${quality}Stars`].push(star);
+
+    star = locTonConstellation[branch];
+    quality = Ziwei.Configs.LocTonConstellation.Qualities[star];
+    table[branch][`${quality}Stars`].push(star);
+  });
+
+  return table;
 };
 
 _Ziwei_Calculator.prototype.calculateProfile = function(profileKey = 'thanhnx') {
