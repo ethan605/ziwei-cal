@@ -1,16 +1,6 @@
-var Utils = {
-  limit_inc: function(start, limit = 12, inc_step = 1) {
-    return (start + inc_step - 1) % limit + 1;
-  },
-
-  limit_dec: function(start, limit = 12, inc_step = 1, min_result = 1) {
-    return (start - inc_step - 1 + limit) % limit + min_result;
-  }
-}
-
 var _Ziwei_Test = {
   test: function(arg) {
-    return Utils.limit_dec(arg);
+    return Utils.limitInc(arg, 12, -1);
   }
 };
 
@@ -35,6 +25,7 @@ var Ziwei = (function () {
     Models: {
       GanZhi: _Ziwei_Models_GanZhi
     },
+    Utils: _Ziwei_Utils,
     Test: _Ziwei_Test
   }
 }(Ziwei));
