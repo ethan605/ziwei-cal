@@ -87,7 +87,3 @@ _Ziwei_Calculator.prototype.calcConnectedPalaceCoordinates = function(selfPositi
 
   return coordinates.map((fromCoordinate) => [fromCoordinate, selfCoordinate]);
 };
-
-// calc = new Ziwei.Calculator();
-// [selfPosition, bodyPosition] = calc.calcSelfBodyPosition('ty2', 'thin')
-// palaces = calc.calcPalacesPositions(selfPosition);

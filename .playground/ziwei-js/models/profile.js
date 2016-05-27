@@ -32,7 +32,7 @@ class _Ziwei_Models_Profile {
     this.fateDirection = stemDirection * Ziwei.Configs.Genders.Directions[this.gender];
   }
 
-  updateCuc(_cucElement, cucNumber) {
+  updateCuc(_cucElement, _cucNumber) {
     this.cucElement = _cucElement;
     this.cucNumber = _cucNumber;
   }
@@ -60,13 +60,3 @@ class _Ziwei_Models_Profile {
     return `<Ziwei.Models.Profile - Name: ${t[0]} - Gender: ${t[1]} - Birthday: ${t[2]} ${t[3]}/${t[4]}/${t[5]}>`;
   }
 }
-
-// profile = new Ziwei.Models.Profile({
-//   key: "thanhnx",
-//   name: "Thanh NX",
-//   gender: "male",
-//   hour: "ty2",
-//   day: 22,
-//   month: "thin",
-//   year: {stem: "tan", branch: "mui"}
-// });

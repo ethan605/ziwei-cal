@@ -1,9 +1,3 @@
-var _Ziwei_Test = {
-  test: function(arg) {
-    return Utils.limitInc(arg, 12, -1);
-  }
-};
-
 var Ziwei = (function () {
   return {
     Configs: {
@@ -26,7 +20,11 @@ var Ziwei = (function () {
       GanZhi: _Ziwei_Models_GanZhi,
       Profile: _Ziwei_Models_Profile
     },
-    Calculator: _Ziwei_Calculator,
-    Test: _Ziwei_Test
+    Calculator: _Ziwei_Calculator
   }
 }(Ziwei));
+
+Ziwei.test = function test() {
+  calc = new Ziwei.Calculator();
+  return calc.calculateProfile();
+};
