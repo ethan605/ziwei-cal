@@ -32,7 +32,18 @@ _Ziwei_Calculator.prototype.calcPalacesPositions = function(selfPosition) {
   return this.mergeSequencesFromIndex(branches, palaces, selfIndex);
 };
 
-_Ziwei_Calculator.prototype.mergeSequencesFromIndex = function(firstSequence, secondSequence, mergeIndex, reversedOrder = false) {
+_Ziwei_Calculator.prototype.calcOpportunityAges = function(selfPosition, cucNumber, fateDirection) {
+  var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
+  var branches = Object.keys(Ziwei.Configs.Branches.Names);
+  var ages = Array.fromRange(0, 11).map(function(mult) {
+    return cucNumber + 10*mult;
+  });
+
+  return this.mergeSequencesFromIndex(branches, ages, selfIndex, fateDirection === -1);
+};
+
+_Ziwei_Calculator.prototype.mergeSequencesFromIndex =
+function(firstSequence, secondSequence, mergeIndex, reversedOrder = false) {
   var secondSeq = secondSequence.slice();
 
   // re-arrange second sequence in order of first one,
@@ -52,6 +63,29 @@ _Ziwei_Calculator.prototype.mergeSequencesFromIndex = function(firstSequence, se
   }
 
   return [firstSequence, secondSeq].transpose().toHash();
+};
+
+_Ziwei_Calculator.prototype.calcConnectedPalaceCoordinates = function(selfPosition) {
+  var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
+  var selfCoordinate = Ziwei.Configs.Palaces.DrawingRootCoordinates[selfPosition];
+
+  var oppositeIndex = selfIndex.limitInc(6);
+  var oppositePosition = Ziwei.Configs.Branches.Orders[oppositeIndex];
+  var oppositeCoordinate = Ziwei.Configs.Palaces.DrawingRootCoordinates[oppositePosition];
+
+  var trilogyElement = Ziwei.Configs.BranchSets.Trilogy.ByBranches[selfPosition];
+  var sameSetPositions = Ziwei.Configs.BranchSets.Trilogy.ByElements[trilogyElement].slice();
+  var selfPositionIndex = selfPosition.indexOf(selfPosition);
+  sameSetPositions = sameSetPositions.filter((x, i) => i !== selfPositionIndex);
+
+  var sameSetCoordinates = sameSetPositions.map((position) =>
+    Ziwei.Configs.Palaces.DrawingRootCoordinates[position]
+  );
+
+  var coordinates = [oppositeCoordinate];
+  coordinates = coordinates.concat(sameSetCoordinates);
+
+  return coordinates.map((fromCoordinate) => [fromCoordinate, selfCoordinate]);
 };
 
 // calc = new Ziwei.Calculator();

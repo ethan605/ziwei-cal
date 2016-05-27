@@ -71,19 +71,20 @@ Array.prototype.convertCoordinateToAbsPos = function() {
 
 Array.prototype.transpose = function() {
   var arr = this;
-
-  return (arr[0]).map(function(_, index) {
-    return arr.map(function(row) {
-      return row[index];
-    });
-  });
+  return arr[0].map((_, index) => arr.map((row) => row[index]));
 };
 
 Array.prototype.toHash = function() {
-  return this.reduce(function(previous, current) {
+  return this.reduce((previous, current) => {
     previous[current[0]] = current[1];
     return previous;
   }, {});
+};
+
+Array.fromRange = function(from, to) {
+  return Array
+    .apply(null, Array((to - from) + 1))
+    .map((discard, n) => n + from);
 };
 
 function _Ziwei_Calculator() {
