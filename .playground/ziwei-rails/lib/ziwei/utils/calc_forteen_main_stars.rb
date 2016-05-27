@@ -60,9 +60,9 @@ module Ziwei
           tu_vi_index = Configs::Branches::Indexes[tu_vi_position]
           
           [
-            Configs::Branches::Orders[limit_dec(tu_vi_index, 12, 1)],
+            Configs::Branches::Orders[limit_inc(tu_vi_index, 12, -1)],
             Configs::Branches::Orders[limit_inc(tu_vi_index, 12, 4)],
-            Configs::Branches::Orders[limit_dec(tu_vi_index, 12, 4)]
+            Configs::Branches::Orders[limit_inc(tu_vi_index, 12, -4)]
           ]
         end
 
@@ -72,7 +72,7 @@ module Ziwei
           
           [
             Configs::Branches::Orders[limit_inc(vu_khuc_index, 12, 1)],
-            Configs::Branches::Orders[limit_dec(vu_khuc_index, 12, 1)]
+            Configs::Branches::Orders[limit_inc(vu_khuc_index, 12, -1)]
           ]
         end
 

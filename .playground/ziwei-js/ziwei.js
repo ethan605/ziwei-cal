@@ -1,6 +1,6 @@
 var Utils = {
-  limit_inc: function(start, limit = 12, inc_step = 1, min_result = 1) {
-    return (start + inc_step - 1) % limit + min_result;
+  limit_inc: function(start, limit = 12, inc_step = 1) {
+    return (start + inc_step - 1) % limit + 1;
   },
 
   limit_dec: function(start, limit = 12, inc_step = 1, min_result = 1) {

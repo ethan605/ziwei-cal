@@ -139,6 +139,7 @@ module Ziwei
         ["ducnm", "Nguyễn Minh Đức", "Nam", "Mão", "15", "Hợi", "Mậu", "Tý"],
         ["gianghh", "Hà Hương Giang", "Nữ", "Dần", "7", "Thìn", "Tân", "Mùi"],
         ["hoactq", "Chu Thị Quỳnh Hoa", "Nữ", "Dần", "28", "Thân", "Tân", "Mùi"],
+        ["huonghh", "Hàn Huyền Hương", "Nữ", "Tỵ", "20", "Dần", "Tân", "Mùi"],
         ["huyennth", "Nguyễn Thị Thu Huyền", "Nữ", "Tỵ", "5", "Thìn", "Giáp", "Tý"],
         ["khoin", "Nguyễn Khôi", "Nam", "Mùi", "2", "Thìn", "Tân", "Mùi"],
         ["nam_1", "Nam 1", "Nam", "Mão", "16", "Ngọ", "Quý", "Dậu"],

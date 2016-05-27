@@ -28,7 +28,7 @@ module Ziwei
           hoi_index = Configs::Branches::Indexes[:hoi]
           birth_hour_index = Configs::Branches::Indexes[birth_hour]
 
-          dia_khong_index = limit_dec(hoi_index, 12, birth_hour_index-1)
+          dia_khong_index = limit_inc(hoi_index, 12, -birth_hour_index+1)
           dia_kiep_index = limit_inc(hoi_index, 12, birth_hour_index-1)
 
           [
@@ -41,7 +41,7 @@ module Ziwei
           loc_ton_index = Configs::Branches::Indexes[loc_ton_position]
 
           kinh_duong_index = limit_inc(loc_ton_index)
-          da_la_index = limit_dec(loc_ton_index)
+          da_la_index = limit_inc(loc_ton_index, -1)
 
           [
             Configs::Branches::Orders[kinh_duong_index],

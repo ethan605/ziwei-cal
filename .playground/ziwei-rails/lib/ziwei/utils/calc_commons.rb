@@ -9,7 +9,7 @@ module Ziwei
           hour_index = Configs::Branches::Indexes[birth_hour]
           month_index = Configs::Branches::Indexes[birth_month]
 
-          self_index = limit_dec(month_index, 12, hour_index-1)
+          self_index = limit_inc(month_index, 12, -hour_index+1)
           body_index = limit_inc(month_index, 12, hour_index-1)
 
           [
