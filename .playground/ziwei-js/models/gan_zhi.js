@@ -1,5 +1,8 @@
 _Ziwei_Models_GanZhi = class {
-  constructor(_stem, _branch) {
+  constructor(args = {}) {
+    var _stem = args['stem'] || 'giap';
+    var _branch = args['branch'] || 'ty';
+
     if (_stem === undefined || _branch === undefined) {
       throw "Undefined stem or branch";
       return;
@@ -22,6 +25,6 @@ _Ziwei_Models_GanZhi = class {
     return [
       Ziwei.Configs.Stems.Names[this.stem],
       Ziwei.Configs.Branches.Names[this.branch]
-    ].join(" ")
+    ].join(" ");
   };
 };

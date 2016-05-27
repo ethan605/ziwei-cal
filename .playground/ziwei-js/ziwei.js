@@ -23,7 +23,8 @@ var Ziwei = (function () {
       Wuxing: _Ziwei_Configs_Wuxing
     },
     Models: {
-      GanZhi: _Ziwei_Models_GanZhi
+      GanZhi: _Ziwei_Models_GanZhi,
+      Profile: _Ziwei_Models_Profile
     },
     Utils: _Ziwei_Utils,
     Test: _Ziwei_Test

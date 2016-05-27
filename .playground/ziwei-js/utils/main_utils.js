@@ -16,5 +16,5 @@ Number.prototype.limitInc = function(incStep = 1, limit = 12, minResult = 1) {
   return (tempResult + paddingMult*limit) % limit + minResult;
 }
 
-var _Ziwei_Utils = {
+function _Ziwei_Utils() {
 };
