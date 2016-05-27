@@ -26,7 +26,7 @@ var Ziwei = (function () {
       GanZhi: _Ziwei_Models_GanZhi,
       Profile: _Ziwei_Models_Profile
     },
-    Utils: _Ziwei_Utils,
+    Calculator: _Ziwei_Calculator,
     Test: _Ziwei_Test
   }
 }(Ziwei));

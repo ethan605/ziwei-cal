@@ -7,7 +7,7 @@ Number.prototype.quotient = function(divisor) {
 };
 
 Number.prototype.limitInc = function(incStep = 1, limit = 12, minResult = 1) {
-  var tempResult = this + incStep - minResult;
+  var tempResult = this + incStep - 1;
   var paddingMult = 0;
 
   if (tempResult < minResult)
@@ -69,5 +69,22 @@ Array.prototype.convertCoordinateToAbsPos = function() {
   };
 };
 
-function _Ziwei_Utils() {
+Array.prototype.transpose = function() {
+  var arr = this;
+
+  return (arr[0]).map(function(_, index) {
+    return arr.map(function(row) {
+      return row[index];
+    });
+  });
+};
+
+Array.prototype.toHash = function() {
+  return this.reduce(function(previous, current) {
+    previous[current[0]] = current[1];
+    return previous;
+  }, {});
+};
+
+function _Ziwei_Calculator() {
 };
