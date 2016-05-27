@@ -87,10 +87,12 @@ _Ziwei_Calculator.prototype.calcForteenMainStars = function(cucElement, cucNumbe
   var mainStarsPositions = {};
 
   stars.forEach((star, index) => {
-    if (mainStarsPositions[starsPositions[index]] === undefined)
-      mainStarsPositions[starsPositions[index]] = [];
+    var key = starsPositions[index];
 
-    mainStarsPositions[starsPositions[index]].push(star);
+    if (mainStarsPositions[key] === undefined)
+      mainStarsPositions[key] = [];
+
+    mainStarsPositions[key].push(star);
   });
 
   return mainStarsPositions;
