@@ -16,7 +16,7 @@ Number.prototype.limitInc = function(incStep = 1, limit = 12, minResult = 1) {
   return (tempResult + paddingMult*limit) % limit + minResult;
 }
 
-Number.prototype.reflectIndex = function(reflectThrough) {
+Number.prototype.reflectIndex = function(reflectThrough = 2) {
   return reflectThrough.limitInc(- this + reflectThrough);
 };
 
