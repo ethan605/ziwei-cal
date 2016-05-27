@@ -86,3 +86,5 @@ Array.fromRange = function(from, to) {
     .apply(null, Array((to - from) + 1))
     .map((discard, n) => n + from);
 };
+
+Object.values = Object.values || ((obj) => Object.keys(obj).map(key => obj[key]));

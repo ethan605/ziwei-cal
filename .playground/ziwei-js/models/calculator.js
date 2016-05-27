@@ -60,7 +60,10 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
   var [cucElement, cucNumber] = this.calcCuc(selfPosition, _profile.birthYear.stem);
   _profile.updateCuc(cucElement, cucNumber);
 
-  return _profile;
+  // var forteenMainStars = this.calcForteenMainStars(cucElement, cucNumber, _profile.birthDay);
+  var forteenMainStars = this.calcTuViPosition(cucElement, cucNumber, _profile.birthDay);
+
+  return forteenMainStars;
 };
 
 _Ziwei_Calculator.prototype.calculateProfile = function(profileKey = 'thanhnx') {
