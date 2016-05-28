@@ -6,6 +6,7 @@ var Ziwei = (function () {
       ForteenMainStars: _Ziwei_Configs_ForteenMainStars,
       Genders: _Ziwei_Configs_Genders,
       LocTonConstellation: _Ziwei_Configs_LocTonConstellation,
+      NormalStars: _Ziwei_Configs_NormalStars,
       OtherImportantStars: _Ziwei_Configs_OtherImportantStars,
       Palaces: _Ziwei_Configs_Palaces,
       SixDeadlyStars: _Ziwei_Configs_SixDeadlyStars,

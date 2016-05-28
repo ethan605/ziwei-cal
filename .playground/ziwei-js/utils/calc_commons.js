@@ -42,29 +42,6 @@ _Ziwei_Calculator.prototype.calcOpportunityAges = function(selfPosition, cucNumb
   return this.mergeSequencesFromIndex(branches, ages, selfIndex, fateDirection === -1);
 };
 
-_Ziwei_Calculator.prototype.mergeSequencesFromIndex =
-function(firstSequence, secondSequence, mergeIndex, reversedOrder = false) {
-  var secondSeq = secondSequence.slice();
-
-  // re-arrange second sequence in order of first one,
-  // skip if mergeIndex is 1 (2 sequences have identical order)
-  if (mergeIndex != 1) {
-    var [firstHalf, secondHalf] = [[], []];
-
-    if (!reversedOrder) {
-      firstHalf = secondSeq.slice(12-mergeIndex+1, secondSeq.length);
-      secondHalf = secondSeq.slice(0, 12-mergeIndex+1);
-    } else {
-      firstHalf = secondSeq.slice(0, mergeIndex).reverse();
-      secondHalf = secondSeq.slice(mergeIndex, secondSeq.length).reverse();
-    }
-
-    secondSeq = firstHalf.concat(secondHalf);
-  }
-
-  return [firstSequence, secondSeq].transpose().toHash();
-};
-
 _Ziwei_Calculator.prototype.calcConnectedPalaceCoordinates = function(selfPosition) {
   var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
   var selfCoordinate = Ziwei.Configs.Palaces.DrawingRootCoordinates[selfPosition];

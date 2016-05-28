@@ -75,6 +75,8 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
   var sixDeadlyStars = this.calcSixDeadlyStars(_profile.birthHour, locTonPosition, _profile.birthYear.branch);
   var sixLuckyStars = this.calcSixLuckyStars(_profile.birthMonth, _profile.birthHour);
 
+  var normalStars = this.calcNormalStars(_profile.birthMonth, _profile.birthYear.branch);
+
   var branches = Object.keys(Ziwei.Configs.Branches.Names);
   var table = {};
 
@@ -92,7 +94,6 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
     // Classify by qualities
     var stars = otherImportantStars[branch];
     var quality = undefined;
-
     if (stars !== undefined && stars.constructor === Array)
       stars.forEach((star) => {
         quality = Ziwei.Configs.OtherImportantStars.Qualities[star];
@@ -114,6 +115,13 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
     star = locTonConstellation[branch];
     quality = Ziwei.Configs.LocTonConstellation.Qualities[star];
     table[branch][`${quality}Stars`].push(star);
+
+    stars = normalStars[branch];
+    if (stars !== undefined && stars.constructor === Array)
+      stars.forEach((star) => {
+        quality = Ziwei.Configs.NormalStars.Qualities[star];
+        table[branch][`${quality}Stars`].push(star);
+      });
   });
 
   return table;

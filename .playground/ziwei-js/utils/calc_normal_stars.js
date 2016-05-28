@@ -46,3 +46,47 @@ _Ziwei_Calculator.prototype.calcCoQuaPositions = function(birthYearBranch) {
     Ziwei.Configs.Branches.Orders[quaTuIndex]
   ];
 };
+
+_Ziwei_Calculator.prototype.calcKhocHuPositions = function(birthYearBranch) {
+  var ngoIndex = Ziwei.Configs.Branches.Indexes['ngo'];
+  var birthYearIndex = Ziwei.Configs.Branches.Indexes[birthYearBranch];
+
+  var thienKhocIndex = ngoIndex.limitInc(-birthYearIndex+1);
+  var thienHuIndex = ngoIndex.limitInc(birthYearIndex-1);
+
+  return [
+    Ziwei.Configs.Branches.Orders[thienKhocIndex],
+    Ziwei.Configs.Branches.Orders[thienHuIndex]
+  ]
+};
+
+_Ziwei_Calculator.prototype.calcNormalStars = function(birthMonth, birthYearBranch) {
+  var [thienHinhPosition, thienDieuPosition, thienYPosition] = this.calcHinhDieuYPositions(birthMonth);
+  var hoaCaiPosition = this.calcHoaCaiPosition(birthYearBranch);
+  var amSatPosition = this.calcAmSatPosition(birthMonth);
+  var [coThanPosition, quaTuPosition] = this.calcCoQuaPositions(birthYearBranch);
+  var [thienKhocPosition, thienHuPosition] = this.calcKhocHuPositions(birthYearBranch);
+
+  var starsPositions = {};
+
+  [
+    [thienHinhPosition, 'thien_hinh'],
+    [thienDieuPosition, 'thien_dieu'],
+    [thienYPosition, 'thien_y'],
+    [hoaCaiPosition, 'hoa_cai'],
+    [amSatPosition, 'am_sat'],
+    [coThanPosition, 'co_than'],
+    [quaTuPosition, 'qua_tu'],
+    [thienKhocPosition, 'thien_khoc'],
+    [thienHuPosition, 'thien_hu']
+  ].forEach((pair) => {
+    var [position, star] = pair;
+
+    if (starsPositions[position] === undefined)
+      starsPositions[position] = [];
+
+    starsPositions[position].push(star);
+  });
+
+  return starsPositions;
+};
