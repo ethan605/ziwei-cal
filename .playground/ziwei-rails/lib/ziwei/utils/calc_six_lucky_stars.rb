@@ -28,7 +28,7 @@ module Ziwei
           thin_index = Configs::Branches::Indexes[:thin]
           birth_month_number = Configs::Branches::Indexes[birth_month] - 2
 
-          ta_phu_index = limit_inc(thin_index, 12, birth_month_number-1)
+          ta_phu_index = limit_inc(thin_index, birth_month_number-1)
           huu_bat_index = reflect_index(ta_phu_index)
 
           [
@@ -41,7 +41,7 @@ module Ziwei
           thin_index = Configs::Branches::Indexes[:thin]
           birth_hour_index = Configs::Branches::Indexes[birth_hour]
 
-          van_khuc_index = limit_inc(thin_index, 12, birth_hour_index-1)
+          van_khuc_index = limit_inc(thin_index, birth_hour_index-1)
           van_xuong_index = reflect_index(van_khuc_index)
 
           [
