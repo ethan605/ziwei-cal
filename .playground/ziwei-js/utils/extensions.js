@@ -70,8 +70,8 @@ Array.prototype.convertCoordinateToAbsPos = function() {
 };
 
 Array.prototype.transpose = function() {
-  var arr = this;
-  return arr[0].map((_, index) => arr.map((row) => row[index]));
+  var _self = this;
+  return _self[0].map((_, index) => _self.map((row) => row[index]));
 };
 
 Array.prototype.toHash = function() {
@@ -82,18 +82,12 @@ Array.prototype.toHash = function() {
 };
 
 Array.prototype.toHashOfArrays = function() {
-  var resultHash = {};
-
-  this.forEach((pair) => {
-    var [key, value] = pair;
-
-    if (resultHash[key] === undefined)
-      resultHash[key] = [];
-
-    resultHash[key].push(value);
-  });
-
-  return resultHash;
+  return this.reduce((previous, current) => {
+    var [key, value] = current;
+    previous[key] = previous[key] || [];
+    previous[key].push(value);
+    return previous;
+  }, {});
 };
 
 Array.fromRange = function(from, to) {
