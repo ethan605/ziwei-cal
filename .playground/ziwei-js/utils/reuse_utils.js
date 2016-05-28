@@ -19,3 +19,27 @@ _Ziwei_Calculator.prototype.mergeSequencesFromIndex = function(firstSequence, se
 
   return [firstSequence, secondSeq].transpose().toHash();
 };
+
+_Ziwei_Calculator.prototype.insertSingleStarToPalace = function(palace, star, configModule) {
+  if (star === undefined)
+    return;
+
+  quality = Ziwei.Configs[configModule].Qualities[star];
+  palace[`${quality}Stars`].push(star);
+};
+
+_Ziwei_Calculator.prototype.insertMultipleStarsToPalace = function(palace, stars, configModule) {
+  if (stars === undefined || stars.constructor !== Array)
+    return;
+
+  ['good', 'bad'].forEach((quality) => {
+    qualifiedStars = stars.filter((star) => Ziwei.Configs[configModule].Qualities[star] === quality);
+    palace[`${quality}Stars`].push(...qualifiedStars);
+  });
+
+  // Another equivalent way
+  // stars.forEach((star) => {
+  //   quality = Ziwei.Configs[configModule].Qualities[star];
+  //   palace[`${quality}Stars`].push(star);
+  // });
+};

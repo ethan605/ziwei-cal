@@ -93,35 +93,22 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
 
     // Classify by qualities
     var stars = otherImportantStars[branch];
-    var quality = undefined;
-    if (stars !== undefined && stars.constructor === Array)
-      stars.forEach((star) => {
-        quality = Ziwei.Configs.OtherImportantStars.Qualities[star];
-        table[branch][`${quality}Stars`].push(star);
-      });
+    this.insertMultipleStarsToPalace(table[branch], stars, 'OtherImportantStars');
 
     stars = sixDeadlyStars[branch];
-    if (stars !== undefined && stars.constructor === Array)
-      table[branch]['badStars'].push(...stars);
+    this.insertMultipleStarsToPalace(table[branch], stars, 'SixDeadlyStars');
 
     stars = sixLuckyStars[branch];
-    if (stars !== undefined && stars.constructor === Array)
-      table[branch]['goodStars'].push(...stars);
+    this.insertMultipleStarsToPalace(table[branch], stars, 'SixLuckyStars');
 
     star = thaiTueConstellation[branch];
-    quality = Ziwei.Configs.ThaiTueConstellation.Qualities[star];
-    table[branch][`${quality}Stars`].push(star);
+    this.insertSingleStarToPalace(table[branch], star, 'ThaiTueConstellation');
 
     star = locTonConstellation[branch];
-    quality = Ziwei.Configs.LocTonConstellation.Qualities[star];
-    table[branch][`${quality}Stars`].push(star);
+    this.insertSingleStarToPalace(table[branch], star, 'LocTonConstellation');
 
     stars = normalStars[branch];
-    if (stars !== undefined && stars.constructor === Array)
-      stars.forEach((star) => {
-        quality = Ziwei.Configs.NormalStars.Qualities[star];
-        table[branch][`${quality}Stars`].push(star);
-      });
+    this.insertMultipleStarsToPalace(table[branch], stars, 'NormalStars');
   });
 
   return table;
