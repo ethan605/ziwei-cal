@@ -25,11 +25,12 @@
       "Cự (H)"
     ],
     "good_stars": [
-
+      "Lộc"
     ],
     "bad_stars": [
       "T.Phá",
-      "B.Phù"
+      "B.Phù",
+      "Hư"
     ],
     "trang_sinh_constellation": "M.Dục",
     "opportunity_age": 86
@@ -62,10 +63,16 @@
     ],
     "good_stars": [
       "Xương",
-      "P.Liêm"
+      "P.Liêm",
+      "Y",
+      "Quyền"
     ],
     "bad_stars": [
-      "B.Hổ"
+      "Linh",
+      "B.Hổ",
+      "Diêu",
+      "Cái",
+      "Kỵ"
     ],
     "trang_sinh_constellation": "Dưỡng",
     "opportunity_age": 66
@@ -82,7 +89,8 @@
       "T.Thư"
     ],
     "bad_stars": [
-      "Không"
+      "Không",
+      "Cô"
     ],
     "trang_sinh_constellation": "Thai",
     "opportunity_age": 56
@@ -151,7 +159,8 @@
       "L.Sĩ"
     ],
     "bad_stars": [
-      "Đà"
+      "Đà",
+      "Quả"
     ],
     "trang_sinh_constellation": "Bệnh",
     "opportunity_age": 16
@@ -168,6 +177,7 @@
       "B.Sĩ"
     ],
     "bad_stars": [
+      "Hỏa",
       "T.Môn"
     ],
     "trang_sinh_constellation": "Suy",
@@ -186,7 +196,8 @@
     ],
     "bad_stars": [
       "Kình",
-      "Q.Phủ"
+      "Q.Phủ",
+      "Âm Sát"
     ],
     "trang_sinh_constellation": "Đế",
     "opportunity_age": 116
@@ -199,11 +210,14 @@
       "Nguyệt (M)"
     ],
     "good_stars": [
-      "Khúc"
+      "Khúc",
+      "Khoa"
     ],
     "bad_stars": [
       "Q.Phù",
-      "P.Binh"
+      "P.Binh",
+      "Hình",
+      "Khốc"
     ],
     "trang_sinh_constellation": "L.Quan",
     "opportunity_age": 106

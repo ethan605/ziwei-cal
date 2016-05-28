@@ -3,6 +3,8 @@ module Ziwei
     include Utils::ReuseUtils
     include Utils::CalcCommons
     include Utils::CalcForteenMainStars
+    include Utils::CalcFourTransformationStars
+    include Utils::CalcNormalStars
     include Utils::CalcOtherImportantStars
     include Utils::CalcSequentialConstellations
     include Utils::CalcSixDeadlyStars
@@ -80,8 +82,11 @@ module Ziwei
       trang_sinh_constellation = calc_trang_sinh_constellation_positions(cuc_number, @profile.fate_direction)
       loc_ton_constellation = calc_loc_ton_constellation_positions(loc_ton_position, @profile.fate_direction)
 
-      six_deadly_stars_positions = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position)
-      six_lucky_stars_positions = calc_six_lucky_stars_positions(@profile.birth_month, @profile.birth_hour)
+      six_deadly_stars = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position, @profile.birth_year.branch)
+      six_lucky_stars = calc_six_lucky_stars_positions(@profile.birth_month, @profile.birth_hour)
+
+      normal_stars = calc_normal_stars(@profile.birth_month, @profile.birth_year.branch)
+      four_transformation_stars = calc_four_transformation_stars(@profile.birth_year.stem, forteen_main_stars, six_lucky_stars)
 
       branches = Configs::Branches::Names.keys
       table = {}
@@ -98,27 +103,25 @@ module Ziwei
 
         # Classify by qualities
         stars = other_important_stars[branch]
-        
-        if stars
-          stars.each {|star|
-            quality = Configs::OtherImportantStars::Qualities[star]
-            table[branch]["#{quality}_stars".to_sym] << star
-          }
-        end
+        insert_multiple_stars_to_palace(table[branch], stars, :OtherImportantStars)
 
-        stars = six_deadly_stars_positions[branch]
-        table[branch][:bad_stars] += stars if stars
+        stars = six_deadly_stars[branch]
+        insert_multiple_stars_to_palace(table[branch], stars, :SixDeadlyStars)
 
-        stars = six_lucky_stars_positions[branch]
-        table[branch][:good_stars] += stars if stars
+        stars = six_lucky_stars[branch]
+        insert_multiple_stars_to_palace(table[branch], stars, :SixLuckyStars)
 
         star = thai_tue_constellation[branch]
-        quality = Configs::ThaiTueConstellation::Qualities[star]
-        table[branch]["#{quality}_stars".to_sym] << star
+        insert_single_star_to_palace(table[branch], star, :ThaiTueConstellation)
 
         star = loc_ton_constellation[branch]
-        quality = Configs::LocTonConstellation::Qualities[star]
-        table[branch]["#{quality}_stars".to_sym] << star
+        insert_single_star_to_palace(table[branch], star, :LocTonConstellation)
+
+        stars = normal_stars[branch]
+        insert_multiple_stars_to_palace(table[branch], stars, :NormalStars)
+
+        stars = four_transformation_stars[branch]
+        insert_multiple_stars_to_palace(table[branch], stars, :FourTransformationStars)
       }
 
       Models::ResultTable.new(

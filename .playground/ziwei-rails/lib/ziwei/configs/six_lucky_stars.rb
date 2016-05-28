@@ -18,6 +18,15 @@ module Ziwei
         :thien_khoi => "Khôi",
         :thien_viet => "Việt"
       }
+
+      Qualities = {
+        :ta_phu => :good,
+        :huu_bat => :good,
+        :van_xuong => :good,
+        :van_khuc => :good,
+        :thien_khoi => :good,
+        :thien_viet => :good
+      }
     end
   end
 end

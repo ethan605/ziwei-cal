@@ -5,12 +5,12 @@ module Ziwei
       end
       
       module InstanceMethods
-        def limit_inc(start, limit = 12, inc_step = 1, min_result = 1)
+        def limit_inc(start, inc_step = 1, limit = 12, min_result = 1)
           (start + inc_step - 1) % limit + min_result
         end
 
-        def reflect_index(original_index, reflect_through = 2)
-          limit_inc(reflect_through, 12, -original_index+reflect_through)
+        def reflect_index(start, reflect_through = 2)
+          limit_inc(reflect_through, -start+reflect_through)
         end
 
         def full_name(symbol, parent_module = nil)
@@ -22,16 +22,18 @@ module Ziwei
         end
 
         def get_name(symbol, parent_module = nil, prefix = "")
-          return eval("Ziwei::Configs::#{parent_module}::#{prefix}Names[:#{symbol.to_s}]") if parent_module
+          return Ziwei::Configs.module_eval("#{parent_module}::#{prefix}Names")[symbol.to_sym] if parent_module
 
           all_names = [
             :ThaiTueConstellation,
             :LocTonConstellation,
+            :NormalStars,
             :SixDeadlyStars,
             :SixLuckyStars,
-            :OtherImportantStars
+            :OtherImportantStars,
+            :FourTransformationStars
           ].map {|modul|
-            eval("Ziwei::Configs::#{modul}::#{prefix}Names")
+            Ziwei::Configs.module_eval("#{modul}::#{prefix}Names")
           }.inject(&:merge)
 
           all_names[symbol.to_sym]
@@ -51,6 +53,20 @@ module Ziwei
           {
             left: (8 + 284*x_coord - 142 - 25),
             top: (8 + 164*y_coord - 10)
+          }
+        end
+
+        def insert_single_star_to_palace(palace, star, config_module)
+          quality = Configs.module_eval(config_module.to_s)::Qualities[star]
+          palace["#{quality}_stars".to_sym] << star
+        end
+
+        def insert_multiple_stars_to_palace(palace, stars, config_module)
+          return unless stars
+
+          stars.each {|star|
+            quality = Configs.module_eval(config_module.to_s)::Qualities[star]
+            palace["#{quality}_stars".to_sym] << star
           }
         end
       end

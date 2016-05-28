@@ -23,6 +23,13 @@ module Ziwei
           :tuat => :hoa,
           :hoi => :moc
         }
+
+        ByRelatives = [
+          [:hoi, :ty, :suu],
+          [:dan, :mao, :thin],
+          [:ty2, :ngo, :mui],
+          [:than, :dau, :tuat]
+        ]
       end
 
       module Quadrilogy

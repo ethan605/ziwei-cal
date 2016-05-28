@@ -55,6 +55,20 @@ module Ziwei
             top: (8 + 164*y_coord - 10)
           }
         end
+
+        def insert_single_star_to_palace(palace, star, config_module)
+          quality = Configs.module_eval(config_module.to_s)::Qualities[star]
+          palace["#{quality}_stars".to_sym] << star
+        end
+
+        def insert_multiple_stars_to_palace(palace, stars, config_module)
+          return unless stars
+
+          stars.each {|star|
+            quality = Configs.module_eval(config_module.to_s)::Qualities[star]
+            palace["#{quality}_stars".to_sym] << star
+          }
+        end
       end
       
       def self.included(receiver)

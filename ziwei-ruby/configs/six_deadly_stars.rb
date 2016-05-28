@@ -18,6 +18,15 @@ module Ziwei
         :hoa_tinh => "Hỏa",
         :linh_tinh => "Linh"
       }
+
+      Qualities = {
+        :dia_khong => :bad,
+        :dia_kiep => :bad,
+        :kinh_duong => :bad,
+        :da_la => :bad,
+        :hoa_tinh => :bad,
+        :linh_tinh => :bad
+      }
     end
   end
 end

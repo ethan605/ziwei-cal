@@ -10,7 +10,6 @@
 
     ],
     "bad_stars": [
-      "Đà La",
       "Tử Phù",
       "Tiểu Hao"
     ],
@@ -26,10 +25,13 @@
       "Thất Sát (Đ)"
     ],
     "good_stars": [
-      "Tướng Quân"
+      "Tướng Quân",
+      "Thiên Y"
     ],
     "bad_stars": [
-      "Tuế Phá"
+      "Tuế Phá",
+      "Thiên Diêu",
+      "Thiên Hư"
     ],
     "trang_sinh_constellation": "Dưỡng",
     "opportunity_age": 46
@@ -46,7 +48,7 @@
       "Tấu Thư"
     ],
     "bad_stars": [
-
+      "Âm Sát"
     ],
     "trang_sinh_constellation": "Tràng Sinh",
     "opportunity_age": 56
@@ -62,7 +64,8 @@
       "Phi Liêm"
     ],
     "bad_stars": [
-      "Bạch Hổ"
+      "Bạch Hổ",
+      "Hoa Cái"
     ],
     "trang_sinh_constellation": "Mộc Dục",
     "opportunity_age": 66
@@ -80,7 +83,8 @@
       "Hỷ Thần"
     ],
     "bad_stars": [
-      "Địa Kiếp"
+      "Địa Kiếp",
+      "Cô Thần"
     ],
     "trang_sinh_constellation": "Quan Đới",
     "opportunity_age": 76
@@ -98,8 +102,10 @@
       "Văn Xương"
     ],
     "bad_stars": [
+      "Linh Tinh",
       "Điếu Khách",
-      "Bệnh Phù"
+      "Bệnh Phù",
+      "Hóa Kỵ"
     ],
     "trang_sinh_constellation": "Lâm Quan",
     "opportunity_age": 86
@@ -112,7 +118,7 @@
       "Thái Dương (M)"
     ],
     "good_stars": [
-
+      "Hóa Quyền"
     ],
     "bad_stars": [
       "Địa Không",
@@ -133,6 +139,7 @@
 
     ],
     "bad_stars": [
+      "Hỏa Tinh",
       "Thái Tuế",
       "Phục Binh"
     ],
@@ -151,7 +158,9 @@
       "Thiếu Dương"
     ],
     "bad_stars": [
-      "Quan Phủ"
+      "Đà La",
+      "Quan Phủ",
+      "Quả Tú"
     ],
     "trang_sinh_constellation": "Bệnh",
     "opportunity_age": 116
@@ -167,10 +176,12 @@
     "good_stars": [
       "Lộc Tồn",
       "Văn Khúc",
-      "Bác Sĩ"
+      "Bác Sĩ",
+      "Hóa Khoa"
     ],
     "bad_stars": [
-      "Tang Môn"
+      "Tang Môn",
+      "Thiên Hình"
     ],
     "trang_sinh_constellation": "Tử",
     "opportunity_age": 6
@@ -185,7 +196,8 @@
     "good_stars": [
       "Hữu Bật",
       "Thiếu Âm",
-      "Lực Sĩ"
+      "Lực Sĩ",
+      "Hóa Lộc"
     ],
     "bad_stars": [
       "Kình Dương"
@@ -204,7 +216,8 @@
       "Thanh Long"
     ],
     "bad_stars": [
-      "Quan Phù"
+      "Quan Phù",
+      "Thiên Khốc"
     ],
     "trang_sinh_constellation": "Tuyệt",
     "opportunity_age": 26

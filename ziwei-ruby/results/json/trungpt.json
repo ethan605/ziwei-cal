@@ -7,7 +7,8 @@
       "Phá Quân (M)"
     ],
     "good_stars": [
-      "Thiếu Âm"
+      "Thiếu Âm",
+      "Hóa Lộc"
     ],
     "bad_stars": [
       "Kình Dương",
@@ -46,7 +47,8 @@
     ],
     "bad_stars": [
       "Tử Phù",
-      "Đại Hao"
+      "Đại Hao",
+      "Thiên Hình"
     ],
     "trang_sinh_constellation": "Tràng Sinh",
     "opportunity_age": 56
@@ -59,11 +61,13 @@
       "Thái Âm (H)"
     ],
     "good_stars": [
-
+      "Hóa Khoa"
     ],
     "bad_stars": [
+      "Hỏa Tinh",
       "Tuế Phá",
-      "Bệnh Phù"
+      "Bệnh Phù",
+      "Thiên Hư"
     ],
     "trang_sinh_constellation": "Dưỡng",
     "opportunity_age": 46
@@ -81,7 +85,8 @@
       "Hỷ Thần"
     ],
     "bad_stars": [
-
+      "Âm Sát",
+      "Hóa Kỵ"
     ],
     "trang_sinh_constellation": "Thai",
     "opportunity_age": 36
@@ -95,7 +100,8 @@
     ],
     "good_stars": [
       "Hữu Bật",
-      "Phi Liêm"
+      "Phi Liêm",
+      "Hóa Quyền"
     ],
     "bad_stars": [
       "Bạch Hổ"
@@ -113,10 +119,11 @@
     ],
     "good_stars": [
       "Phúc Đức",
-      "Tấu Thư"
+      "Tấu Thư",
+      "Thiên Y"
     ],
     "bad_stars": [
-
+      "Thiên Diêu"
     ],
     "trang_sinh_constellation": "Mộ",
     "opportunity_age": 16
@@ -132,7 +139,8 @@
       "Tướng Quân"
     ],
     "bad_stars": [
-      "Điếu Khách"
+      "Điếu Khách",
+      "Cô Thần"
     ],
     "trang_sinh_constellation": "Tử",
     "opportunity_age": 6
@@ -166,7 +174,9 @@
       "Thanh Long"
     ],
     "bad_stars": [
-      "Thái Tuế"
+      "Thái Tuế",
+      "Hoa Cái",
+      "Thiên Khốc"
     ],
     "trang_sinh_constellation": "Suy",
     "opportunity_age": 106
@@ -184,7 +194,8 @@
       "Lực Sĩ"
     ],
     "bad_stars": [
-      "Đà La"
+      "Đà La",
+      "Linh Tinh"
     ],
     "trang_sinh_constellation": "Đế Vượng",
     "opportunity_age": 96
@@ -204,7 +215,8 @@
     "bad_stars": [
       "Địa Không",
       "Địa Kiếp",
-      "Tang Môn"
+      "Tang Môn",
+      "Quả Tú"
     ],
     "trang_sinh_constellation": "Lâm Quan",
     "opportunity_age": 86

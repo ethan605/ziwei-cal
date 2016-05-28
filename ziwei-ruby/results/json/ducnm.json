@@ -7,10 +7,13 @@
       "Tham Lang (H)"
     ],
     "good_stars": [
-      "Hỷ Thần"
+      "Hỷ Thần",
+      "Hóa Lộc"
     ],
     "bad_stars": [
-      "Thái Tuế"
+      "Hỏa Tinh",
+      "Thái Tuế",
+      "Hoa Cái"
     ],
     "trang_sinh_constellation": "Mộc Dục",
     "opportunity_age": 43
@@ -26,7 +29,8 @@
     "good_stars": [
       "Tả Phù",
       "Hữu Bật",
-      "Thiếu Dương"
+      "Thiếu Dương",
+      "Hóa Khoa"
     ],
     "bad_stars": [
       "Bệnh Phù"
@@ -48,7 +52,8 @@
     "bad_stars": [
       "Địa Kiếp",
       "Tang Môn",
-      "Đại Hao"
+      "Đại Hao",
+      "Quả Tú"
     ],
     "trang_sinh_constellation": "Lâm Quan",
     "opportunity_age": 63
@@ -100,7 +105,8 @@
       "Bác Sĩ"
     ],
     "bad_stars": [
-      "Tử Phù"
+      "Tử Phù",
+      "Hóa Kỵ"
     ],
     "trang_sinh_constellation": "Bệnh",
     "opportunity_age": 93
@@ -117,7 +123,10 @@
     ],
     "bad_stars": [
       "Kình Dương",
-      "Tuế Phá"
+      "Tuế Phá",
+      "Thiên Hình",
+      "Thiên Khốc",
+      "Thiên Hư"
     ],
     "trang_sinh_constellation": "Tử",
     "opportunity_age": 103
@@ -136,7 +145,7 @@
       "Thanh Long"
     ],
     "bad_stars": [
-
+      "Linh Tinh"
     ],
     "trang_sinh_constellation": "Mộ",
     "opportunity_age": 113
@@ -154,7 +163,8 @@
     "bad_stars": [
       "Địa Không",
       "Bạch Hổ",
-      "Tiểu Hao"
+      "Tiểu Hao",
+      "Âm Sát"
     ],
     "trang_sinh_constellation": "Tuyệt",
     "opportunity_age": 3
@@ -185,10 +195,13 @@
       "Thiên Phủ (V)"
     ],
     "good_stars": [
-      "Tấu Thư"
+      "Tấu Thư",
+      "Thiên Y"
     ],
     "bad_stars": [
-      "Điếu Khách"
+      "Điếu Khách",
+      "Thiên Diêu",
+      "Cô Thần"
     ],
     "trang_sinh_constellation": "Dưỡng",
     "opportunity_age": 23
@@ -201,7 +214,8 @@
       "Thái Âm (M)"
     ],
     "good_stars": [
-      "Phi Liêm"
+      "Phi Liêm",
+      "Hóa Quyền"
     ],
     "bad_stars": [
       "Trực Phù"

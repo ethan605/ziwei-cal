@@ -103,45 +103,25 @@ module Ziwei
 
         # Classify by qualities
         stars = other_important_stars[branch]
-        
-        if stars
-          stars.each {|star|
-            quality = Configs::OtherImportantStars::Qualities[star]
-            table[branch]["#{quality}_stars".to_sym] << star
-          }
-        end
+        insert_multiple_stars_to_palace(table[branch], stars, :OtherImportantStars)
 
         stars = six_deadly_stars[branch]
-        table[branch][:bad_stars] += stars if stars
+        insert_multiple_stars_to_palace(table[branch], stars, :SixDeadlyStars)
 
         stars = six_lucky_stars[branch]
-        table[branch][:good_stars] += stars if stars
+        insert_multiple_stars_to_palace(table[branch], stars, :SixLuckyStars)
 
         star = thai_tue_constellation[branch]
-        quality = Configs::ThaiTueConstellation::Qualities[star]
-        table[branch]["#{quality}_stars".to_sym] << star
+        insert_single_star_to_palace(table[branch], star, :ThaiTueConstellation)
 
         star = loc_ton_constellation[branch]
-        quality = Configs::LocTonConstellation::Qualities[star]
-        table[branch]["#{quality}_stars".to_sym] << star
+        insert_single_star_to_palace(table[branch], star, :LocTonConstellation)
 
         stars = normal_stars[branch]
-
-        if stars
-          stars.each {|star|
-            quality = Configs::NormalStars::Qualities[star]
-            table[branch]["#{quality}_stars".to_sym] << star
-          }
-        end
+        insert_multiple_stars_to_palace(table[branch], stars, :NormalStars)
 
         stars = four_transformation_stars[branch]
-
-        if stars
-          stars.each {|star|
-            quality = Configs::FourTransformationStars::Qualities[star]
-            table[branch]["#{quality}_stars".to_sym] << star
-          }
-        end
+        insert_multiple_stars_to_palace(table[branch], stars, :FourTransformationStars)
       }
 
       Models::ResultTable.new(

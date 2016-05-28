@@ -35,7 +35,7 @@ module Ziwei
 
           if mod == 0
             dan_index = Configs::Branches::Indexes[:dan]
-            tu_vi_index = limit_inc(dan_index, 12, quotient-1)
+            tu_vi_index = limit_inc(dan_index, quotient-1)
 
             return Configs::Branches::Orders[tu_vi_index]
           end
@@ -50,7 +50,7 @@ module Ziwei
 
           # mod > 0 & birth_day > cuc_number
           counting_start_index = Configs::Branches::Indexes[counting_start_position]
-          tu_vi_index = limit_inc(counting_start_index, 12, quotient)
+          tu_vi_index = limit_inc(counting_start_index, quotient)
 
           Configs::Branches::Orders[tu_vi_index]
         end
@@ -60,9 +60,9 @@ module Ziwei
           tu_vi_index = Configs::Branches::Indexes[tu_vi_position]
           
           [
-            Configs::Branches::Orders[limit_inc(tu_vi_index, 12, -1)],
-            Configs::Branches::Orders[limit_inc(tu_vi_index, 12, 4)],
-            Configs::Branches::Orders[limit_inc(tu_vi_index, 12, -4)]
+            Configs::Branches::Orders[limit_inc(tu_vi_index, -1)],
+            Configs::Branches::Orders[limit_inc(tu_vi_index, 4)],
+            Configs::Branches::Orders[limit_inc(tu_vi_index, -4)]
           ]
         end
 
@@ -71,8 +71,8 @@ module Ziwei
           vu_khuc_index = Configs::Branches::Indexes[vu_khuc_position]
           
           [
-            Configs::Branches::Orders[limit_inc(vu_khuc_index, 12, 1)],
-            Configs::Branches::Orders[limit_inc(vu_khuc_index, 12, -1)]
+            Configs::Branches::Orders[limit_inc(vu_khuc_index, 1)],
+            Configs::Branches::Orders[limit_inc(vu_khuc_index, -1)]
           ]
         end
 
@@ -86,7 +86,7 @@ module Ziwei
           pha_quan_index = Configs::Branches::Indexes[pha_quan_position]
 
           # Thiên Phủ
-          thien_phu_index = limit_inc(pha_quan_index, 12, 2)
+          thien_phu_index = limit_inc(pha_quan_index, 2)
           constelation_positions = [Configs::Branches::Orders[thien_phu_index]]
 
           # Nguyệt - Tham - Cự - Tướng - Lương - Sát
