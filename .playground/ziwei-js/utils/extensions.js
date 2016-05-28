@@ -91,9 +91,25 @@ Array.prototype.toHashOfArrays = function() {
 };
 
 Array.fromRange = function(from, to) {
-  return Array
-    .apply(null, Array((to - from) + 1))
-    .map((discard, n) => n + from);
+  if (from === to)
+    return [from];
+
+  var _from = from, _to = to, reversed = false;
+
+  if (from > to) {
+    _from = to;
+    _to = from;
+    reversed = true;
+  }
+
+  result = Array
+    .apply(null, Array(_to - _from + 1))
+    .map((_, index) => _from + index);
+
+  if (reversed)
+    result = result.reverse();
+
+  return result;
 };
 
 Object.values = Object.values || ((obj) => Object.keys(obj).map(key => obj[key]));
