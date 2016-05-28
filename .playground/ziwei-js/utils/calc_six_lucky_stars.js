@@ -1,8 +1,8 @@
 _Ziwei_Calculator.prototype.calcTaHuuPositions = function(birthMonth) {
-  var thinIndex = Ziwei.Configs.Branches.Indexes['thin'] - 2;
-  var birthMonthIndex = Ziwei.Configs.Branches.Indexes[birthMonth];
+  var thinIndex = Ziwei.Configs.Branches.Indexes['thin'];
+  var birthMonthNumber = Ziwei.Configs.Branches.Indexes[birthMonth] - 2;
 
-  var taPhuIndex = thinIndex.limitInc(birthMonthIndex-1);
+  var taPhuIndex = thinIndex.limitInc(birthMonthNumber-1);
   var huuBatIndex = taPhuIndex.reflectIndex();
 
   return [

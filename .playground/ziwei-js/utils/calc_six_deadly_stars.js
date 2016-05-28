@@ -38,8 +38,8 @@ _Ziwei_Calculator.prototype.calcHoaLinhPositions = function(birthYearBranch, bir
   var hoaTinhStartIndex = Ziwei.Configs.Branches.Indexes[hoaTinhStartPos];
   var linhTinhStartIndex = Ziwei.Configs.Branches.Indexes[linhTinhStartPos];
 
-  var hoaTinhIndex = hoaTinhStartIndex.limitInc(birthHourIndex - 1);
-  var linhTinhIndex = linhTinhStartIndex.limitInc(- birthHourIndex + 1);
+  var hoaTinhIndex = hoaTinhStartIndex.limitInc(birthHourIndex-1);
+  var linhTinhIndex = linhTinhStartIndex.limitInc(-birthHourIndex+1);
 
   return [
     Ziwei.Configs.Branches.Orders[hoaTinhIndex],

@@ -20,7 +20,14 @@ _Ziwei_Configs_Branch_Sets = {
       'dau': 'kim',
       'tuat': 'hoa',
       'hoi': 'moc'
-    }
+    },
+
+    ByRelatives: [
+      ['hoi', 'ty', 'suu'],
+      ['dan', 'mao', 'thin'],
+      ['ty2', 'ngo', 'mui'],
+      ['than', 'dau', 'tuat']
+    ]
   },
 
   Duadrilogy: {
