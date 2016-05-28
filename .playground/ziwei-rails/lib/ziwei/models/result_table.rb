@@ -12,7 +12,7 @@ module Ziwei
         attr_reader :trang_sinh_constellation
         attr_reader :opportunity_age
 
-        def initialize(configs)
+        def initialize(configs = {})
           @position = configs[:position] || configs["position"]
           @name = configs[:name] || configs["name"]
           @is_body = (configs[:is_body] || configs["is_body"]) == true

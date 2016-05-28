@@ -20,7 +20,9 @@ var Ziwei = (function () {
     },
     Models: {
       GanZhi: _Ziwei_Models_GanZhi,
-      Profile: _Ziwei_Models_Profile
+      Profile: _Ziwei_Models_Profile,
+      ResultPalace: _Ziwei_Models_ResultPalace,
+      ResultTable: _Ziwei_Models_ResultTable
     },
     Calculator: _Ziwei_Calculator
   }

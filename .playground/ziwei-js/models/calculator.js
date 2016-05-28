@@ -115,7 +115,15 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
     this.insertMultipleStarsToPalace(table[branch], stars, 'FourTransformationStars');
   });
 
-  return table;
+  var resultTable = new Ziwei.Models.ResultTable({
+    'profile': _profile,
+    'palaces': table,
+    'tuanCoordinate': this.calcTuanCoordinate(),
+    'trietCoordinate': this.calcTrietCoordinate(),
+    'connectedCoordinates': this.calcConnectedPalaceCoordinates(selfPosition)
+  });
+
+  return resultTable;
 };
 
 _Ziwei_Calculator.prototype.calculateProfile = function(profileKey = 'thanhnx') {

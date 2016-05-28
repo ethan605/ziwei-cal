@@ -29,7 +29,9 @@ String.prototype.getDisplayName = function(moduleName = undefined, prefix = "") 
     'LocTonConstellation',
     'SixDeadlyStars',
     'SixLuckyStars',
-    'OtherImportantStars'
+    'OtherImportantStars',
+    'NormalStars',
+    'FourTransformationStars'
   ].map(function(moduleName) {
     return Ziwei.Configs[`${moduleName}`][`${prefix}Names`];
   });
@@ -44,7 +46,7 @@ String.prototype.getFullName = function(moduleName = undefined) {
 };
 
 String.prototype.getShortName = function(moduleName = undefined) {
-  return this.getDisplayName(moduleName, "Short");
+  return this.getDisplayName(moduleName, 'Short');
 };
 
 String.prototype.getElementColorStyle = function() {
