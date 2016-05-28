@@ -35,7 +35,7 @@ module Ziwei
 
           if mod == 0
             dan_index = Configs::Branches::Indexes[:dan]
-            tu_vi_index = limit_inc(dan_index, quotient-1)
+            tu_vi_index = dan_index.limit_inc(quotient-1)
 
             return Configs::Branches::Orders[tu_vi_index]
           end
@@ -50,7 +50,7 @@ module Ziwei
 
           # mod > 0 & birth_day > cuc_number
           counting_start_index = Configs::Branches::Indexes[counting_start_position]
-          tu_vi_index = limit_inc(counting_start_index, quotient)
+          tu_vi_index = counting_start_index.limit_inc(quotient)
 
           Configs::Branches::Orders[tu_vi_index]
         end
@@ -60,9 +60,9 @@ module Ziwei
           tu_vi_index = Configs::Branches::Indexes[tu_vi_position]
           
           [
-            Configs::Branches::Orders[limit_inc(tu_vi_index, -1)],
-            Configs::Branches::Orders[limit_inc(tu_vi_index, 4)],
-            Configs::Branches::Orders[limit_inc(tu_vi_index, -4)]
+            Configs::Branches::Orders[tu_vi_index.limit_inc(-1)],
+            Configs::Branches::Orders[tu_vi_index.limit_inc(4)],
+            Configs::Branches::Orders[tu_vi_index.limit_inc(-4)]
           ]
         end
 
@@ -71,27 +71,27 @@ module Ziwei
           vu_khuc_index = Configs::Branches::Indexes[vu_khuc_position]
           
           [
-            Configs::Branches::Orders[limit_inc(vu_khuc_index, 1)],
-            Configs::Branches::Orders[limit_inc(vu_khuc_index, -1)]
+            Configs::Branches::Orders[vu_khuc_index.limit_inc(1)],
+            Configs::Branches::Orders[vu_khuc_index.limit_inc(-1)]
           ]
         end
 
         # Phá Quân
         def calc_pha_quan_position(tu_vi_position)
           tu_vi_index = Configs::Branches::Indexes[tu_vi_position]
-          Configs::Branches::Orders[reflect_index(tu_vi_index)]
+          Configs::Branches::Orders[tu_vi_index.reflect_index]
         end
 
         def calc_thien_phu_constellation_position(pha_quan_position)
           pha_quan_index = Configs::Branches::Indexes[pha_quan_position]
 
           # Thiên Phủ
-          thien_phu_index = limit_inc(pha_quan_index, 2)
+          thien_phu_index = pha_quan_index.limit_inc(2)
           constelation_positions = [Configs::Branches::Orders[thien_phu_index]]
 
           # Nguyệt - Tham - Cự - Tướng - Lương - Sát
           6.times {
-            thien_phu_index = limit_inc(thien_phu_index)
+            thien_phu_index = thien_phu_index.limit_inc
             constelation_positions << Configs::Branches::Orders[thien_phu_index]
           }
 

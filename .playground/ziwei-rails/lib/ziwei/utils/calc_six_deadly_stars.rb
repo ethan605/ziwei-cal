@@ -31,8 +31,8 @@ module Ziwei
           hoi_index = Configs::Branches::Indexes[:hoi]
           birth_hour_index = Configs::Branches::Indexes[birth_hour]
 
-          dia_khong_index = limit_inc(hoi_index, -birth_hour_index+1)
-          dia_kiep_index = limit_inc(hoi_index, birth_hour_index-1)
+          dia_khong_index = hoi_index.limit_inc(-birth_hour_index+1)
+          dia_kiep_index = hoi_index.limit_inc(birth_hour_index-1)
 
           [
             Configs::Branches::Orders[dia_khong_index],
@@ -43,8 +43,8 @@ module Ziwei
         def calc_kinh_da_positions(loc_ton_position)
           loc_ton_index = Configs::Branches::Indexes[loc_ton_position]
 
-          kinh_duong_index = limit_inc(loc_ton_index)
-          da_la_index = limit_inc(loc_ton_index, -1)
+          kinh_duong_index = loc_ton_index.limit_inc
+          da_la_index = loc_ton_index.limit_inc(-1)
 
           [
             Configs::Branches::Orders[kinh_duong_index],
@@ -67,8 +67,8 @@ module Ziwei
           hoa_tinh_start_index = Configs::Branches::Indexes[hoa_tinh_start_pos]
           linh_tinh_start_index = Configs::Branches::Indexes[linh_tinh_start_pos]
 
-          hoa_tinh_index = limit_inc(hoa_tinh_start_index, birth_hour_index-1)
-          linh_tinh_index = limit_inc(linh_tinh_start_index, -birth_hour_index+1)
+          hoa_tinh_index = hoa_tinh_start_index.limit_inc(birth_hour_index-1)
+          linh_tinh_index = linh_tinh_start_index.limit_inc(-birth_hour_index+1)
 
           [
             Configs::Branches::Orders[hoa_tinh_index],

@@ -9,10 +9,10 @@ module Ziwei
           birth_month_number = Configs::Branches::Indexes[birth_month] - 2
   
           dau_index = Configs::Branches::Indexes[:dau]
-          thien_hinh_index = limit_inc(dau_index, birth_month_number-1)
+          thien_hinh_index = dau_index.limit_inc(birth_month_number-1)
 
           suu_index = Configs::Branches::Indexes[:suu]
-          thien_dieu_index = limit_inc(suu_index, birth_month_number-1)
+          thien_dieu_index = suu_index.limit_inc(birth_month_number-1)
           thien_y_index = thien_dieu_index
 
           [

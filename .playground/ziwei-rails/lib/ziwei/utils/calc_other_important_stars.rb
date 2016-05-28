@@ -40,7 +40,7 @@ module Ziwei
           trilogy_element = Configs::BranchSets::Trilogy::ByBranches[birth_year_branch]
           first_branch = Configs::BranchSets::Trilogy::ByElements[trilogy_element].first
           first_branch_index = Configs::Branches::Indexes[first_branch]
-          reflect_branch_index = limit_inc(first_branch_index, 6)
+          reflect_branch_index = first_branch_index.limit_inc(6)
 
           Configs::Branches::Orders[reflect_branch_index]
         end

@@ -17,7 +17,7 @@ Number.prototype.limitInc = function(incStep = 1, limit = 12, minResult = 1) {
 }
 
 Number.prototype.reflectIndex = function(reflectThrough = 2) {
-  return reflectThrough.limitInc(- this + reflectThrough);
+  return reflectThrough.limitInc(-this+reflectThrough);
 };
 
 String.prototype.getDisplayName = function(moduleName = undefined, prefix = "") {

@@ -5,14 +5,6 @@ module Ziwei
       end
       
       module InstanceMethods
-        def limit_inc(start, inc_step = 1, limit = 12, min_result = 1)
-          (start + inc_step - 1) % limit + min_result
-        end
-
-        def reflect_index(original_index, reflect_through = 2)
-          limit_inc(reflect_through, -original_index+reflect_through)
-        end
-
         def full_name(symbol, parent_module = nil)
           get_name(symbol, parent_module)
         end
