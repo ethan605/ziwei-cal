@@ -1,4 +1,4 @@
-_Ziwei_Calculator.prototype.calcThaiTueConstellationPositions = function(birthYearBranch) {
+_Ziwei_Calculator.prototype.calcThaiTueConstellation = function(birthYearBranch) {
   var thaiTueIndex = Ziwei.Configs.Branches.Indexes[birthYearBranch];
   var branches = Object.keys(Ziwei.Configs.Branches.Names);
   var stars = Ziwei.Configs.ThaiTueConstellation.Orders;
@@ -6,7 +6,7 @@ _Ziwei_Calculator.prototype.calcThaiTueConstellationPositions = function(birthYe
   return this.mergeSequencesFromIndex(branches, stars, thaiTueIndex);
 };
 
-_Ziwei_Calculator.prototype.calcTrangSinhConstellationPositions = function(cucNumber, fateDirection) {
+_Ziwei_Calculator.prototype.calcTrangSinhConstellation = function(cucNumber, fateDirection) {
   var possiblePositions = ['than', 'hoi', 'ty2', 'than', 'dan'];
   var trangSinhPosition = possiblePositions[cucNumber-2];
   var trangSinhIndex = Ziwei.Configs.Branches.Indexes[trangSinhPosition];
@@ -17,7 +17,7 @@ _Ziwei_Calculator.prototype.calcTrangSinhConstellationPositions = function(cucNu
   return this.mergeSequencesFromIndex(branches, stars, trangSinhIndex, fateDirection == -1);
 };
 
-_Ziwei_Calculator.prototype.calcLocTonConstellationPositions = function(locTonPosition, fateDirection) {
+_Ziwei_Calculator.prototype.calcLocTonConstellation = function(locTonPosition, fateDirection) {
   var locTonIndex = Ziwei.Configs.Branches.Indexes[locTonPosition];
   var branches = Object.keys(Ziwei.Configs.Branches.Names);
   var stars = Ziwei.Configs.LocTonConstellation.Orders;

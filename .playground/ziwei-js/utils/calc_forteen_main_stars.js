@@ -77,12 +77,12 @@ _Ziwei_Calculator.prototype.calcForteenMainStars = function(cucElement, cucNumbe
 
   var tuVi = this.calcTuViPosition(cucElement, cucNumber, birthDay);
   starsPositions.push(tuVi);
-  starsPositions = starsPositions.concat(this.calcCoLiemVuPositions(tuVi));
-  starsPositions = starsPositions.concat(this.calcNhatDongPositions(starsPositions[3]));
+  starsPositions.push(...this.calcCoLiemVuPositions(tuVi));
+  starsPositions.push(...this.calcNhatDongPositions(starsPositions[3]));
   
   var phaQuan = this.calcPhaQuanPosition(tuVi);
   starsPositions.push(phaQuan);
-  starsPositions = starsPositions.concat(this.calcThienPhuConstellationPositions(phaQuan));
+  starsPositions.push(...this.calcThienPhuConstellationPositions(phaQuan));
 
   var mainStarsPositions = {};
 

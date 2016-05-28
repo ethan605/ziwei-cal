@@ -83,7 +83,7 @@ _Ziwei_Calculator.prototype.calcConnectedPalaceCoordinates = function(selfPositi
   );
 
   var coordinates = [oppositeCoordinate];
-  coordinates = coordinates.concat(sameSetCoordinates);
+  coordinates.push(...sameSetCoordinates);
 
   return coordinates.map((fromCoordinate) => [fromCoordinate, selfCoordinate]);
 };

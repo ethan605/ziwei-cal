@@ -68,9 +68,12 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
 
   var opportunityAges = this.calcOpportunityAges(selfPosition, cucNumber, _profile.fateDirection);
 
-  var thaiTueConstellation = this.calcThaiTueConstellationPositions(_profile.birthYear.branch);
-  var trangSinhConstellation = this.calcTrangSinhConstellationPositions(cucNumber, _profile.fateDirection);
-  var locTonConstellation = this.calcLocTonConstellationPositions(locTonPosition, _profile.fateDirection);
+  var thaiTueConstellation = this.calcThaiTueConstellation(_profile.birthYear.branch);
+  var trangSinhConstellation = this.calcTrangSinhConstellation(cucNumber, _profile.fateDirection);
+  var locTonConstellation = this.calcLocTonConstellation(locTonPosition, _profile.fateDirection);
+
+  var sixDeadlyStars = this.calcSixDeadlyStars(_profile.birthHour, locTonPosition, _profile.birthYear.branch);
+  var sixLuckyStars = this.calcSixLuckyStars(_profile.birthMonth, _profile.birthHour);
 
   var branches = Object.keys(Ziwei.Configs.Branches.Names);
   var table = {};
@@ -95,6 +98,14 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
         quality = Ziwei.Configs.OtherImportantStars.Qualities[star];
         table[branch][`${quality}Stars`].push(star);
       });
+
+    stars = sixDeadlyStars[branch];
+    if (stars !== undefined && stars.constructor === Array)
+      table[branch]['badStars'].push(...stars);
+
+    stars = sixLuckyStars[branch];
+    if (stars !== undefined && stars.constructor === Array)
+      table[branch]['goodStars'].push(...stars);
 
     star = thaiTueConstellation[branch];
     quality = Ziwei.Configs.ThaiTueConstellation.Qualities[star];
