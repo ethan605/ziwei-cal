@@ -27,10 +27,11 @@ module Ziwei
           all_names = [
             :ThaiTueConstellation,
             :LocTonConstellation,
+            :NormalStars,
             :SixDeadlyStars,
             :SixLuckyStars,
             :OtherImportantStars,
-            :NormalStars
+            :FourTransformationStars
           ].map {|modul|
             Ziwei::Configs.module_eval("#{modul}::#{prefix}Names")
           }.inject(&:merge)

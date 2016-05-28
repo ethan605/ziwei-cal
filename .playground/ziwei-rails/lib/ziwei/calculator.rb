@@ -3,6 +3,7 @@ module Ziwei
     include Utils::ReuseUtils
     include Utils::CalcCommons
     include Utils::CalcForteenMainStars
+    include Utils::CalcFourTransformationStars
     include Utils::CalcNormalStars
     include Utils::CalcOtherImportantStars
     include Utils::CalcSequentialConstellations
@@ -85,6 +86,7 @@ module Ziwei
       six_lucky_stars = calc_six_lucky_stars_positions(@profile.birth_month, @profile.birth_hour)
 
       normal_stars = calc_normal_stars(@profile.birth_month, @profile.birth_year.branch)
+      four_transformation_stars = calc_four_transformation_stars(@profile.birth_year.stem, forteen_main_stars, six_lucky_stars)
 
       branches = Configs::Branches::Names.keys
       table = {}
@@ -128,6 +130,15 @@ module Ziwei
         if stars
           stars.each {|star|
             quality = Configs::NormalStars::Qualities[star]
+            table[branch]["#{quality}_stars".to_sym] << star
+          }
+        end
+
+        stars = four_transformation_stars[branch]
+
+        if stars
+          stars.each {|star|
+            quality = Configs::FourTransformationStars::Qualities[star]
             table[branch]["#{quality}_stars".to_sym] << star
           }
         end

@@ -12,7 +12,8 @@
       "Lực Sĩ"
     ],
     "bad_stars": [
-      "Kình Dương"
+      "Kình Dương",
+      "Âm Sát"
     ],
     "trang_sinh_constellation": "Đế Vượng",
     "opportunity_age": 102
@@ -63,7 +64,9 @@
       "Tướng Quân"
     ],
     "bad_stars": [
-      "Tuế Phá"
+      "Linh Tinh",
+      "Tuế Phá",
+      "Thiên Hư"
     ],
     "trang_sinh_constellation": "Tử",
     "opportunity_age": 12
@@ -80,7 +83,8 @@
       "Tấu Thư"
     ],
     "bad_stars": [
-      "Địa Không"
+      "Địa Không",
+      "Thiên Hình"
     ],
     "trang_sinh_constellation": "Mộ",
     "opportunity_age": 22
@@ -110,7 +114,8 @@
     ],
     "good_stars": [
       "Phúc Đức",
-      "Hỷ Thần"
+      "Hỷ Thần",
+      "Hóa Lộc"
     ],
     "bad_stars": [
       "Địa Kiếp"
@@ -130,7 +135,8 @@
     ],
     "bad_stars": [
       "Điếu Khách",
-      "Bệnh Phù"
+      "Bệnh Phù",
+      "Cô Thần"
     ],
     "trang_sinh_constellation": "Dưỡng",
     "opportunity_age": 52
@@ -144,11 +150,12 @@
       "Thiên Phủ (M)"
     ],
     "good_stars": [
-
+      "Thiên Y"
     ],
     "bad_stars": [
       "Trực Phù",
-      "Đại Hao"
+      "Đại Hao",
+      "Thiên Diêu"
     ],
     "trang_sinh_constellation": "Tràng Sinh",
     "opportunity_age": 62
@@ -161,11 +168,13 @@
       "Thái Âm (M)"
     ],
     "good_stars": [
-
+      "Hóa Khoa"
     ],
     "bad_stars": [
       "Thái Tuế",
-      "Phục Binh"
+      "Phục Binh",
+      "Hoa Cái",
+      "Thiên Khốc"
     ],
     "trang_sinh_constellation": "Mộc Dục",
     "opportunity_age": 72
@@ -182,7 +191,9 @@
     ],
     "bad_stars": [
       "Đà La",
-      "Quan Phủ"
+      "Hỏa Tinh",
+      "Quan Phủ",
+      "Hóa Kỵ"
     ],
     "trang_sinh_constellation": "Quan Đới",
     "opportunity_age": 82
@@ -199,10 +210,12 @@
       "Thiên Mã",
       "Tả Phù",
       "Văn Khúc",
-      "Bác Sĩ"
+      "Bác Sĩ",
+      "Hóa Quyền"
     ],
     "bad_stars": [
-      "Tang Môn"
+      "Tang Môn",
+      "Quả Tú"
     ],
     "trang_sinh_constellation": "Lâm Quan",
     "opportunity_age": 92

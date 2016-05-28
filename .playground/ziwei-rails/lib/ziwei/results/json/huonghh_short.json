@@ -10,7 +10,6 @@
 
     ],
     "bad_stars": [
-      "Đà",
       "T.Phù",
       "T.Hao"
     ],
@@ -26,10 +25,13 @@
       "Sát (Đ)"
     ],
     "good_stars": [
-      "T.Quân"
+      "T.Quân",
+      "Y"
     ],
     "bad_stars": [
-      "T.Phá"
+      "T.Phá",
+      "Diêu",
+      "Hư"
     ],
     "trang_sinh_constellation": "Dưỡng",
     "opportunity_age": 46
@@ -46,7 +48,7 @@
       "T.Thư"
     ],
     "bad_stars": [
-
+      "Âm Sát"
     ],
     "trang_sinh_constellation": "Tr.Sinh",
     "opportunity_age": 56
@@ -62,7 +64,8 @@
       "P.Liêm"
     ],
     "bad_stars": [
-      "B.Hổ"
+      "B.Hổ",
+      "Cái"
     ],
     "trang_sinh_constellation": "M.Dục",
     "opportunity_age": 66
@@ -80,7 +83,8 @@
       "H.Thần"
     ],
     "bad_stars": [
-      "Kiếp"
+      "Kiếp",
+      "Cô"
     ],
     "trang_sinh_constellation": "Q.Đới",
     "opportunity_age": 76
@@ -98,8 +102,10 @@
       "Xương"
     ],
     "bad_stars": [
+      "Linh",
       "Đ.Khách",
-      "B.Phù"
+      "B.Phù",
+      "Kỵ"
     ],
     "trang_sinh_constellation": "L.Quan",
     "opportunity_age": 86
@@ -112,7 +118,7 @@
       "Nhật (M)"
     ],
     "good_stars": [
-
+      "Quyền"
     ],
     "bad_stars": [
       "Không",
@@ -133,6 +139,7 @@
 
     ],
     "bad_stars": [
+      "Hỏa",
       "T.Tuế",
       "P.Binh"
     ],
@@ -151,7 +158,9 @@
       "T.Dương"
     ],
     "bad_stars": [
-      "Q.Phủ"
+      "Đà",
+      "Q.Phủ",
+      "Quả"
     ],
     "trang_sinh_constellation": "Bệnh",
     "opportunity_age": 116
@@ -167,10 +176,12 @@
     "good_stars": [
       "Lộc",
       "Khúc",
-      "B.Sĩ"
+      "B.Sĩ",
+      "Khoa"
     ],
     "bad_stars": [
-      "T.Môn"
+      "T.Môn",
+      "Hình"
     ],
     "trang_sinh_constellation": "Tử",
     "opportunity_age": 6
@@ -185,7 +196,8 @@
     "good_stars": [
       "Hữu",
       "T.Âm",
-      "L.Sĩ"
+      "L.Sĩ",
+      "Lộc"
     ],
     "bad_stars": [
       "Kình"
@@ -204,7 +216,8 @@
       "T.Long"
     ],
     "bad_stars": [
-      "Q.Phù"
+      "Q.Phù",
+      "Khốc"
     ],
     "trang_sinh_constellation": "Tuyệt",
     "opportunity_age": 26
