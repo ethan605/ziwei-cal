@@ -5,6 +5,14 @@ module Ziwei
       end
       
       module InstanceMethods
+        def limit_inc(start, inc_step = 1, limit = 12, min_result = 1)
+          (start + inc_step - 1) % limit + min_result
+        end
+
+        def reflect_index(start, reflect_through = 2)
+          limit_inc(reflect_through, -start+reflect_through)
+        end
+
         def full_name(symbol, parent_module = nil)
           get_name(symbol, parent_module)
         end
@@ -14,7 +22,7 @@ module Ziwei
         end
 
         def get_name(symbol, parent_module = nil, prefix = "")
-          return eval("Ziwei::Configs::#{parent_module}::#{prefix}Names[:#{symbol.to_s}]") if parent_module
+          return Ziwei::Configs.module_eval("#{parent_module}::#{prefix}Names")[symbol.to_sym] if parent_module
 
           all_names = [
             :ThaiTueConstellation,
@@ -23,7 +31,7 @@ module Ziwei
             :SixLuckyStars,
             :OtherImportantStars
           ].map {|modul|
-            eval("Ziwei::Configs::#{modul}::#{prefix}Names")
+            Ziwei::Configs.module_eval("#{modul}::#{prefix}Names")
           }.inject(&:merge)
 
           all_names[symbol.to_sym]

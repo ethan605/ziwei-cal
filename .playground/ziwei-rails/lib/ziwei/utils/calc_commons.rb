@@ -9,8 +9,8 @@ module Ziwei
           hour_index = Configs::Branches::Indexes[birth_hour]
           month_index = Configs::Branches::Indexes[birth_month]
 
-          self_index = month_index.limit_inc(-hour_index+1)
-          body_index = month_index.limit_inc(hour_index-1)
+          self_index = limit_inc(month_index, -hour_index+1)
+          body_index = limit_inc(month_index, hour_index-1)
 
           [
             Configs::Branches::Orders[self_index],
@@ -31,7 +31,7 @@ module Ziwei
           start_element = Configs::Wuxing::ElementsByBranches[self_position]
           start_element_index = Configs::Wuxing::Elements.index(start_element)
           counting_steps = Configs::Stems::Indexes[birth_year_stem]
-          cuc_index = start_element_index.limit_inc(counting_steps, 5, 0)
+          cuc_index = limit_inc(start_element_index, counting_steps, 5, 0)
 
           cuc_element = Configs::Wuxing::Elements[cuc_index]
           cuc_number = Configs::Wuxing::CucByElements[cuc_element]
@@ -52,7 +52,7 @@ module Ziwei
           self_index = Configs::Branches::Indexes[self_position]
           self_coordinate = Configs::Palaces::DrawingRootCoordinates[self_position]
 
-          opposite_index = self_index.limit_inc(6)
+          opposite_index = limit_inc(self_index, 6)
           opposite_position = Configs::Branches::Orders[opposite_index]
           opposite_coordinate = Configs::Palaces::DrawingRootCoordinates[opposite_position]
 
