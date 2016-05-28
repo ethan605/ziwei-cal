@@ -25,10 +25,10 @@ module Ziwei
         end
 
         def calc_ta_huu_positions(birth_month)
-          thin_index = Configs::Branches::Indexes[:thin]-2
-          birth_month_index = Configs::Branches::Indexes[birth_month]
+          thin_index = Configs::Branches::Indexes[:thin]
+          birth_month_number = Configs::Branches::Indexes[birth_month] - 2
 
-          ta_phu_index = limit_inc(thin_index, 12, birth_month_index-1)
+          ta_phu_index = limit_inc(thin_index, 12, birth_month_number-1)
           huu_bat_index = reflect_index(ta_phu_index)
 
           [

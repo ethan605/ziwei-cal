@@ -3,6 +3,7 @@ module Ziwei
     include Utils::ReuseUtils
     include Utils::CalcCommons
     include Utils::CalcForteenMainStars
+    include Utils::CalcNormalStars
     include Utils::CalcOtherImportantStars
     include Utils::CalcSequentialConstellations
     include Utils::CalcSixDeadlyStars
