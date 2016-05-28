@@ -23,7 +23,7 @@ _Ziwei_Calculator.prototype.calcKinhDaPositions = function(locTonPosition) {
   ]
 };
 
-_Ziwei_Calculator.prototype.calcSixDeadlyStars = function(argument) {
+_Ziwei_Calculator.prototype.calcSixDeadlyStars = function(birthHour, locTonPosition) {
   var [diaKhongPosition, diaKiepPosition] = this.calcKhongKiepPositions(birthHour);
   var [kinhDuongPosition, daLaPosition] = this.calcKinhDaPositions(locTonPosition);
 
@@ -34,7 +34,9 @@ _Ziwei_Calculator.prototype.calcSixDeadlyStars = function(argument) {
     [diaKiepPosition, 'dia_kiep'],
     [kinhDuongPosition, 'kinh_duong'],
     [daLaPosition, 'da_la']
-  ].forEach((position, star) => {
+  ].forEach((pair) => {
+    var [position, star] = pair;
+
     if (starsPositions[position] === undefined)
       starsPositions[position] = [];
 
