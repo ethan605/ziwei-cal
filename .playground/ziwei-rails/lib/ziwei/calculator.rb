@@ -80,7 +80,7 @@ module Ziwei
       trang_sinh_constellation = calc_trang_sinh_constellation_positions(cuc_number, @profile.fate_direction)
       loc_ton_constellation = calc_loc_ton_constellation_positions(loc_ton_position, @profile.fate_direction)
 
-      six_deadly_stars_positions = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position)
+      six_deadly_stars_positions = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position, @profile.birth_year.branch)
       six_lucky_stars_positions = calc_six_lucky_stars_positions(@profile.birth_month, @profile.birth_hour)
 
       branches = Configs::Branches::Names.keys
