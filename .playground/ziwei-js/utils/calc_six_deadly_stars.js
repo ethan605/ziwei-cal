@@ -52,23 +52,14 @@ _Ziwei_Calculator.prototype.calcSixDeadlyStars = function(birthHour, locTonPosit
   var [kinhDuongPosition, daLaPosition] = this.calcKinhDaPositions(locTonPosition);
   var [hoaTinhPosition, linhTinhPosition] = this.calcHoaLinhPositions(birthYearBranch, birthHour);
 
-  var starsPositions = {};
-
-  [
+  var starsPositions = [
     [diaKhongPosition, 'dia_khong'],
     [diaKiepPosition, 'dia_kiep'],
     [kinhDuongPosition, 'kinh_duong'],
     [daLaPosition, 'da_la'],
     [hoaTinhPosition, 'hoa_tinh'],
     [linhTinhPosition, 'linh_tinh']
-  ].forEach((pair) => {
-    var [position, star] = pair;
-
-    if (starsPositions[position] === undefined)
-      starsPositions[position] = [];
-
-    starsPositions[position].push(star);
-  });
+  ].toHashOfArrays();
 
   return starsPositions;
 };

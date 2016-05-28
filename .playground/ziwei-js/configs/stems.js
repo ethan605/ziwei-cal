@@ -1,15 +1,15 @@
 _Ziwei_Configs_Stems = {
   Names: {
-    giap: "Giáp",
-    at: "Ất",
-    binh: "Bính",
-    dinh: "Đinh",
-    mau: "Mậu",
-    ky: "Kỷ",
-    canh: "Canh",
-    tan: "Tân",
-    nham: "Nhâm",
-    quy: "Quý"
+    'giap': 'Giáp',
+    'at': 'Ất',
+    'binh': 'Bính',
+    'dinh': 'Đinh',
+    'mau': 'Mậu',
+    'ky': 'Kỷ',
+    'canh': 'Canh',
+    'tan': 'Tân',
+    'nham': 'Nhâm',
+    'quy': 'Quý'
   },
 
   Converts: {

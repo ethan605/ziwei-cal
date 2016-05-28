@@ -81,6 +81,21 @@ Array.prototype.toHash = function() {
   }, {});
 };
 
+Array.prototype.toHashOfArrays = function() {
+  var resultHash = {};
+
+  this.forEach((pair) => {
+    var [key, value] = pair;
+
+    if (resultHash[key] === undefined)
+      resultHash[key] = [];
+
+    resultHash[key].push(value);
+  });
+
+  return resultHash;
+};
+
 Array.fromRange = function(from, to) {
   return Array
     .apply(null, Array((to - from) + 1))

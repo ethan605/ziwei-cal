@@ -28,21 +28,12 @@ _Ziwei_Calculator.prototype.calcSixLuckyStars = function(birthMonth, birthHour) 
   var [taPhuPosition, huuBatPosition] = this.calcTaHuuPositions(birthMonth);
   var [vanXuongPosition, vanKhucPosition] = this.calcXuongKhucPositions(birthHour);
 
-  var starsPositions = {};
-
-  [
+  var starsPositions = [
     [taPhuPosition, 'ta_phu'],
     [huuBatPosition, 'huu_bat'],
     [vanXuongPosition, 'van_xuong'],
     [vanKhucPosition, 'van_khuc']
-  ].forEach((pair) => {
-    var [position, star] = pair;
-
-    if (starsPositions[position] === undefined)
-      starsPositions[position] = [];
-
-    starsPositions[position].push(star);
-  });
+  ].toHashOfArrays();
 
   return starsPositions;
 };

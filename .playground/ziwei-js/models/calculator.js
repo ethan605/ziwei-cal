@@ -76,6 +76,7 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
   var sixLuckyStars = this.calcSixLuckyStars(_profile.birthMonth, _profile.birthHour);
 
   var normalStars = this.calcNormalStars(_profile.birthMonth, _profile.birthYear.branch);
+  var fourTransformationStars = this.calcFourTransformationStars(_profile.birthYear.stem, forteenMainStars, sixLuckyStars);
 
   var branches = Object.keys(Ziwei.Configs.Branches.Names);
   var table = {};
@@ -109,6 +110,9 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
 
     stars = normalStars[branch];
     this.insertMultipleStarsToPalace(table[branch], stars, 'NormalStars');
+
+    stars = fourTransformationStars[branch];
+    this.insertMultipleStarsToPalace(table[branch], stars, 'FourTransformationStars');
   });
 
   return table;

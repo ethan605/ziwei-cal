@@ -67,9 +67,7 @@ _Ziwei_Calculator.prototype.calcNormalStars = function(birthMonth, birthYearBran
   var [coThanPosition, quaTuPosition] = this.calcCoQuaPositions(birthYearBranch);
   var [thienKhocPosition, thienHuPosition] = this.calcKhocHuPositions(birthYearBranch);
 
-  var starsPositions = {};
-
-  [
+  var starsPositions = [
     [thienHinhPosition, 'thien_hinh'],
     [thienDieuPosition, 'thien_dieu'],
     [thienYPosition, 'thien_y'],
@@ -79,14 +77,7 @@ _Ziwei_Calculator.prototype.calcNormalStars = function(birthMonth, birthYearBran
     [quaTuPosition, 'qua_tu'],
     [thienKhocPosition, 'thien_khoc'],
     [thienHuPosition, 'thien_hu']
-  ].forEach((pair) => {
-    var [position, star] = pair;
-
-    if (starsPositions[position] === undefined)
-      starsPositions[position] = [];
-
-    starsPositions[position].push(star);
-  });
+  ].toHashOfArrays();
 
   return starsPositions;
 };
