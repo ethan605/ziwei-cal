@@ -29,7 +29,8 @@ module Ziwei
             :LocTonConstellation,
             :SixDeadlyStars,
             :SixLuckyStars,
-            :OtherImportantStars
+            :OtherImportantStars,
+            :NormalStars
           ].map {|modul|
             Ziwei::Configs.module_eval("#{modul}::#{prefix}Names")
           }.inject(&:merge)

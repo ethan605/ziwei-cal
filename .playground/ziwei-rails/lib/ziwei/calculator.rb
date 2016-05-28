@@ -81,8 +81,10 @@ module Ziwei
       trang_sinh_constellation = calc_trang_sinh_constellation_positions(cuc_number, @profile.fate_direction)
       loc_ton_constellation = calc_loc_ton_constellation_positions(loc_ton_position, @profile.fate_direction)
 
-      six_deadly_stars_positions = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position, @profile.birth_year.branch)
-      six_lucky_stars_positions = calc_six_lucky_stars_positions(@profile.birth_month, @profile.birth_hour)
+      six_deadly_stars = calc_six_deadly_stars_positions(@profile.birth_hour, loc_ton_position, @profile.birth_year.branch)
+      six_lucky_stars = calc_six_lucky_stars_positions(@profile.birth_month, @profile.birth_hour)
+
+      normal_stars = calc_normal_stars(@profile.birth_month, @profile.birth_year.branch)
 
       branches = Configs::Branches::Names.keys
       table = {}
@@ -107,10 +109,10 @@ module Ziwei
           }
         end
 
-        stars = six_deadly_stars_positions[branch]
+        stars = six_deadly_stars[branch]
         table[branch][:bad_stars] += stars if stars
 
-        stars = six_lucky_stars_positions[branch]
+        stars = six_lucky_stars[branch]
         table[branch][:good_stars] += stars if stars
 
         star = thai_tue_constellation[branch]
@@ -120,6 +122,15 @@ module Ziwei
         star = loc_ton_constellation[branch]
         quality = Configs::LocTonConstellation::Qualities[star]
         table[branch]["#{quality}_stars".to_sym] << star
+
+        stars = normal_stars[branch]
+
+        if stars
+          stars.each {|star|
+            quality = Configs::NormalStars::Qualities[star]
+            table[branch]["#{quality}_stars".to_sym] << star
+          }
+        end
       }
 
       Models::ResultTable.new(

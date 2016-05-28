@@ -1,6 +1,6 @@
 module Ziwei
   module Configs
-    module ForteenMainStars
+    module NormalStars
       Names = {
         :thien_hinh => "Thiên Hình",
         :thien_dieu => "Thiên Diêu",
