@@ -11,7 +11,7 @@ _Ziwei_Calculator.prototype.calcTuViPosition = function(cucElement, cucNumber, b
   }
 
   // mod > 0
-  var kmtlnTable = Object.values(Ziwei.Configs.Wuxing.KmtlnTable);
+  var kmtlnTable = Ziwei.Configs.Wuxing.KmtlnTable.allValues();
   var kmtlnStart = kmtlnTable.indexOf(Ziwei.Configs.Wuxing.KmtlnTable[cucElement]);
   var kmtlnIndex = kmtlnStart + mod - 1;
   var countingStartPosition = kmtlnTable[kmtlnIndex];

@@ -3,10 +3,8 @@ class _Ziwei_Models_ResultTable {
     this.profile = args['profile'];
     
     var palaceConfigs = args['palaces'];
-    this.palaces = Object.keys(palaceConfigs).map((position) => {
-      var config = palaceConfigs[position]
-      var resultPalace = new Ziwei.Models.ResultPalace(Object.assign({'position': position}, config));
-      return resultPalace;
+    this.palaces = palaceConfigs.map((position, config) => {
+      return new Ziwei.Models.ResultPalace(Object.assign({'position': position}, config));
     });
     
     this.tuanCoordinate = args['tuanCoordinate'];

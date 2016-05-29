@@ -10,19 +10,39 @@ class _Ziwei_Models_ResultPalace {
     this.opportunityAge = configs['opportunityAge'];
   };
 
-  fullName() {
+  getFullNames() {
+    var _self = this;
+
     return {
-      position: this.position.getFullName('Branches'),
-      name: this.name.getFullName('Palaces'),
-      body: this.is_body ? 'Thân' : '',
-      mainStars: this.mainStars.map(function(star) {
-        var quality = Ziwei.Configs.ForteenMainStars.Places[star][this.position];
+      position: _self.position.getFullName('Branches'),
+      name: _self.name.getFullName('Palaces'),
+      body: _self.is_body ? 'Thân' : '',
+      mainStars: _self.mainStars.map(function(star) {
+        var quality = Ziwei.Configs.ForteenMainStars.Places[star][_self.position];
         return star.getFullName('ForteenMainStars') + ` (${quality})`;
       }),
-      goodStars: this.goodStars.map((star) => star.getFullName()),
-      badStars: this.badStars.map((star) => star.getFullName()),
-      trangSinhConstellation: this.trangSinhConstellation.getFullName("TrangSinhConstellation"),
-      opportunityAge: this.opportunityAge
+      goodStars: _self.goodStars.map((star) => star.getFullName()),
+      badStars: _self.badStars.map((star) => star.getFullName()),
+      trangSinhConstellation: _self.trangSinhConstellation.getFullName("TrangSinhConstellation"),
+      opportunityAge: _self.opportunityAge
     };
-  }
+  };
+
+  getShortName() {
+    var _self = this;
+
+    return {
+      position: _self.position.getFullName('Branches'),
+      name: _self.name.getShortName('Palaces'),
+      body: _self.is_body ? 'Thân' : '',
+      mainStars: _self.mainStars.map(function(star) {
+        var quality = Ziwei.Configs.ForteenMainStars.Places[star][_self.position];
+        return star.getShortName('ForteenMainStars') + ` (${quality})`;
+      }),
+      goodStars: _self.goodStars.map((star) => star.getShortName()),
+      badStars: _self.badStars.map((star) => star.getShortName()),
+      trangSinhConstellation: _self.trangSinhConstellation.getShortName("TrangSinhConstellation"),
+      opportunityAge: _self.opportunityAge
+    };
+  };
 }

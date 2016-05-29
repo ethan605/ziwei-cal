@@ -26,7 +26,7 @@ _Ziwei_Calculator.prototype.calcCuc = function(selfPosition, birthYearStem) {
 
 _Ziwei_Calculator.prototype.calcPalacesPositions = function(selfPosition) {
   var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
-  var branches = Object.keys(Ziwei.Configs.Branches.Names);
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
   var palaces = Ziwei.Configs.Palaces.Orders;
 
   return this.mergeSequencesFromIndex(branches, palaces, selfIndex);
@@ -34,7 +34,7 @@ _Ziwei_Calculator.prototype.calcPalacesPositions = function(selfPosition) {
 
 _Ziwei_Calculator.prototype.calcOpportunityAges = function(selfPosition, cucNumber, fateDirection) {
   var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
-  var branches = Object.keys(Ziwei.Configs.Branches.Names);
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
   var ages = Array.fromRange(0, 11).map(function(mult) {
     return cucNumber + 10*mult;
   });

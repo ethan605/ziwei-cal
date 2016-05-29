@@ -62,9 +62,7 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
 
   var forteenMainStars = this.calcForteenMainStars(cucElement, cucNumber, _profile.birthDay);
   var otherImportantStars = this.calcOtherImportantStars(_profile.birthYear.stem, _profile.birthYear.branch);
-  var locTonPosition = Object.keys(otherImportantStars).find((branch) =>
-    otherImportantStars[branch].includes('loc_ton')
-  );
+  var locTonPosition = otherImportantStars.findKey((position, stars) => stars.includes('loc_ton'));
 
   var opportunityAges = this.calcOpportunityAges(selfPosition, cucNumber, _profile.fateDirection);
 
@@ -78,7 +76,7 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
   var normalStars = this.calcNormalStars(_profile.birthMonth, _profile.birthYear.branch);
   var fourTransformationStars = this.calcFourTransformationStars(_profile.birthYear.stem, forteenMainStars, sixLuckyStars);
 
-  var branches = Object.keys(Ziwei.Configs.Branches.Names);
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
   var table = {};
 
   branches.forEach((branch) => {

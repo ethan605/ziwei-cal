@@ -13,18 +13,18 @@ _Ziwei_Calculator.prototype.calcFourTransformationStars = function(birthYearStem
   };
 
   forTransformationPositions = positionsByStems[birthYearStem].map((transformationStar) => {
-    mainStar = Object.keys(forteenMainStars).find(
+    mainStarPosition = forteenMainStars.findKey(
       (position) => forteenMainStars[position].includes(transformationStar)
     );
 
-    if (mainStar !== undefined)
-      return mainStar;
+    if (mainStarPosition !== undefined)
+      return mainStarPosition;
 
-    otherStar = Object.keys(sixLuckyStars).find(
+    otherStarPosition = sixLuckyStars.findKey(
       (position) => sixLuckyStars[position].includes(transformationStar)
     );
 
-    return otherStar;
+    return otherStarPosition;
   });
 
   var starsPositions = [

@@ -114,4 +114,56 @@ Array.fromRange = function(from, to) {
   return result;
 };
 
-Object.values = Object.values || ((obj) => Object.keys(obj).map(key => obj[key]));
+Object.prototype.allKeys = function() {
+  return Object.keys(this);
+};
+
+Object.prototype.allValues = function() {
+  return Object.keys(this).map((key) => this[key]);
+};
+
+Object.prototype.count = function() {
+  return Object.keys(this).length;
+};
+
+Object.prototype.forEach = function(callback) {
+  var _self = this;
+  Object.keys(_self).forEach((key) => callback(key, _self[key]));
+};
+
+Object.prototype.map = function(callback) {
+  var _self = this;
+  return Object.keys(_self).map((key) => callback(key, _self[key]));
+};
+
+Object.prototype.find = function(callback) {
+  var _self = this;
+  var results = {};
+  Object.keys(_self).find((key) => {
+    if (callback(key, _self[key]) === true && results.count() === 0)
+      results[key] = _self[key];
+  });
+
+  return results;
+};
+
+Object.prototype.findKey = function(callback) {
+  var _self = this;
+  return Object.keys(_self).find((key) => callback(key, _self[key]));
+};
+
+Object.prototype.filter = function(callback) {
+  var _self = this;
+  var results = {};
+  Object.keys(_self).filter((key) => {
+    if (callback(key, _self[key]) === true)
+      results[key] = _self[key];
+  });
+
+  return results;
+};
+
+Object.prototype.filterKeys = function(callback) {
+  var _self = this;
+  return Object.keys(_self).filter((key) => callback(key, _self[key]));
+};
