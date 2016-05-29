@@ -45,4 +45,4 @@ _Ziwei_Configs_Palaces = {
     'tuat': [3, 2.5],
     'hoi': [3, 3]
   }
-}
+};

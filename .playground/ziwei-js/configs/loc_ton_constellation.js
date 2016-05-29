@@ -45,4 +45,4 @@ _Ziwei_Configs_LocTonConstellation = {
     'phuc_binh': 'bad',
     'quan_phu2': 'bad'
   }
-}
+};

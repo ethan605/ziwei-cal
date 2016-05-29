@@ -1,4 +1,4 @@
-_Ziwei_Configs_Branch_Sets = {
+_Ziwei_Configs_BranchSets = {
   Trilogy: {
     ByElements: {
       'hoa': ['dan', 'ngo', 'tuat'],
@@ -32,4 +32,4 @@ _Ziwei_Configs_Branch_Sets = {
 
   Duadrilogy: {
   }
-}
+};

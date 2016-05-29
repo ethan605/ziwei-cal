@@ -13,4 +13,4 @@ _Ziwei_Configs_OtherImportantStars = {
     'loc_ton': 'good',
     'thien_ma': 'good'
   }
-}
+};

@@ -189,4 +189,4 @@ _Ziwei_Configs_Wuxing = {
     'Nhâm Tuất': 'thuy',
     'Quý Hợi': 'thuy'
   }
-}
+};

@@ -49,4 +49,4 @@ _Ziwei_Configs_ForteenMainStars = {
     'that_sat': {'ty':"M", 'suu':"Đ", 'dan':"M", 'mao':"H", 'thin':"H", 'ty2':"V", 'ngo':"M", 'mui':"Đ", 'than':"M", 'dau':"H", 'tuat':"H", 'hoi':"V"},
     'pha_quan': {'ty':"M", 'suu':"V", 'dan':"H", 'mao':"H", 'thin':"Đ", 'ty2':"H", 'ngo':"M", 'mui':"V", 'than':"H", 'dau':"H", 'tuat':"Đ", 'hoi':"H"}
   }
-}
+};

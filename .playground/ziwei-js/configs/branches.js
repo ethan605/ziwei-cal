@@ -45,4 +45,4 @@ _Ziwei_Configs_Branches = {
   },
 
   Orders: ['_', 'ty', 'suu', 'dan', 'mao', 'thin', 'ty2', 'ngo', 'mui', 'than', 'dau', 'tuat', 'hoi']
-}
+};

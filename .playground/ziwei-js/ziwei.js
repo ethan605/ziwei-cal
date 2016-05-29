@@ -1,7 +1,7 @@
 var Ziwei = (function () {
   return {
     Configs: {
-      BranchSets: _Ziwei_Configs_Branch_Sets,
+      BranchSets: _Ziwei_Configs_BranchSets,
       Branches: _Ziwei_Configs_Branches,
       ForteenMainStars: _Ziwei_Configs_ForteenMainStars,
       FourTransformationStars: _Ziwei_Configs_FourTransformationStars,
@@ -25,10 +25,5 @@ var Ziwei = (function () {
       ResultTable: _Ziwei_Models_ResultTable
     },
     Calculator: _Ziwei_Calculator
-  }
+  };
 }(Ziwei));
-
-Ziwei.test = function test() {
-  calc = new Ziwei.Calculator();
-  return calc.calculateProfile();
-};

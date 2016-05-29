@@ -1,4 +1,4 @@
-class _Ziwei_Models_ResultTable {
+_Ziwei_Models_ResultTable = class {
   constructor(args = {}) {
     this.profile = args['profile'];
     

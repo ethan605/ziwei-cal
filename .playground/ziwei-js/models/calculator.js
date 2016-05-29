@@ -1,4 +1,4 @@
-function _Ziwei_Calculator() {
+_Ziwei_Calculator = function() {
   this.profiles = prepareProfilesData();
 
   function prepareProfilesData() {

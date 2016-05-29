@@ -8,4 +8,4 @@ _Ziwei_Configs_TuanTriet = {
     'tuan': 'Tuần',
     'triet': 'Triệt'
   }
-}
+};

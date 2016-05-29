@@ -13,4 +13,4 @@ _Ziwei_Configs_Genders = {
     'male': 1,
     'female': -1
   }
-}
+};

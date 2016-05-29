@@ -1,4 +1,4 @@
-class _Ziwei_Models_ResultPalace {
+_Ziwei_Models_ResultPalace = class {
   constructor(configs = {}) {
     this.position = configs['position'];
     this.name = configs['name'];

@@ -1,4 +1,4 @@
-class _Ziwei_Models_GanZhi {
+_Ziwei_Models_GanZhi = class {
   constructor(args = {}) {
     var _stem = args['stem'] || 'giap';
     var _branch = args['branch'] || 'ty';

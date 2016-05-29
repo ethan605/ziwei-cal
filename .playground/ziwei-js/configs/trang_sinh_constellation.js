@@ -30,4 +30,4 @@ _Ziwei_Configs_TrangSinhConstellation = {
   },
 
   Orders: ['trang_sinh', 'moc_duc', 'quan_doi', 'lam_quan', 'de_vuong', 'suy', 'benh', 'tu', 'mo', 'tuyet', 'thai', 'duong']
-}
+};

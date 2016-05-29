@@ -25,4 +25,4 @@ _Ziwei_Configs_SixDeadlyStars = {
     'hoa_tinh': 'bad',
     'linh_tinh': 'bad'
   }
-}
+};

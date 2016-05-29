@@ -19,4 +19,4 @@ _Ziwei_Configs_FourTransformationStars = {
     'hoa_khoa': 'good',
     'hoa_ky': 'bad'
   }
-}
+};

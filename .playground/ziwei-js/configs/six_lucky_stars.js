@@ -25,4 +25,4 @@ _Ziwei_Configs_SixLuckyStars = {
     'thien_khoi': 'good',
     'thien_viet': 'good'
   }
-}
+};

@@ -57,4 +57,4 @@ _Ziwei_Configs_Stems = {
     '-1': 'Âm',
     '1': 'Dương'
   }
-}
+};

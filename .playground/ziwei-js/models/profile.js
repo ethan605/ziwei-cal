@@ -1,4 +1,4 @@
-class _Ziwei_Models_Profile {
+_Ziwei_Models_Profile = class {
   constructor(args = {}) {
     this.key = args['key'] || "keyname";
     this.name = args['name'] || "Họ Và Tên";

@@ -45,4 +45,4 @@ _Ziwei_Configs_ThaiTueConstellation = {
     'dieu_khach': 'bad',
     'truc_phu': 'bad'
   }
-}
+};

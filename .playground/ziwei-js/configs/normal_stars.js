@@ -34,4 +34,4 @@ _Ziwei_Configs_NormalStars = {
     'co_than': 'bad',
     'qua_tu': 'bad'
   }
-}
+};
