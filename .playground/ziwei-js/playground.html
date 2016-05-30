@@ -70,20 +70,11 @@
   <script type="text/javascript" src="vendors/jquery.min.js"></script>
   <script type="text/javascript" src="vendors/handlebars.min.js"></script>
   <script type="text/javascript">
-    $(document).ready(function() {
-      calculator = new Ziwei.Calculator();
-      resultTable = calculator.calculateProfile();
-
-      palaceSource = $("#palace-template").html();
-      tableSource = $("#result-template").html();
-
-      tableHtml = resultTable.renderHtml(tableSource, palaceSource);
-      $("body").append(tableHtml);
-    });
+    $(document).ready(() => Ziwei.Calculator.renderHtml());
   </script>
 </head>
 <body id="body">
-  <!-- <canvas id="canvas" width="1138px" height="640px"></canvas> -->
+  <canvas id="canvas" width="1138px" height="640px"></canvas>
   <script id="result-template" type="text/x-handlebars-template">
     <table class="result-table" border="1">
       <tr>
@@ -94,7 +85,7 @@
       </tr>
       <tr>
         <td>{{{ renderedPalaces.thin }}}</td>
-        <td rowspan="2" colspan="2" id="center-info">{{ centerInfo }}</td>
+        <td rowspan="2" colspan="2" id="center-info">{{{ centerInfo }}}</td>
         <td>{{{ renderedPalaces.dau }}}</td>
       </tr>
       <tr>
@@ -110,7 +101,7 @@
     </table>
   </script>
   <script id="palace-template" type="text/x-handlebars-template">
-    <table class="palace" width="280px" height="160px">
+    <table class="palace {{ selfClass }} {{ bodyClass }}" width="280px" height="160px">
       <tr height="15%">
         <td width="30%" class="top left">{{ name }}</td>
         <td width="40%" class="top center empty"></td>
@@ -133,6 +124,22 @@
         <td class="bottom right">{{ opportunityAge }}</td>
       </tr>
     </table>
+  </script>
+  <script id="center-info-template" type="text/x-handlebars-template">
+    <div class=center-info>
+      <span>Tên: <b>{{ name }}</b></span>
+      <span>Giờ sinh: <b>{{ birthHour }}</b></span>
+      <span>
+        Ngày sinh: <b>{{ birthDay }}</b> tháng <b>{{ birthMonth }}</b> năm <b>{{ birthYear }}</b>
+      </span>
+      <span>
+        Bản mệnh: 
+        <b style='{{ ageSymbolColorStyle }}'>{{ ageSymbol }}</b> ({{ yinyangGender }})
+      </span>
+      <span>
+        Cục: <b style='{{ cucElementColorStyle }}'>{{ cucFullName }} ({{ cucNumber }})</b>
+      </span>
+    </div>
   </script>
 </body>
 </html>

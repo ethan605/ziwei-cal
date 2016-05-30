@@ -5,7 +5,7 @@ _Ziwei_Models_ResultPalace.prototype.renderHtml = function(palaceSource, useFull
   };
 
   var renderStarsHtml = function(position, stars, customClass, useFullNames = true, isMainStars = true) {
-    var source = '<span class="' + `${customClass}` + '">{{ star }}</span>';
+    var source = '<span class="{{ class }}" style="{{ style }}">{{ star }}</span>';
     var template = Handlebars.compile(source);
     var html = stars.map((star) => {
       var starName = useFullNames ? star.getFullName() : star.getShortName();
@@ -14,12 +14,10 @@ _Ziwei_Models_ResultPalace.prototype.renderHtml = function(palaceSource, useFull
         starName = buildMainStarName(star, position, useFullNames);
 
       var colorStyle = starName.getPlaceQualityColorStyle();
-      var starHtml = $(template({star: starName}));
-      starHtml.attr('style', colorStyle);
-      var resultHtml = $('<div></div>').append(starHtml).html();
+      var starHtml = template({star: starName, class: customClass, style: colorStyle});
 
-      return resultHtml;
-    }).join("");
+      return starHtml;
+    }).join("\n");
 
     return html;
   };
@@ -28,14 +26,11 @@ _Ziwei_Models_ResultPalace.prototype.renderHtml = function(palaceSource, useFull
   context.mainStars = renderStarsHtml(this.position, this.mainStars, 'main-star', useFullNames);
   context.goodStars = renderStarsHtml(this.position, this.goodStars, 'good-star', useFullNames, false);
   context.badStars = renderStarsHtml(this.position, this.badStars, 'bad-star', useFullNames, false);
+  context.selfClass = context.name === 'Mệnh' ? 'self' : '';
+  context.bodyClass = context.body === 'Thân' ? 'body' : '';
+
   var template = Handlebars.compile(palaceSource);
   var contentHtml = $(template(context));
-
-  if (context.name === 'Mệnh')
-    contentHtml.addClass('self');
-
-  if (context.body === 'Thân')
-    contentHtml.addClass('body');
 
   // Workaround: $.html() is not wrapped by top most HTML tags
   var palaceHtml = $("<div></div>").append(contentHtml).html();
@@ -43,7 +38,7 @@ _Ziwei_Models_ResultPalace.prototype.renderHtml = function(palaceSource, useFull
   return palaceHtml;
 };
 
-_Ziwei_Models_ResultTable.prototype.renderHtml = function(tableSource, palaceSource) {
+_Ziwei_Models_ResultTable.prototype.renderHtml = function(tableSource, palaceSource, centerInfoSource) {
   var template = Handlebars.compile(tableSource);
   var renderedPalaces = {};
 
@@ -53,10 +48,46 @@ _Ziwei_Models_ResultTable.prototype.renderHtml = function(tableSource, palaceSou
 
   var context = {
     renderedPalaces: renderedPalaces,
-    centerInfo: "This is a center info!"
+    centerInfo: this.profile.renderHtml(centerInfoSource)
   }
 
   var tableHtml = template(context);
-
   return tableHtml;
 };
+
+_Ziwei_Models_Profile.prototype.renderHtml = function(centerInfoSource) {
+  var template = Handlebars.compile(centerInfoSource);
+
+  var ageGanZhi = this.birthYear.toString();
+  var ageSymbol = Ziwei.Configs.Wuxing.AgeSymbols[ageGanZhi];
+  var ageElement = Ziwei.Configs.Wuxing.AgeElements[ageGanZhi];
+
+  var context = {
+    name: this.name,
+    birthHour: this.birthHour.getFullName('Branches'),
+    birthDay: this.birthDay,
+    birthMonth: this.birthMonth.getFullName('Branches'),
+    birthYear: this.birthYear,
+    ageSymbol: ageSymbol,
+    ageSymbolColorStyle: ageElement.getElementColorStyle(),
+    yinyangGender: this.yinyangGender,
+    cucFullName: this.cucElement.getFullName("Wuxing"),
+    cucNumber: this.cucNumber,
+    cucElementColorStyle: this.cucElement.getElementColorStyle()
+  };
+
+  var centerInfoHtml = template(context);
+  return centerInfoHtml;
+};
+
+_Ziwei_Calculator.renderHtml = function() {
+  calculator = new Ziwei.Calculator();
+  resultTable = calculator.calculateProfile();
+
+  palaceSource = $("#palace-template").html();
+  tableSource = $("#result-template").html();
+  centerInfoSource = $("#center-info-template").html();
+
+  tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
+  $("body").append(tableHtml);
+}

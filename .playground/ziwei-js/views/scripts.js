@@ -1,7 +1,3 @@
-function convertCoordToPos(xCoord, yCoord) {
-  return [284*xCoord, 164*yCoord];
-}
-
 function drawLines(fromCoord, toCoord, color = "black") {
   var canvas = document.getElementById("canvas");
   var context = canvas.getContext("2d");
