@@ -29,8 +29,6 @@
     moO6ensvtFr2mFhFLtKCVOSu37w1E348f5OczZOhxTbzL+FXtFV64DG6AAAAAElFTkSuQmCC"
     rel="icon" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="views/styles.css">
-  <script type="text/javascript" src="views/scripts.js"></script>
-  <script type="text/javascript" src="extensions.js"></script>
   <script type="text/javascript" src="configs/branch_sets.js"></script>
   <script type="text/javascript" src="configs/branches.js"></script>
   <script type="text/javascript" src="configs/forteen_main_stars.js"></script>
@@ -52,7 +50,7 @@
   <script type="text/javascript" src="models/result_table.js"></script>
   <script type="text/javascript" src="models/profile.js"></script>
   <script type="text/javascript" src="models/calculator.js"></script>
-  <script type="text/javascript" src="utils/reuse_utils.js"></script>
+  <script type="text/javascript" src="utils/extensions.js"></script>
   <script type="text/javascript" src="utils/calc_commons.js"></script>
   <script type="text/javascript" src="utils/calc_forteen_main_stars.js"></script>
   <script type="text/javascript" src="utils/calc_four_transformation_stars.js"></script>
@@ -62,27 +60,21 @@
   <script type="text/javascript" src="utils/calc_six_deadly_stars.js"></script>
   <script type="text/javascript" src="utils/calc_six_lucky_stars.js"></script>
   <script type="text/javascript" src="utils/calc_tuan_triet.js"></script>
-  <script type="text/javascript" src="views/views_generator.js"></script>
+  <script type="text/javascript" src="utils/reuse_utils.js"></script>
+  <script type="text/javascript" src="utils/views_generator.js"></script>
+  <script type="text/javascript" src="views/scripts.js"></script>
   <script type="text/javascript" src="ziwei.js"></script>
-  <!-- <script type="text/javascript" src="ziwei.es6.js"></script> -->
-  <!-- <script type="text/javascript" src="ziwei.es5.js"></script> -->
-  <!-- <script type="text/javascript" src="ziwei.min.js"></script> -->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <!-- <script type="text/javascript" src="vendors/ziwei.es6.js"></script> -->
+  <!-- <script type="text/javascript" src="vendors/ziwei.es5.js"></script> -->
+  <!-- <script type="text/javascript" src="vendors/ziwei.min.js"></script> -->
+  <script type="text/javascript" src="vendors/jquery.min.js"></script>
+  <script type="text/javascript" src="vendors/handlebars.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       calculator = new Ziwei.Calculator();
       resultTable = calculator.calculateProfile();
 
-      // palace = resultTable.palaces.than;
       palaceSource = $("#palace-template").html();
-      // palaceHtml = palace.renderHtml(palaceSource);
-
-      // resultTable.palaces.forEach((position, palace) => {
-      //   var palaceHtml = palace.renderHtml(palaceSource);
-      //   $(`#${position}`).append(palaceHtml);
-      // });
-
       tableSource = $("#result-template").html();
       template = Handlebars.compile(tableSource);
       renderedPalaces = {};

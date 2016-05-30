@@ -23,14 +23,14 @@ end
 def join_js_files
   config_modules = %w[BranchSets Branches ForteenMainStars FourTransformationStars Genders LocTonConstellation NormalStars OtherImportantStars Palaces SixDeadlyStars SixLuckyStars Stems ThaiTueConstellation TrangSinhConstellation TuanTriet Wuxing]
   model_modules = %w[GanZhi Profile ResultPalace ResultTable]
-  calculator_files = %w[calc_commons calc_forteen_main_stars calc_four_transformation_stars calc_normal_stars calc_other_important_stars calc_sequential_constellations calc_six_deadly_stars calc_six_lucky_stars calc_tuan_triet reuse_utils]
+  calculator_files = %w[calc_commons calc_forteen_main_stars calc_four_transformation_stars calc_normal_stars calc_other_important_stars calc_sequential_constellations calc_six_deadly_stars calc_six_lucky_stars calc_tuan_triet reuse_utils views_generator]
 
   ziwei_modules = {
     "Configs" => config_modules,
     "Models" => model_modules
   }
 
-  extensions = File.read("extensions.js")
+  extensions = File.read("utils/extensions.js")
 
   modules_hash = ziwei_modules.map {|parent_module, child_modules|
     parent_dir = parent_module.underscore
@@ -74,17 +74,17 @@ def convert_and_minify
 end
 
 def clean_up_and_make_copy
-  # `rm #{Constants::ES6_FILE_NAME} #{Constants::ES5_FILE_NAME}`
   dst_dir = "../.."
   `rm -rf #{dst_dir}/ziwei-js`
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js")
-  `cp ziwei.*.js #{dst_dir}/ziwei-js/`
+  `cp #{Constants::MINIFIED_FILE_NAME} #{dst_dir}/ziwei-js/`
+
+  `rm #{Constants::ES6_FILE_NAME} #{Constants::ES5_FILE_NAME}`
+  `mv #{Constants::MINIFIED_FILE_NAME} vendors`
 
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js/src")
   `cp ziwei.js #{dst_dir}/ziwei-js/src/`
-  %w[configs models utils].each {|dir|
-    `cp -r #{dir} #{dst_dir}/ziwei-js/src/`
-  }
+  %w[configs models utils].each {|dir| `cp -r #{dir} #{dst_dir}/ziwei-js/src/`}
 end
 
 join_js_files
