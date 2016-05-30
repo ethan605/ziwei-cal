@@ -24,7 +24,7 @@ _Ziwei_Calculator.prototype.insertSingleStarToPalace = function(palace, star, co
   if (star === undefined)
     return;
 
-  quality = Ziwei.Configs[configModule].Qualities[star];
+  var quality = Ziwei.Configs[configModule].Qualities[star];
   palace[`${quality}Stars`].push(star);
 };
 
@@ -33,13 +33,13 @@ _Ziwei_Calculator.prototype.insertMultipleStarsToPalace = function(palace, stars
     return;
 
   ['good', 'bad'].forEach((quality) => {
-    qualifiedStars = stars.filter((star) => Ziwei.Configs[configModule].Qualities[star] === quality);
-    palace[`${quality}Stars`].push(...qualifiedStars);
+    var qualifiedStars = stars.filter((star) => Ziwei.Configs[configModule].Qualities[star] === quality);
+    return palace[`${quality}Stars`].push(...qualifiedStars);
   });
 
   // Another equivalent way
   // stars.forEach((star) => {
-  //   quality = Ziwei.Configs[configModule].Qualities[star];
+  //   var quality = Ziwei.Configs[configModule].Qualities[star];
   //   palace[`${quality}Stars`].push(star);
   // });
 };

@@ -100,7 +100,7 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
     stars = sixLuckyStars[branch];
     this.insertMultipleStarsToPalace(table[branch], stars, 'SixLuckyStars');
 
-    star = thaiTueConstellation[branch];
+    var star = thaiTueConstellation[branch];
     this.insertSingleStarToPalace(table[branch], star, 'ThaiTueConstellation');
 
     star = locTonConstellation[branch];

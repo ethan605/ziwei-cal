@@ -1,6 +1,6 @@
 
-var Ziwei = (function () {
-Number.prototype.isEven = function() {
+  var Ziwei = (function () {
+  Number.prototype.isEven = function() {
   return this % 2 === 0;
 };
 
@@ -106,7 +106,7 @@ Array.fromRange = function(from, to) {
     reversed = true;
   }
 
-  result = Array
+  var result = Array
     .apply(null, Array(_to - _from + 1))
     .map((_, index) => _from + index);
 
@@ -169,7 +169,7 @@ Object.prototype.filterKeys = function(callback) {
   var _self = this;
   return Object.keys(_self).filter((key) => callback(key, _self[key]));
 };
-var _Ziwei_Configs_BranchSets = {
+  var _Ziwei_Configs_BranchSets = {
   Trilogy: {
     ByElements: {
       'hoa': ['dan', 'ngo', 'tuat'],
@@ -1045,7 +1045,7 @@ var _Ziwei_Models_ResultTable = class {
     this.connectedCoordinates = args['connectedCoordinates'];
   }
 };
-var _Ziwei_Calculator = function() {
+  var _Ziwei_Calculator = function() {
   this.profiles = prepareProfilesData();
 
   function prepareProfilesData() {
@@ -1147,7 +1147,7 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
     stars = sixLuckyStars[branch];
     this.insertMultipleStarsToPalace(table[branch], stars, 'SixLuckyStars');
 
-    star = thaiTueConstellation[branch];
+    var star = thaiTueConstellation[branch];
     this.insertSingleStarToPalace(table[branch], star, 'ThaiTueConstellation');
 
     star = locTonConstellation[branch];
@@ -1181,7 +1181,7 @@ _Ziwei_Calculator.prototype.calculateProfile = function(profileKey = 'thanhnx') 
 
   return this.calcResultTable();
 };
-_Ziwei_Calculator.prototype.calcSelfBodyPosition = function(birthHour, birthMonth) {
+  _Ziwei_Calculator.prototype.calcSelfBodyPosition = function(birthHour, birthMonth) {
   var hourIndex = Ziwei.Configs.Branches.Indexes[birthHour];
   var monthIndex = Ziwei.Configs.Branches.Indexes[birthMonth];
 
@@ -1360,15 +1360,15 @@ _Ziwei_Calculator.prototype.calcFourTransformationStars = function(birthYearStem
     'quy': ['pha_quan', 'cu_mon', 'thai_am', 'tham_lang']
   };
 
-  forTransformationPositions = positionsByStems[birthYearStem].map((transformationStar) => {
-    mainStarPosition = forteenMainStars.findKey(
+  var forTransformationPositions = positionsByStems[birthYearStem].map((transformationStar) => {
+    var mainStarPosition = forteenMainStars.findKey(
       (position) => forteenMainStars[position].includes(transformationStar)
     );
 
     if (mainStarPosition !== undefined)
       return mainStarPosition;
 
-    otherStarPosition = sixLuckyStars.findKey(
+    var otherStarPosition = sixLuckyStars.findKey(
       (position) => sixLuckyStars[position].includes(transformationStar)
     );
 
@@ -1670,7 +1670,7 @@ _Ziwei_Calculator.prototype.insertSingleStarToPalace = function(palace, star, co
   if (star === undefined)
     return;
 
-  quality = Ziwei.Configs[configModule].Qualities[star];
+  var quality = Ziwei.Configs[configModule].Qualities[star];
   palace[`${quality}Stars`].push(star);
 };
 
@@ -1679,41 +1679,41 @@ _Ziwei_Calculator.prototype.insertMultipleStarsToPalace = function(palace, stars
     return;
 
   ['good', 'bad'].forEach((quality) => {
-    qualifiedStars = stars.filter((star) => Ziwei.Configs[configModule].Qualities[star] === quality);
-    palace[`${quality}Stars`].push(...qualifiedStars);
+    var qualifiedStars = stars.filter((star) => Ziwei.Configs[configModule].Qualities[star] === quality);
+    return palace[`${quality}Stars`].push(...qualifiedStars);
   });
 
   // Another equivalent way
   // stars.forEach((star) => {
-  //   quality = Ziwei.Configs[configModule].Qualities[star];
+  //   var quality = Ziwei.Configs[configModule].Qualities[star];
   //   palace[`${quality}Stars`].push(star);
   // });
 };
-return {
-	Configs: {
-		BranchSets: _Ziwei_Configs_BranchSets,
-		Branches: _Ziwei_Configs_Branches,
-		ForteenMainStars: _Ziwei_Configs_ForteenMainStars,
-		FourTransformationStars: _Ziwei_Configs_FourTransformationStars,
-		Genders: _Ziwei_Configs_Genders,
-		LocTonConstellation: _Ziwei_Configs_LocTonConstellation,
-		NormalStars: _Ziwei_Configs_NormalStars,
-		OtherImportantStars: _Ziwei_Configs_OtherImportantStars,
-		Palaces: _Ziwei_Configs_Palaces,
-		SixDeadlyStars: _Ziwei_Configs_SixDeadlyStars,
-		SixLuckyStars: _Ziwei_Configs_SixLuckyStars,
-		Stems: _Ziwei_Configs_Stems,
-		ThaiTueConstellation: _Ziwei_Configs_ThaiTueConstellation,
-		TrangSinhConstellation: _Ziwei_Configs_TrangSinhConstellation,
-		TuanTriet: _Ziwei_Configs_TuanTriet,
-		Wuxing: _Ziwei_Configs_Wuxing
-	},
-	Models: {
-		GanZhi: _Ziwei_Models_GanZhi,
-		Profile: _Ziwei_Models_Profile,
-		ResultPalace: _Ziwei_Models_ResultPalace,
-		ResultTable: _Ziwei_Models_ResultTable
-	},
-	Calculator: _Ziwei_Calculator
-};
-}(Ziwei));
+  return {
+    Configs: {
+    BranchSets: _Ziwei_Configs_BranchSets,
+    Branches: _Ziwei_Configs_Branches,
+    ForteenMainStars: _Ziwei_Configs_ForteenMainStars,
+    FourTransformationStars: _Ziwei_Configs_FourTransformationStars,
+    Genders: _Ziwei_Configs_Genders,
+    LocTonConstellation: _Ziwei_Configs_LocTonConstellation,
+    NormalStars: _Ziwei_Configs_NormalStars,
+    OtherImportantStars: _Ziwei_Configs_OtherImportantStars,
+    Palaces: _Ziwei_Configs_Palaces,
+    SixDeadlyStars: _Ziwei_Configs_SixDeadlyStars,
+    SixLuckyStars: _Ziwei_Configs_SixLuckyStars,
+    Stems: _Ziwei_Configs_Stems,
+    ThaiTueConstellation: _Ziwei_Configs_ThaiTueConstellation,
+    TrangSinhConstellation: _Ziwei_Configs_TrangSinhConstellation,
+    TuanTriet: _Ziwei_Configs_TuanTriet,
+    Wuxing: _Ziwei_Configs_Wuxing
+  },
+  Models: {
+    GanZhi: _Ziwei_Models_GanZhi,
+    Profile: _Ziwei_Models_Profile,
+    ResultPalace: _Ziwei_Models_ResultPalace,
+    ResultTable: _Ziwei_Models_ResultTable
+  },
+  Calculator: _Ziwei_Calculator
+  };
+  }(Ziwei));

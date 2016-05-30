@@ -104,7 +104,7 @@ Array.fromRange = function(from, to) {
     reversed = true;
   }
 
-  result = Array
+  var result = Array
     .apply(null, Array(_to - _from + 1))
     .map((_, index) => _from + index);
 

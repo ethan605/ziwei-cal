@@ -12,15 +12,15 @@ _Ziwei_Calculator.prototype.calcFourTransformationStars = function(birthYearStem
     'quy': ['pha_quan', 'cu_mon', 'thai_am', 'tham_lang']
   };
 
-  forTransformationPositions = positionsByStems[birthYearStem].map((transformationStar) => {
-    mainStarPosition = forteenMainStars.findKey(
+  var forTransformationPositions = positionsByStems[birthYearStem].map((transformationStar) => {
+    var mainStarPosition = forteenMainStars.findKey(
       (position) => forteenMainStars[position].includes(transformationStar)
     );
 
     if (mainStarPosition !== undefined)
       return mainStarPosition;
 
-    otherStarPosition = sixLuckyStars.findKey(
+    var otherStarPosition = sixLuckyStars.findKey(
       (position) => sixLuckyStars[position].includes(transformationStar)
     );
 
