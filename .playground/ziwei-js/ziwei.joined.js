@@ -1,5 +1,175 @@
+
 var Ziwei = (function () {
-  var _Ziwei_Configs_BranchSets = {
+Number.prototype.isEven = function() {
+  return this % 2 === 0;
+};
+
+Number.prototype.quotient = function(divisor) {
+   return (this - (this % divisor)) / divisor;
+};
+
+Number.prototype.limitInc = function(incStep = 1, limit = 12, minResult = 1) {
+  var tempResult = this + incStep - 1;
+  var paddingMult = 0;
+
+  if (tempResult < minResult)
+    paddingMult = (limit - tempResult).quotient(limit);
+
+  return (tempResult + paddingMult*limit) % limit + minResult;
+}
+
+Number.prototype.reflectIndex = function(reflectThrough = 2) {
+  return reflectThrough.limitInc(-this+reflectThrough);
+};
+
+String.prototype.getDisplayName = function(moduleName = undefined, prefix = "") {
+  if (moduleName !== undefined)
+    return Ziwei.Configs[moduleName][`${prefix}Names`][this];
+
+  var allNamesArr = [
+    'ThaiTueConstellation',
+    'LocTonConstellation',
+    'SixDeadlyStars',
+    'SixLuckyStars',
+    'OtherImportantStars',
+    'NormalStars',
+    'FourTransformationStars'
+  ].map(function(moduleName) {
+    return Ziwei.Configs[`${moduleName}`][`${prefix}Names`];
+  });
+
+  var allNames = Object.assign.apply(this, allNamesArr);
+
+  return allNames[this];
+};
+
+String.prototype.getFullName = function(moduleName = undefined) {
+  return this.getDisplayName(moduleName);
+};
+
+String.prototype.getShortName = function(moduleName = undefined) {
+  return this.getDisplayName(moduleName, 'Short');
+};
+
+String.prototype.getElementColorStyle = function() {
+  var color = Ziwei.Configs.Wuxing.ElementColors[this];
+  return color === undefined ? "" : `color: ${color};`;
+};
+
+String.prototype.getPlaceQualityColorStyle = function() {
+  var regexPattern = /(?!\()(\w|Đ)(?=\))/gi;
+  var quality = (this.match(regexPattern) || [])[0];
+  var color = Ziwei.Configs.Wuxing.PlaceQualityColors[quality];
+  return color === undefined ? "" : `color: ${color};`;
+};
+
+Array.prototype.convertCoordinateToAbsPos = function() {
+  var xCoord = this[0];
+  var yCoord = this[1];
+
+  return {
+    left: (8 + 284*xCoord - 142 - 25),
+    top: (8 + 164*yCoord - 10)
+  };
+};
+
+Array.prototype.transpose = function() {
+  var _self = this;
+  return _self[0].map((_, index) => _self.map((row) => row[index]));
+};
+
+Array.prototype.toHash = function() {
+  return this.reduce((previous, current) => {
+    previous[current[0]] = current[1];
+    return previous;
+  }, {});
+};
+
+Array.prototype.toHashOfArrays = function() {
+  return this.reduce((previous, current) => {
+    var [key, value] = current;
+    previous[key] = previous[key] || [];
+    previous[key].push(value);
+    return previous;
+  }, {});
+};
+
+Array.fromRange = function(from, to) {
+  if (from === to)
+    return [from];
+
+  var _from = from, _to = to, reversed = false;
+
+  if (from > to) {
+    _from = to;
+    _to = from;
+    reversed = true;
+  }
+
+  result = Array
+    .apply(null, Array(_to - _from + 1))
+    .map((_, index) => _from + index);
+
+  if (reversed)
+    result = result.reverse();
+
+  return result;
+};
+
+Object.prototype.allKeys = function() {
+  return Object.keys(this);
+};
+
+Object.prototype.allValues = function() {
+  return Object.keys(this).map((key) => this[key]);
+};
+
+Object.prototype.count = function() {
+  return Object.keys(this).length;
+};
+
+Object.prototype.forEach = function(callback) {
+  var _self = this;
+  Object.keys(_self).forEach((key) => callback(key, _self[key]));
+};
+
+Object.prototype.map = function(callback) {
+  var _self = this;
+  return Object.keys(_self).map((key) => callback(key, _self[key]));
+};
+
+Object.prototype.find = function(callback) {
+  var _self = this;
+  var results = {};
+  Object.keys(_self).find((key) => {
+    if (callback(key, _self[key]) === true && results.count() === 0)
+      results[key] = _self[key];
+  });
+
+  return results;
+};
+
+Object.prototype.findKey = function(callback) {
+  var _self = this;
+  return Object.keys(_self).find((key) => callback(key, _self[key]));
+};
+
+Object.prototype.filter = function(callback) {
+  var _self = this;
+  var results = {};
+  Object.keys(_self).filter((key) => {
+    if (callback(key, _self[key]) === true)
+      results[key] = _self[key];
+  });
+
+  return results;
+};
+
+Object.prototype.filterKeys = function(callback) {
+  var _self = this;
+  return Object.keys(_self).filter((key) => callback(key, _self[key]));
+};
+var _Ziwei_Configs_BranchSets = {
   Trilogy: {
     ByElements: {
       'hoa': ['dan', 'ngo', 'tuat'],
@@ -506,7 +676,7 @@ var _Ziwei_Configs_TrangSinhConstellation = {
     'moc_duc': 'M.Dục',
     'quan_doi': 'Q.Đới',
     'lam_quan': 'L.Quan',
-    'de_vuong': 'Đế',
+    'de_vuong': 'Vượng',
     'suy': 'Suy',
     'benh': 'Bệnh',
     'tu': 'Tử',
@@ -812,7 +982,7 @@ var _Ziwei_Models_Profile = class {
     ];
     return `<Ziwei.Models.Profile - Name: ${t[0]} - Gender: ${t[1]} - Birthday: ${t[2]} ${t[3]}/${t[4]}/${t[5]}>`;
   }
-}
+};
 var _Ziwei_Models_ResultPalace = class {
   constructor(configs = {}) {
     this.position = configs['position'];
@@ -843,7 +1013,7 @@ var _Ziwei_Models_ResultPalace = class {
     };
   };
 
-  getShortName() {
+  getShortNames() {
     var _self = this;
 
     return {
@@ -860,7 +1030,7 @@ var _Ziwei_Models_ResultPalace = class {
       opportunityAge: _self.opportunityAge
     };
   };
-}
+};
 var _Ziwei_Models_ResultTable = class {
   constructor(args = {}) {
     this.profile = args['profile'];
@@ -874,32 +1044,676 @@ var _Ziwei_Models_ResultTable = class {
     this.trietCoordinate = args['trietCoordinate'];
     this.connectedCoordinates = args['connectedCoordinates'];
   }
-}
-  return {
-    Configs: {
-BranchSets: _Ziwei_Configs_BranchSets,
-Branches: _Ziwei_Configs_Branches,
-ForteenMainStars: _Ziwei_Configs_ForteenMainStars,
-FourTransformationStars: _Ziwei_Configs_FourTransformationStars,
-Genders: _Ziwei_Configs_Genders,
-LocTonConstellation: _Ziwei_Configs_LocTonConstellation,
-NormalStars: _Ziwei_Configs_NormalStars,
-OtherImportantStars: _Ziwei_Configs_OtherImportantStars,
-Palaces: _Ziwei_Configs_Palaces,
-SixDeadlyStars: _Ziwei_Configs_SixDeadlyStars,
-SixLuckyStars: _Ziwei_Configs_SixLuckyStars,
-Stems: _Ziwei_Configs_Stems,
-ThaiTueConstellation: _Ziwei_Configs_ThaiTueConstellation,
-TrangSinhConstellation: _Ziwei_Configs_TrangSinhConstellation,
-TuanTriet: _Ziwei_Configs_TuanTriet,
-Wuxing: _Ziwei_Configs_Wuxing
-},
-Models: {
-GanZhi: _Ziwei_Models_GanZhi,
-Profile: _Ziwei_Models_Profile,
-ResultPalace: _Ziwei_Models_ResultPalace,
-ResultTable: _Ziwei_Models_ResultTable
-},
-Calculator: _Ziwei_Calculator
+};
+var _Ziwei_Calculator = function() {
+  this.profiles = prepareProfilesData();
+
+  function prepareProfilesData() {
+    var raw_data = [
+      ['anhctv', 'Chu Thị Vân Anh', 'Nữ', 'Mão', '14', 'Dần', 'Bính', 'Dần'],
+      ['chind', 'Nguyễn Diệp Chi', 'Nữ', 'Mão', '23', 'Tỵ', 'Giáp', 'Ngọ'],
+      ['dangnh', 'Nguyễn Hải Đăng', 'Nam', 'Thân', '1', 'Hợi', 'Tân', 'Mùi'],
+      ['ducnm', 'Nguyễn Minh Đức', 'Nam', 'Mão', '15', 'Hợi', 'Mậu', 'Tý'],
+      ['gianghh', 'Hà Hương Giang', 'Nữ', 'Dần', '7', 'Thìn', 'Tân', 'Mùi'],
+      ['hoactq', 'Chu Thị Quỳnh Hoa', 'Nữ', 'Dần', '28', 'Thân', 'Tân', 'Mùi'],
+      ['huonghh', 'Hàn Huyền Hương', 'Nữ', 'Tỵ', '20', 'Dần', 'Tân', 'Mùi'],
+      ['huyennth', 'Nguyễn Thị Thu Huyền', 'Nữ', 'Tỵ', '5', 'Thìn', 'Giáp', 'Tý'],
+      ['khoin', 'Nguyễn Khôi', 'Nam', 'Mùi', '2', 'Thìn', 'Tân', 'Mùi'],
+      ['nam_1', 'Nam 1', 'Nam', 'Mão', '16', 'Ngọ', 'Quý', 'Dậu'],
+      ['nam_2', 'Nam 2', 'Nam', 'Dần', '29', 'Tý', 'Kỷ', 'Mùi'],
+      ['ngocpb', 'Phùng Bá Ngọc', 'Nam', 'Tý', '22', 'Sửu', 'Nhâm', 'Thân'],
+      ['nu_1', 'Nữ 1', 'Nữ', 'Hợi', '10', 'Hợi', 'Giáp', 'Thìn'],
+      ['nu_2', 'Nữ 2', 'Nữ', 'Mão', '3', 'Tuất', 'Canh', 'Ngọ'],
+      ['nu_3', 'Nữ 3', 'Nữ', 'Dần', '24', 'Mùi', 'Đinh', 'Mão'],
+      ['nu_4', 'Nữ 4', 'Nữ', 'Sửu', '29', 'Dần', 'Đinh', 'Sửu'],
+      ['nu_5', 'Nữ 5', 'Nữ', 'Mùi', '14', 'Dậu', 'Quý', 'Dậu'],
+      ['nu_6', 'Nữ 6', 'Nữ', 'Mão', '26', 'Ngọ', 'Tân', 'Hợi'],
+      ['oanhntm', 'Nguyễn Thị Mai Oanh', 'Nữ', 'Tỵ', '14', 'Sửu', 'Giáp', 'Dần'],
+      ['thanhnx', 'Nguyễn Xuân Thành', 'Nam', 'Tỵ', '22', 'Thìn', 'Tân', 'Mùi'],
+      ['trungnt', 'Trung NT', 'Nam', 'Tý', '10', 'Ngọ', 'Nhâm', 'Tý'],
+      ['trungnt2', 'Nguyễn Thành Trung', 'Nam', 'Hợi', '19', 'Dậu', 'Nhâm', 'Tuất'],
+      ['trungpt', 'Phùng Thành Trung', 'Nam', 'Tý', '21', 'Mùi', 'Quý', 'Dậu'],
+      ['tuanpm', 'Tuấn PM', 'Nam', 'Thân', '28', 'Thân', 'Ất', 'Mão'],
+      ['yenbth', 'Bùi Thị Hải Yến', 'Nữ', 'Tuất', '12', 'Ngọ', 'Đinh', 'Mão']
+    ];
+
+    var profiles = {};
+
+    raw_data.forEach((arr) => {
+      var profile_data = {
+        key: arr[0],
+        name: arr[1],
+        gender: Ziwei.Configs.Genders.Converts[arr[2]],
+        hour: Ziwei.Configs.Branches.Converts[arr[3]],
+        day: parseInt(arr[4]),
+        month: Ziwei.Configs.Branches.Converts[arr[5]],
+        year: {
+          stem: Ziwei.Configs.Stems.Converts[arr[6]],
+          branch: Ziwei.Configs.Branches.Converts[arr[7]]
+        }
+      };
+
+      profiles[arr[0]] = new Ziwei.Models.Profile(profile_data);
+    });
+
+    return profiles;
+  }
+};
+
+_Ziwei_Calculator.prototype.calcResultTable = function() {
+  var _profile = this.currentProfile;
+  var [selfPosition, bodyPosition] = this.calcSelfBodyPosition(_profile.birthHour, _profile.birthMonth);
+  var palaces = this.calcPalacesPositions(selfPosition);
+  var [cucElement, cucNumber] = this.calcCuc(selfPosition, _profile.birthYear.stem);
+  _profile.updateCuc(cucElement, cucNumber);
+
+  var forteenMainStars = this.calcForteenMainStars(cucElement, cucNumber, _profile.birthDay);
+  var otherImportantStars = this.calcOtherImportantStars(_profile.birthYear.stem, _profile.birthYear.branch);
+  var locTonPosition = otherImportantStars.findKey((position, stars) => stars.includes('loc_ton'));
+
+  var opportunityAges = this.calcOpportunityAges(selfPosition, cucNumber, _profile.fateDirection);
+
+  var thaiTueConstellation = this.calcThaiTueConstellation(_profile.birthYear.branch);
+  var trangSinhConstellation = this.calcTrangSinhConstellation(cucNumber, _profile.fateDirection);
+  var locTonConstellation = this.calcLocTonConstellation(locTonPosition, _profile.fateDirection);
+
+  var sixDeadlyStars = this.calcSixDeadlyStars(_profile.birthHour, locTonPosition, _profile.birthYear.branch);
+  var sixLuckyStars = this.calcSixLuckyStars(_profile.birthMonth, _profile.birthHour);
+
+  var normalStars = this.calcNormalStars(_profile.birthMonth, _profile.birthYear.branch);
+  var fourTransformationStars = this.calcFourTransformationStars(_profile.birthYear.stem, forteenMainStars, sixLuckyStars);
+
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
+  var table = {};
+
+  branches.forEach((branch) => {
+    table[branch] = {
+      'name': palaces[branch],
+      'isBody': (branch == bodyPosition),
+      'mainStars': forteenMainStars[branch] || [],
+      'trangSinhConstellation': trangSinhConstellation[branch],
+      'goodStars': [],
+      'badStars': [],
+      'opportunityAge': opportunityAges[branch]
+    }
+
+    // Classify by qualities
+    var stars = otherImportantStars[branch];
+    this.insertMultipleStarsToPalace(table[branch], stars, 'OtherImportantStars');
+
+    stars = sixDeadlyStars[branch];
+    this.insertMultipleStarsToPalace(table[branch], stars, 'SixDeadlyStars');
+
+    stars = sixLuckyStars[branch];
+    this.insertMultipleStarsToPalace(table[branch], stars, 'SixLuckyStars');
+
+    star = thaiTueConstellation[branch];
+    this.insertSingleStarToPalace(table[branch], star, 'ThaiTueConstellation');
+
+    star = locTonConstellation[branch];
+    this.insertSingleStarToPalace(table[branch], star, 'LocTonConstellation');
+
+    stars = normalStars[branch];
+    this.insertMultipleStarsToPalace(table[branch], stars, 'NormalStars');
+
+    stars = fourTransformationStars[branch];
+    this.insertMultipleStarsToPalace(table[branch], stars, 'FourTransformationStars');
+  });
+
+  var resultTable = new Ziwei.Models.ResultTable({
+    'profile': _profile,
+    'palaces': table,
+    'tuanCoordinate': this.calcTuanCoordinate(),
+    'trietCoordinate': this.calcTrietCoordinate(),
+    'connectedCoordinates': this.calcConnectedPalaceCoordinates(selfPosition)
+  });
+
+  return resultTable;
+};
+
+_Ziwei_Calculator.prototype.calculateProfile = function(profileKey = 'thanhnx') {
+  this.currentProfile = this.profiles[profileKey];
+
+  if (this.currentProfile === undefined) {
+    throw "Invalid profile key";
+    return;
+  }
+
+  return this.calcResultTable();
+};
+_Ziwei_Calculator.prototype.calcSelfBodyPosition = function(birthHour, birthMonth) {
+  var hourIndex = Ziwei.Configs.Branches.Indexes[birthHour];
+  var monthIndex = Ziwei.Configs.Branches.Indexes[birthMonth];
+
+  var selfIndex = monthIndex.limitInc(-hourIndex+1);
+  var bodyIndex = monthIndex.limitInc(hourIndex-1);
+
+  return [
+    Ziwei.Configs.Branches.Orders[selfIndex],
+    Ziwei.Configs.Branches.Orders[bodyIndex]
+  ];
+};
+
+_Ziwei_Calculator.prototype.calcCuc = function(selfPosition, birthYearStem) {
+  var startElement = Ziwei.Configs.Wuxing.ElementsByBranches[selfPosition];
+  var startElementIndex = Ziwei.Configs.Wuxing.Elements.indexOf(startElement);
+  
+  var countingSteps = Ziwei.Configs.Stems.Indexes[birthYearStem];
+  var cucIndex = startElementIndex.limitInc(countingSteps, 5, 0);
+
+  var cucElement = Ziwei.Configs.Wuxing.Elements[cucIndex];
+  var cucNumber = Ziwei.Configs.Wuxing.CucByElements[cucElement];
+
+  return [cucElement, cucNumber];
+};
+
+_Ziwei_Calculator.prototype.calcPalacesPositions = function(selfPosition) {
+  var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
+  var palaces = Ziwei.Configs.Palaces.Orders;
+
+  return this.mergeSequencesFromIndex(branches, palaces, selfIndex);
+};
+
+_Ziwei_Calculator.prototype.calcOpportunityAges = function(selfPosition, cucNumber, fateDirection) {
+  var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
+  var ages = Array.fromRange(0, 11).map(function(mult) {
+    return cucNumber + 10*mult;
+  });
+
+  return this.mergeSequencesFromIndex(branches, ages, selfIndex, fateDirection === -1);
+};
+
+_Ziwei_Calculator.prototype.calcConnectedPalaceCoordinates = function(selfPosition) {
+  var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
+  var selfCoordinate = Ziwei.Configs.Palaces.DrawingRootCoordinates[selfPosition];
+
+  var oppositeIndex = selfIndex.limitInc(6);
+  var oppositePosition = Ziwei.Configs.Branches.Orders[oppositeIndex];
+  var oppositeCoordinate = Ziwei.Configs.Palaces.DrawingRootCoordinates[oppositePosition];
+
+  var trilogyElement = Ziwei.Configs.BranchSets.Trilogy.ByBranches[selfPosition];
+  var sameSetPositions = Ziwei.Configs.BranchSets.Trilogy.ByElements[trilogyElement].slice();
+  var selfPositionIndex = selfPosition.indexOf(selfPosition);
+  sameSetPositions = sameSetPositions.filter((x, i) => i !== selfPositionIndex);
+
+  var sameSetCoordinates = sameSetPositions.map((position) =>
+    Ziwei.Configs.Palaces.DrawingRootCoordinates[position]
+  );
+
+  var coordinates = [oppositeCoordinate];
+  coordinates.push(...sameSetCoordinates);
+
+  return coordinates.map((fromCoordinate) => [fromCoordinate, selfCoordinate]);
+};
+_Ziwei_Calculator.prototype.calcTuViPosition = function(cucElement, cucNumber, birthDay) {
+  var mod = birthDay % cucNumber;
+  var quotient = birthDay.quotient(cucNumber);
+  var tuViIndex = 1;
+
+  if (mod === 0) {
+    var danIndex = Ziwei.Configs.Branches.Indexes['dan'];
+    tuViIndex = danIndex.limitInc(quotient-1);
+
+    return Ziwei.Configs.Branches.Orders[tuViIndex];
+  }
+
+  // mod > 0
+  var kmtlnTable = Ziwei.Configs.Wuxing.KmtlnTable.allValues();
+  var kmtlnStart = kmtlnTable.indexOf(Ziwei.Configs.Wuxing.KmtlnTable[cucElement]);
+  var kmtlnIndex = kmtlnStart + mod - 1;
+  var countingStartPosition = kmtlnTable[kmtlnIndex];
+  
+  if (birthDay < cucNumber)
+    return countingStartPosition;
+
+  // mod > 0 & birthDay > cucNumber
+  var countingStartIndex = Ziwei.Configs.Branches.Indexes[countingStartPosition];
+  tuViIndex = countingStartIndex.limitInc(quotient);
+
+  return Ziwei.Configs.Branches.Orders[tuViIndex];
+};
+
+// Cơ (Thiên Cơ); Liêm (Liêm Trinh) & Vũ (Vũ Khúc)
+_Ziwei_Calculator.prototype.calcCoLiemVuPositions = function(tuViPosition) {
+  var tuViIndex = Ziwei.Configs.Branches.Indexes[tuViPosition];
+  
+  return [
+    Ziwei.Configs.Branches.Orders[tuViIndex.limitInc(-1)],
+    Ziwei.Configs.Branches.Orders[tuViIndex.limitInc(4)],
+    Ziwei.Configs.Branches.Orders[tuViIndex.limitInc(-4)]
+  ];
+};
+
+// Nhật (Thái Dương) & Đồng (Thiên Đồng)
+_Ziwei_Calculator.prototype.calcNhatDongPositions = function(vuKhucPosition) {
+  var vuKhucIndex = Ziwei.Configs.Branches.Indexes[vuKhucPosition];
+  
+  return [
+    Ziwei.Configs.Branches.Orders[vuKhucIndex.limitInc(1)],
+    Ziwei.Configs.Branches.Orders[vuKhucIndex.limitInc(-1)]
+  ];
+};
+
+// Phá (Phá Quân)
+_Ziwei_Calculator.prototype.calcPhaQuanPosition = function(tuViPosition) {
+  var tuViIndex = Ziwei.Configs.Branches.Indexes[tuViPosition];
+  return Ziwei.Configs.Branches.Orders[tuViIndex.reflectIndex()];
+};
+
+// Phủ - Nguyệt - Tham - Cự - Tướng - Lương - Sát
+_Ziwei_Calculator.prototype.calcThienPhuConstellationPositions = function(phaQuanPosition) {
+  var phaQuanIndex = Ziwei.Configs.Branches.Indexes[phaQuanPosition];
+
+  // Thiên Phủ
+  var thienPhuIndex = phaQuanIndex.limitInc(2);
+  var constelationPositions = [Ziwei.Configs.Branches.Orders[thienPhuIndex]];
+
+  // Nguyệt - Tham - Cự - Tướng - Lương - Sát
+  Array.fromRange(1, 6).forEach(() => {
+    thienPhuIndex = thienPhuIndex.limitInc();
+    constelationPositions.push(Ziwei.Configs.Branches.Orders[thienPhuIndex]);
+  });
+
+  return constelationPositions;
+};
+
+_Ziwei_Calculator.prototype.calcForteenMainStars = function(cucElement, cucNumber, birthDay) {
+  var stars = ['tu_vi', 'thien_co', 'liem_trinh', 'vu_khuc', 'thai_duong', 'thien_dong', 'pha_quan', 'thien_phu', 'thai_am', 'tham_lang', 'cu_mon', 'thien_tuong', 'thien_luong', 'that_sat'];
+
+  var starsPositions = [];
+
+  var tuVi = this.calcTuViPosition(cucElement, cucNumber, birthDay);
+  starsPositions.push(tuVi);
+  starsPositions.push(...this.calcCoLiemVuPositions(tuVi));
+  starsPositions.push(...this.calcNhatDongPositions(starsPositions[3]));
+  
+  var phaQuan = this.calcPhaQuanPosition(tuVi);
+  starsPositions.push(phaQuan);
+  starsPositions.push(...this.calcThienPhuConstellationPositions(phaQuan));
+
+  var mainStarsPositions = {};
+
+  stars.forEach((star, index) => {
+    var key = starsPositions[index];
+
+    if (mainStarsPositions[key] === undefined)
+      mainStarsPositions[key] = [];
+
+    mainStarsPositions[key].push(star);
+  });
+
+  return mainStarsPositions;
+};
+_Ziwei_Calculator.prototype.calcFourTransformationStars = function(birthYearStem, forteenMainStars, sixLuckyStars) {
+  var positionsByStems = {
+    'giap': ['liem_trinh', 'thien_phu', 'vu_khuc', 'thai_duong'],
+    'at': ['thien_co', 'thien_luong', 'tu_vi', 'thai_am'],
+    'binh': ['thien_dong', 'thien_co', 'van_xuong', 'liem_trinh'],
+    'dinh': ['thai_am', 'thien_dong', 'thien_co', 'cu_mon'],
+    'mau': ['tham_lang', 'thai_am', 'huu_bat', 'thien_co'],
+    'ky': ['vu_khuc', 'tham_lang', 'thien_luong', 'van_khuc'],
+    'canh': ['thai_duong', 'vu_khuc', 'thai_am', 'thien_dong'],
+    'tan': ['cu_mon', 'thai_duong', 'van_khuc', 'van_xuong'],
+    'nham': ['thien_luong', 'tu_vi', 'thien_phu', 'vu_khuc'],
+    'quy': ['pha_quan', 'cu_mon', 'thai_am', 'tham_lang']
   };
+
+  forTransformationPositions = positionsByStems[birthYearStem].map((transformationStar) => {
+    mainStarPosition = forteenMainStars.findKey(
+      (position) => forteenMainStars[position].includes(transformationStar)
+    );
+
+    if (mainStarPosition !== undefined)
+      return mainStarPosition;
+
+    otherStarPosition = sixLuckyStars.findKey(
+      (position) => sixLuckyStars[position].includes(transformationStar)
+    );
+
+    return otherStarPosition;
+  });
+
+  var starsPositions = [
+    forTransformationPositions,
+    ['hoa_loc', 'hoa_quyen', 'hoa_khoa', 'hoa_ky']
+  ].transpose().toHashOfArrays();
+
+  return starsPositions;
+};
+// Thiên Hình - Thiên Diêu
+_Ziwei_Calculator.prototype.calcHinhDieuYPositions = function(birthMonth) {
+  var birthMonthNumber = Ziwei.Configs.Branches.Indexes[birthMonth] - 2;
+  
+  var dauIndex = Ziwei.Configs.Branches.Indexes['dau'];
+  var thienHinhIndex = dauIndex.limitInc(birthMonthNumber-1);
+
+  var suuIndex = Ziwei.Configs.Branches.Indexes['suu'];
+  var thienDieuIndex = suuIndex.limitInc(birthMonthNumber-1);
+  var thienYIndex = thienDieuIndex;
+
+  return [
+    Ziwei.Configs.Branches.Orders[thienHinhIndex],
+    Ziwei.Configs.Branches.Orders[thienDieuIndex],
+    Ziwei.Configs.Branches.Orders[thienYIndex]
+  ];
+};
+
+_Ziwei_Calculator.prototype.calcHoaCaiPosition = function(birthYearBranch) {
+  var trilogyElement = Ziwei.Configs.BranchSets.Trilogy.ByBranches[birthYearBranch];
+  var hoaCaiPosition = Ziwei.Configs.BranchSets.Trilogy.ByElements[trilogyElement][1];
+
+  return hoaCaiPosition;
+};
+
+_Ziwei_Calculator.prototype.calcAmSatPosition = function(birthMonth) {
+  // By month:              6, 12   1, 7  2, 8   3, 9    4, 10  5, 11
+  var possiblePositions = ['thin', 'dan', 'ty', 'tuat', 'than', 'ngo'];
+  var birthMonthNumber = Ziwei.Configs.Branches.Indexes[birthMonth] - 2;
+  var amSatPosition = possiblePositions[birthMonthNumber % 6];
+
+  return amSatPosition;
+};
+
+_Ziwei_Calculator.prototype.calcCoQuaPositions = function(birthYearBranch) {
+  var birthYearIndex = Ziwei.Configs.Branches.Indexes[birthYearBranch];
+  var branchSetOrder = (birthYearIndex.limitInc() - 1).quotient(3);
+  var branchSet = Ziwei.Configs.BranchSets.Trilogy.ByRelatives[branchSetOrder];
+  var branchSetIndexes = branchSet.map((branch) => Ziwei.Configs.Branches.Indexes[branch]);
+
+  var coThanIndex = branchSetIndexes[0].limitInc(-1);
+  var quaTuIndex = branchSetIndexes[2].limitInc();
+
+  return [
+    Ziwei.Configs.Branches.Orders[coThanIndex],
+    Ziwei.Configs.Branches.Orders[quaTuIndex]
+  ];
+};
+
+_Ziwei_Calculator.prototype.calcKhocHuPositions = function(birthYearBranch) {
+  var ngoIndex = Ziwei.Configs.Branches.Indexes['ngo'];
+  var birthYearIndex = Ziwei.Configs.Branches.Indexes[birthYearBranch];
+
+  var thienKhocIndex = ngoIndex.limitInc(-birthYearIndex+1);
+  var thienHuIndex = ngoIndex.limitInc(birthYearIndex-1);
+
+  return [
+    Ziwei.Configs.Branches.Orders[thienKhocIndex],
+    Ziwei.Configs.Branches.Orders[thienHuIndex]
+  ];
+};
+
+_Ziwei_Calculator.prototype.calcNormalStars = function(birthMonth, birthYearBranch) {
+  var [thienHinhPosition, thienDieuPosition, thienYPosition] = this.calcHinhDieuYPositions(birthMonth);
+  var hoaCaiPosition = this.calcHoaCaiPosition(birthYearBranch);
+  var amSatPosition = this.calcAmSatPosition(birthMonth);
+  var [coThanPosition, quaTuPosition] = this.calcCoQuaPositions(birthYearBranch);
+  var [thienKhocPosition, thienHuPosition] = this.calcKhocHuPositions(birthYearBranch);
+
+  var starsPositions = [
+    [thienHinhPosition, 'thien_hinh'],
+    [thienDieuPosition, 'thien_dieu'],
+    [thienYPosition, 'thien_y'],
+    [hoaCaiPosition, 'hoa_cai'],
+    [amSatPosition, 'am_sat'],
+    [coThanPosition, 'co_than'],
+    [quaTuPosition, 'qua_tu'],
+    [thienKhocPosition, 'thien_khoc'],
+    [thienHuPosition, 'thien_hu']
+  ].toHashOfArrays();
+
+  return starsPositions;
+};
+_Ziwei_Calculator.prototype.calcLocTonPosition = function(birthYearStem) {
+  var possiblePositions = {
+    'giap': 'dan',
+    'at': 'mao',
+    'binh': 'ty2',
+    'dinh': 'ngo',
+    'mau': 'ty2',
+    'ky': 'ngo',
+    'canh': 'than',
+    'tan': 'dau',
+    'nham': 'ty',
+    'quy': 'hoi'
+  };
+
+  return possiblePositions[birthYearStem];
+};
+
+_Ziwei_Calculator.prototype.calcThienMaPosition = function(birthYearBranch) {
+  var trilogyElement = Ziwei.Configs.BranchSets.Trilogy.ByBranches[birthYearBranch];
+  var firstBranch = Ziwei.Configs.BranchSets.Trilogy.ByElements[trilogyElement][0];
+  var firstBranchIndex = Ziwei.Configs.Branches.Indexes[firstBranch];
+  var reflectBranchIndex = firstBranchIndex.limitInc(6);
+
+  return Ziwei.Configs.Branches.Orders[reflectBranchIndex];
+};
+
+_Ziwei_Calculator.prototype.calcOtherImportantStars = function(birthYearStem, birthYearBranch) {
+  var locTonPosition = this.calcLocTonPosition(birthYearStem);
+  var thienMaPosition = this.calcThienMaPosition(birthYearBranch);
+
+  var importantStars = {};
+
+  if (importantStars[locTonPosition] === undefined)
+    importantStars[locTonPosition] = [];
+  importantStars[locTonPosition].push('loc_ton');
+
+  if (importantStars[thienMaPosition] === undefined)
+    importantStars[thienMaPosition] = [];
+  importantStars[thienMaPosition].push('thien_ma');
+
+  return importantStars;
+};
+_Ziwei_Calculator.prototype.calcThaiTueConstellation = function(birthYearBranch) {
+  var thaiTueIndex = Ziwei.Configs.Branches.Indexes[birthYearBranch];
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
+  var stars = Ziwei.Configs.ThaiTueConstellation.Orders;
+
+  return this.mergeSequencesFromIndex(branches, stars, thaiTueIndex);
+};
+
+_Ziwei_Calculator.prototype.calcTrangSinhConstellation = function(cucNumber, fateDirection) {
+  var possiblePositions = ['than', 'hoi', 'ty2', 'than', 'dan'];
+  var trangSinhPosition = possiblePositions[cucNumber-2];
+  var trangSinhIndex = Ziwei.Configs.Branches.Indexes[trangSinhPosition];
+
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
+  var stars = Ziwei.Configs.TrangSinhConstellation.Orders.slice();
+
+  return this.mergeSequencesFromIndex(branches, stars, trangSinhIndex, fateDirection == -1);
+};
+
+_Ziwei_Calculator.prototype.calcLocTonConstellation = function(locTonPosition, fateDirection) {
+  var locTonIndex = Ziwei.Configs.Branches.Indexes[locTonPosition];
+  var branches = Ziwei.Configs.Branches.Names.allKeys();
+  var stars = Ziwei.Configs.LocTonConstellation.Orders;
+
+  return this.mergeSequencesFromIndex(branches, stars, locTonIndex, fateDirection == -1);
+};
+_Ziwei_Calculator.prototype.calcKhongKiepPositions = function(birthHour) {
+  var hoiIndex = Ziwei.Configs.Branches.Indexes['hoi'];
+  var birthHourIndex = Ziwei.Configs.Branches.Indexes[birthHour];
+
+  var diaKhongIndex = hoiIndex.limitInc(-birthHourIndex+1);
+  var diaKiepIndex = hoiIndex.limitInc(birthHourIndex-1);
+
+  return [
+    Ziwei.Configs.Branches.Orders[diaKhongIndex],
+    Ziwei.Configs.Branches.Orders[diaKiepIndex]
+  ]
+};
+
+_Ziwei_Calculator.prototype.calcKinhDaPositions = function(locTonPosition) {
+  var locTonIndex = Ziwei.Configs.Branches.Indexes[locTonPosition];
+
+  var kinhDuongIndex = locTonIndex.limitInc();
+  var daLaIndex = locTonIndex.limitInc(-1);
+
+  return [
+    Ziwei.Configs.Branches.Orders[kinhDuongIndex],
+    Ziwei.Configs.Branches.Orders[daLaIndex]
+  ]
+};
+
+_Ziwei_Calculator.prototype.calcHoaLinhPositions = function(birthYearBranch, birthHour) {
+  var startPositions = {
+    'hoa': ['suu', 'mao'],
+    'thuy': ['dau', 'tuat'],
+    'moc': ['dan', 'tuat'],
+    'kim': ['mao', 'tuat']
+  };
+
+  var birthHourIndex = Ziwei.Configs.Branches.Indexes[birthHour];
+
+  var trilogyElement = Ziwei.Configs.BranchSets.Trilogy.ByBranches[birthYearBranch];
+  var [hoaTinhStartPos, linhTinhStartPos] = startPositions[trilogyElement];
+  var hoaTinhStartIndex = Ziwei.Configs.Branches.Indexes[hoaTinhStartPos];
+  var linhTinhStartIndex = Ziwei.Configs.Branches.Indexes[linhTinhStartPos];
+
+  var hoaTinhIndex = hoaTinhStartIndex.limitInc(birthHourIndex-1);
+  var linhTinhIndex = linhTinhStartIndex.limitInc(-birthHourIndex+1);
+
+  return [
+    Ziwei.Configs.Branches.Orders[hoaTinhIndex],
+    Ziwei.Configs.Branches.Orders[linhTinhIndex]
+  ];
+};
+
+_Ziwei_Calculator.prototype.calcSixDeadlyStars = function(birthHour, locTonPosition, birthYearBranch) {
+  var [diaKhongPosition, diaKiepPosition] = this.calcKhongKiepPositions(birthHour);
+  var [kinhDuongPosition, daLaPosition] = this.calcKinhDaPositions(locTonPosition);
+  var [hoaTinhPosition, linhTinhPosition] = this.calcHoaLinhPositions(birthYearBranch, birthHour);
+
+  var starsPositions = [
+    [diaKhongPosition, 'dia_khong'],
+    [diaKiepPosition, 'dia_kiep'],
+    [kinhDuongPosition, 'kinh_duong'],
+    [daLaPosition, 'da_la'],
+    [hoaTinhPosition, 'hoa_tinh'],
+    [linhTinhPosition, 'linh_tinh']
+  ].toHashOfArrays();
+
+  return starsPositions;
+};
+_Ziwei_Calculator.prototype.calcTaHuuPositions = function(birthMonth) {
+  var thinIndex = Ziwei.Configs.Branches.Indexes['thin'];
+  var birthMonthNumber = Ziwei.Configs.Branches.Indexes[birthMonth] - 2;
+
+  var taPhuIndex = thinIndex.limitInc(birthMonthNumber-1);
+  var huuBatIndex = taPhuIndex.reflectIndex();
+
+  return [
+    Ziwei.Configs.Branches.Orders[taPhuIndex],
+    Ziwei.Configs.Branches.Orders[huuBatIndex]
+  ];
+};
+
+_Ziwei_Calculator.prototype.calcXuongKhucPositions = function(birthHour) {
+  var thinIndex = Ziwei.Configs.Branches.Indexes['thin'];
+  var birthHourIndex = Ziwei.Configs.Branches.Indexes[birthHour];
+
+  var vanKhucIndex = thinIndex.limitInc(birthHourIndex-1);
+  var vanXuongIndex = vanKhucIndex.reflectIndex();
+
+  return [
+    Ziwei.Configs.Branches.Orders[vanXuongIndex],
+    Ziwei.Configs.Branches.Orders[vanKhucIndex]
+  ];
+};
+
+_Ziwei_Calculator.prototype.calcSixLuckyStars = function(birthMonth, birthHour) {
+  var [taPhuPosition, huuBatPosition] = this.calcTaHuuPositions(birthMonth);
+  var [vanXuongPosition, vanKhucPosition] = this.calcXuongKhucPositions(birthHour);
+
+  var starsPositions = [
+    [taPhuPosition, 'ta_phu'],
+    [huuBatPosition, 'huu_bat'],
+    [vanXuongPosition, 'van_xuong'],
+    [vanKhucPosition, 'van_khuc']
+  ].toHashOfArrays();
+
+  return starsPositions;
+};
+_Ziwei_Calculator.prototype.calcTuanCoordinate = function() {
+  return [1, 1];
+};
+
+_Ziwei_Calculator.prototype.calcTrietCoordinate = function() {
+  return [1, 1];
+};
+_Ziwei_Calculator.prototype.mergeSequencesFromIndex = function(firstSequence, secondSequence, mergeIndex, reversedOrder = false) {
+  var secondSeq = secondSequence.slice();
+
+  // re-arrange second sequence in order of first one,
+  // skip if mergeIndex is 1 (2 sequences have identical order)
+  if (mergeIndex != 1) {
+    var [firstHalf, secondHalf] = [[], []];
+
+    if (!reversedOrder) {
+      firstHalf = secondSeq.slice(12-mergeIndex+1, secondSeq.length);
+      secondHalf = secondSeq.slice(0, 12-mergeIndex+1);
+    } else {
+      firstHalf = secondSeq.slice(0, mergeIndex).reverse();
+      secondHalf = secondSeq.slice(mergeIndex, secondSeq.length).reverse();
+    }
+
+    secondSeq = firstHalf.concat(secondHalf);
+  }
+
+  return [firstSequence, secondSeq].transpose().toHash();
+};
+
+_Ziwei_Calculator.prototype.insertSingleStarToPalace = function(palace, star, configModule) {
+  if (star === undefined)
+    return;
+
+  quality = Ziwei.Configs[configModule].Qualities[star];
+  palace[`${quality}Stars`].push(star);
+};
+
+_Ziwei_Calculator.prototype.insertMultipleStarsToPalace = function(palace, stars, configModule) {
+  if (stars === undefined || stars.constructor !== Array)
+    return;
+
+  ['good', 'bad'].forEach((quality) => {
+    qualifiedStars = stars.filter((star) => Ziwei.Configs[configModule].Qualities[star] === quality);
+    palace[`${quality}Stars`].push(...qualifiedStars);
+  });
+
+  // Another equivalent way
+  // stars.forEach((star) => {
+  //   quality = Ziwei.Configs[configModule].Qualities[star];
+  //   palace[`${quality}Stars`].push(star);
+  // });
+};
+return {
+	Configs: {
+		BranchSets: _Ziwei_Configs_BranchSets,
+		Branches: _Ziwei_Configs_Branches,
+		ForteenMainStars: _Ziwei_Configs_ForteenMainStars,
+		FourTransformationStars: _Ziwei_Configs_FourTransformationStars,
+		Genders: _Ziwei_Configs_Genders,
+		LocTonConstellation: _Ziwei_Configs_LocTonConstellation,
+		NormalStars: _Ziwei_Configs_NormalStars,
+		OtherImportantStars: _Ziwei_Configs_OtherImportantStars,
+		Palaces: _Ziwei_Configs_Palaces,
+		SixDeadlyStars: _Ziwei_Configs_SixDeadlyStars,
+		SixLuckyStars: _Ziwei_Configs_SixLuckyStars,
+		Stems: _Ziwei_Configs_Stems,
+		ThaiTueConstellation: _Ziwei_Configs_ThaiTueConstellation,
+		TrangSinhConstellation: _Ziwei_Configs_TrangSinhConstellation,
+		TuanTriet: _Ziwei_Configs_TuanTriet,
+		Wuxing: _Ziwei_Configs_Wuxing
+	},
+	Models: {
+		GanZhi: _Ziwei_Models_GanZhi,
+		Profile: _Ziwei_Models_Profile,
+		ResultPalace: _Ziwei_Models_ResultPalace,
+		ResultTable: _Ziwei_Models_ResultTable
+	},
+	Calculator: _Ziwei_Calculator
+};
 }(Ziwei));

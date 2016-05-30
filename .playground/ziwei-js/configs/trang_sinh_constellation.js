@@ -19,7 +19,7 @@ _Ziwei_Configs_TrangSinhConstellation = {
     'moc_duc': 'M.Dục',
     'quan_doi': 'Q.Đới',
     'lam_quan': 'L.Quan',
-    'de_vuong': 'Đế',
+    'de_vuong': 'Vượng',
     'suy': 'Suy',
     'benh': 'Bệnh',
     'tu': 'Tử',

@@ -11,4 +11,4 @@ _Ziwei_Models_ResultTable = class {
     this.trietCoordinate = args['trietCoordinate'];
     this.connectedCoordinates = args['connectedCoordinates'];
   }
-}
+};

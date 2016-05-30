@@ -59,4 +59,4 @@ _Ziwei_Models_Profile = class {
     ];
     return `<Ziwei.Models.Profile - Name: ${t[0]} - Gender: ${t[1]} - Birthday: ${t[2]} ${t[3]}/${t[4]}/${t[5]}>`;
   }
-}
+};

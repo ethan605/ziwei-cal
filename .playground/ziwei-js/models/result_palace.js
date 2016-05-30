@@ -28,7 +28,7 @@ _Ziwei_Models_ResultPalace = class {
     };
   };
 
-  getShortName() {
+  getShortNames() {
     var _self = this;
 
     return {
@@ -45,4 +45,4 @@ _Ziwei_Models_ResultPalace = class {
       opportunityAge: _self.opportunityAge
     };
   };
-}
+};
