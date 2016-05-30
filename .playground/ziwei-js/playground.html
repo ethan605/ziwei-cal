@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Ziwei Calculator in JS playground</title>
-  <!-- <script type="text/javascript" src="extensions.js"></script>
+  
+  <script type="text/javascript" src="extensions.js"></script>
   <script type="text/javascript" src="configs/branch_sets.js"></script>
   <script type="text/javascript" src="configs/branches.js"></script>
   <script type="text/javascript" src="configs/forteen_main_stars.js"></script>
@@ -34,12 +35,31 @@
   <script type="text/javascript" src="utils/calc_six_deadly_stars.js"></script>
   <script type="text/javascript" src="utils/calc_six_lucky_stars.js"></script>
   <script type="text/javascript" src="utils/calc_tuan_triet.js"></script>
-  <script type="text/javascript" src="ziwei.js"></script> -->
+  <script type="text/javascript" src="views/views_generator.js"></script>
+  <script type="text/javascript" src="ziwei.js"></script>
   <!-- <script type="text/javascript" src="ziwei.es6.js"></script> -->
   <!-- <script type="text/javascript" src="ziwei.es5.js"></script> -->
-  <script type="text/javascript" src="ziwei.min.js"></script>
+  <!-- <script type="text/javascript" src="ziwei.min.js"></script> -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var source = $("#ziwei").html();
+      var template = Handlebars.compile(source);
+      var context = {title: "My New Post", body: "This is my first post!"};
+      var html = template(context);
+      $("#body").append(html);
+    });
+  </script>
 </head>
-<body>
-  <h1>Javascript!</h1>
+<body id="body">
+  <script id="ziwei" type="text/x-handlebars-template">
+    <div class="entry">
+      <h1>{{title}}</h1>
+      <div class="body">
+        {{body}}
+      </div>
+    </div>
+  </script>
 </body>
 </html>

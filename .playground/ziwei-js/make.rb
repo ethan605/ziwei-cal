@@ -78,8 +78,13 @@ def clean_up_and_make_copy
   dst_dir = "../.."
   `rm -rf #{dst_dir}/ziwei-js`
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js")
-  # `cp #{Constants::MINIFIED_FILE_NAME} #{dst_dir}/ziwei-js`
-  `cp ziwei.*.js #{dst_dir}/ziwei-js`
+  `cp ziwei.*.js #{dst_dir}/ziwei-js/`
+
+  FileUtils::mkdir_p("#{dst_dir}/ziwei-js/src")
+  `cp ziwei.js #{dst_dir}/ziwei-js/src/`
+  %w[configs models utils].each {|dir|
+    `cp -r #{dir} #{dst_dir}/ziwei-js/src/`
+  }
 end
 
 join_js_files

@@ -3,7 +3,7 @@ Number.prototype.isEven = function() {
 };
 
 Number.prototype.quotient = function(divisor) {
-   return (this - (this % divisor)) / divisor;
+  return (this - (this % divisor)) / divisor;
 };
 
 Number.prototype.limitInc = function(incStep = 1, limit = 12, minResult = 1) {
@@ -32,12 +32,9 @@ String.prototype.getDisplayName = function(moduleName = undefined, prefix = "") 
     'OtherImportantStars',
     'NormalStars',
     'FourTransformationStars'
-  ].map(function(moduleName) {
-    return Ziwei.Configs[`${moduleName}`][`${prefix}Names`];
-  });
+  ].map((moduleName) => Ziwei.Configs[`${moduleName}`][`${prefix}Names`]);
 
   var allNames = Object.assign.apply(this, allNamesArr);
-
   return allNames[this];
 };
 
@@ -58,6 +55,7 @@ String.prototype.getPlaceQualityColorStyle = function() {
   var regexPattern = /(?!\()(\w|Đ)(?=\))/gi;
   var quality = (this.match(regexPattern) || [])[0];
   var color = Ziwei.Configs.Wuxing.PlaceQualityColors[quality];
+
   return color === undefined ? "" : `color: ${color};`;
 };
 
@@ -88,6 +86,7 @@ Array.prototype.toHashOfArrays = function() {
     var [key, value] = current;
     previous[key] = previous[key] || [];
     previous[key].push(value);
+
     return previous;
   }, {});
 };
@@ -104,9 +103,7 @@ Array.fromRange = function(from, to) {
     reversed = true;
   }
 
-  var result = Array
-    .apply(null, Array(_to - _from + 1))
-    .map((_, index) => _from + index);
+  var result = Array.apply(null, Array(_to - _from + 1)).map((_, index) => _from + index);
 
   if (reversed)
     result = result.reverse();
@@ -119,7 +116,8 @@ Object.prototype.allKeys = function() {
 };
 
 Object.prototype.allValues = function() {
-  return Object.keys(this).map((key) => this[key]);
+  var _self = this;
+  return Object.keys(_self).map((key) => _self[key]);
 };
 
 Object.prototype.count = function() {
@@ -131,7 +129,7 @@ Object.prototype.forEach = function(callback) {
   Object.keys(_self).forEach((key) => callback(key, _self[key]));
 };
 
-Object.prototype.map = function(callback) {
+Object.prototype.mapKeyValues = function(callback) {
   var _self = this;
   return Object.keys(_self).map((key) => callback(key, _self[key]));
 };

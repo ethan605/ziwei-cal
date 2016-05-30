@@ -35,8 +35,10 @@ _Ziwei_Calculator.prototype.calcPalacesPositions = function(selfPosition) {
 _Ziwei_Calculator.prototype.calcOpportunityAges = function(selfPosition, cucNumber, fateDirection) {
   var selfIndex = Ziwei.Configs.Branches.Indexes[selfPosition];
   var branches = Ziwei.Configs.Branches.Names.allKeys();
-  var ages = Array.fromRange(0, 11).map((mult) => cucNumber + 10*mult);
-  
+  var ages = Array.fromRange(0, 11).map(function(mult) {
+    return cucNumber + 10*mult;
+  });
+
   return this.mergeSequencesFromIndex(branches, ages, selfIndex, fateDirection === -1);
 };
 
