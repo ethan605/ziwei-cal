@@ -74,17 +74,14 @@
       calculator = new Ziwei.Calculator();
       resultTable = calculator.calculateProfile();
 
-      palaceSource = $("#palace-template").html();
-      template = Handlebars.compile(palaceSource);
-
       palace = resultTable.palaces.than;
-      palaceHtml = palace.renderHtml(template);
+      palaceSource = $("#palace-template").html();
+      palaceHtml = palace.renderHtml(palaceSource);
 
-      resultTable.palaces.forEach((position, palace) => {
-        var context = palace.getFullNames();
-        var palaceHtml = template(context);
-        $(`#${position}`).append(palaceHtml);
-      });
+      // resultTable.palaces.forEach((position, palace) => {
+      //   var palaceHtml = palace.renderHtml(palaceSource);
+      //   $(`#${position}`).append(palaceHtml);
+      // });
     });
   </script>
 </head>
@@ -123,14 +120,13 @@
       <tr height="15%">
         <td></td>
         <td rowspan="2" class="center main-stars">
-          <div>
-            <!-- main stars -->
-          </div>
+          <div id="main-stars">{{{ mainStars }}}</div>
         </td>
         <td></td>
       </tr>
       <tr height="55%">
-        <!-- other stars -->
+        <td><div id="good-stars"></div>{{{ goodStars }}}</td>
+        <td><div id="bad-stars"></div>{{{ badStars }}}</td>
       </tr>
       <tr height="15%">
         <td class="bottom left">{{ position }}</td>
@@ -139,5 +135,11 @@
       </tr>
     </table>
   </script>
+  <!-- <script id="main-stars-template" type="text/x-handlebars-template">
+    <span class="main-star">{{ star }}</span>
+  </script>
+  <script id="other-stars-template" type="text/x-handlebars-template">
+    <span>{{star}}</span>
+  </script> -->
 </body>
 </html>

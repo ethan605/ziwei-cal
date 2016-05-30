@@ -24,7 +24,6 @@ var Ziwei = (function () {
       ResultPalace: _Ziwei_Models_ResultPalace,
       ResultTable: _Ziwei_Models_ResultTable
     },
-    Views: _Ziwei_ViewsGenerator,
     Calculator: _Ziwei_Calculator
   };
 }(Ziwei));
