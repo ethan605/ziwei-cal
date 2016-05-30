@@ -14,15 +14,15 @@ _Ziwei_Models_ResultPalace.prototype.renderHtml = function(templateSource, useFu
         starName = buildMainStarName(star, useFullNames);
 
       return template({star: starName});
-    }).join();
+    }).join("");
 
     return html;
   };
 
   var context = useFullNames ? this.getFullNames() : this.getShortNames();
   context.mainStars = renderStarsHtml(this.mainStars, 'main-star', useFullNames);
-  context.goodStars = renderStarsHtml(this.goodStars, 'good-star', useFullNames);
-  context.badStars = renderStarsHtml(this.badStars, 'bad-star', useFullNames);
+  context.goodStars = renderStarsHtml(this.goodStars, 'good-star', useFullNames, false);
+  context.badStars = renderStarsHtml(this.badStars, 'bad-star', useFullNames, false);
   var template = Handlebars.compile(templateSource);
   var palaceHtml = template(context);
 
