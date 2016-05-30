@@ -82,7 +82,7 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
   branches.forEach((branch) => {
     table[branch] = {
       'name': palaces[branch],
-      'isBody': (branch == bodyPosition),
+      'isBody': (branch === bodyPosition),
       'mainStars': forteenMainStars[branch] || [],
       'trangSinhConstellation': trangSinhConstellation[branch],
       'goodStars': [],

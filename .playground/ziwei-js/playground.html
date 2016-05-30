@@ -76,25 +76,14 @@
 
       palaceSource = $("#palace-template").html();
       tableSource = $("#result-template").html();
-      template = Handlebars.compile(tableSource);
-      renderedPalaces = {};
 
-      resultTable.palaces.forEach((position, palace) => {
-        renderedPalaces[position] = palace.renderHtml(palaceSource);
-      });
-
-      context = {
-        renderedPalaces: renderedPalaces,
-        centerInfo: "This is a center info!"
-      }
-
-      tableHtml = template(context);
+      tableHtml = resultTable.renderHtml(tableSource, palaceSource);
       $("body").append(tableHtml);
     });
   </script>
 </head>
 <body id="body">
-  <canvas id="canvas" width="1138px" height="640px"></canvas>
+  <!-- <canvas id="canvas" width="1138px" height="640px"></canvas> -->
   <script id="result-template" type="text/x-handlebars-template">
     <table class="result-table" border="1">
       <tr>
@@ -105,7 +94,7 @@
       </tr>
       <tr>
         <td>{{{ renderedPalaces.thin }}}</td>
-        <td rowspan="2" colspan="2" id="center-info"></td>
+        <td rowspan="2" colspan="2" id="center-info">{{ centerInfo }}</td>
         <td>{{{ renderedPalaces.dau }}}</td>
       </tr>
       <tr>
