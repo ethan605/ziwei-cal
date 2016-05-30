@@ -45,4 +45,11 @@ _Ziwei_Models_ResultPalace = class {
       opportunityAge: _self.opportunityAge
     };
   };
+
+  renderHtml(template, useFullNames = true) {
+    var context = useFullNames ? this.getFullNames() : this.getShortNames();
+    var palaceHtml = template(context);
+
+    return palaceHtml;
+  };
 };

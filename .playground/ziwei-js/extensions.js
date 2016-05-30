@@ -134,7 +134,7 @@ Object.prototype.mapKeyValues = function(callback) {
   return Object.keys(_self).map((key) => callback(key, _self[key]));
 };
 
-Object.prototype.find = function(callback) {
+Object.prototype.findKeyValues = function(callback) {
   var _self = this;
   var results = {};
   Object.keys(_self).find((key) => {
