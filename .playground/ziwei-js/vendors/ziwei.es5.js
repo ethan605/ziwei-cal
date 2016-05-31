@@ -989,7 +989,7 @@ var Ziwei = (function () {
       _classCallCheck(this, _Ziwei_Models_Profile);
 
       this.key = args['key'] || "keyname";
-      this.name = args['name'] || "Họ Và Tên";
+      this.name = args['name'] || "<N/A>";
 
       this.gender = args['gender'];
       if (Ziwei.Configs.Genders.Names[this.gender] === undefined) this.gender = 'male';
@@ -1140,15 +1140,15 @@ var Ziwei = (function () {
     return _Ziwei_Models_ResultTable;
   })();
   var _Ziwei_Calculator = function _Ziwei_Calculator() {
-    this.profiles = prepareProfilesData();
+    this.profiles = presetProfilesData();
 
-    function prepareProfilesData() {
-      var raw_data = [['anhctv', 'Chu Thị Vân Anh', 'Nữ', 'Mão', '14', 'Dần', 'Bính', 'Dần'], ['chind', 'Nguyễn Diệp Chi', 'Nữ', 'Mão', '23', 'Tỵ', 'Giáp', 'Ngọ'], ['dangnh', 'Nguyễn Hải Đăng', 'Nam', 'Thân', '1', 'Hợi', 'Tân', 'Mùi'], ['ducnm', 'Nguyễn Minh Đức', 'Nam', 'Mão', '15', 'Hợi', 'Mậu', 'Tý'], ['gianghh', 'Hà Hương Giang', 'Nữ', 'Dần', '7', 'Thìn', 'Tân', 'Mùi'], ['hoactq', 'Chu Thị Quỳnh Hoa', 'Nữ', 'Dần', '28', 'Thân', 'Tân', 'Mùi'], ['huonghh', 'Hàn Huyền Hương', 'Nữ', 'Tỵ', '20', 'Dần', 'Tân', 'Mùi'], ['huyennth', 'Nguyễn Thị Thu Huyền', 'Nữ', 'Tỵ', '5', 'Thìn', 'Giáp', 'Tý'], ['khoin', 'Nguyễn Khôi', 'Nam', 'Mùi', '2', 'Thìn', 'Tân', 'Mùi'], ['nam_1', 'Nam 1', 'Nam', 'Mão', '16', 'Ngọ', 'Quý', 'Dậu'], ['nam_2', 'Nam 2', 'Nam', 'Dần', '29', 'Tý', 'Kỷ', 'Mùi'], ['ngocpb', 'Phùng Bá Ngọc', 'Nam', 'Tý', '22', 'Sửu', 'Nhâm', 'Thân'], ['nu_1', 'Nữ 1', 'Nữ', 'Hợi', '10', 'Hợi', 'Giáp', 'Thìn'], ['nu_2', 'Nữ 2', 'Nữ', 'Mão', '3', 'Tuất', 'Canh', 'Ngọ'], ['nu_3', 'Nữ 3', 'Nữ', 'Dần', '24', 'Mùi', 'Đinh', 'Mão'], ['nu_4', 'Nữ 4', 'Nữ', 'Sửu', '29', 'Dần', 'Đinh', 'Sửu'], ['nu_5', 'Nữ 5', 'Nữ', 'Mùi', '14', 'Dậu', 'Quý', 'Dậu'], ['nu_6', 'Nữ 6', 'Nữ', 'Mão', '26', 'Ngọ', 'Tân', 'Hợi'], ['oanhntm', 'Nguyễn Thị Mai Oanh', 'Nữ', 'Tỵ', '14', 'Sửu', 'Giáp', 'Dần'], ['thanhnx', 'Nguyễn Xuân Thành', 'Nam', 'Tỵ', '22', 'Thìn', 'Tân', 'Mùi'], ['trungnt', 'Trung NT', 'Nam', 'Tý', '10', 'Ngọ', 'Nhâm', 'Tý'], ['trungnt2', 'Nguyễn Thành Trung', 'Nam', 'Hợi', '19', 'Dậu', 'Nhâm', 'Tuất'], ['trungpt', 'Phùng Thành Trung', 'Nam', 'Tý', '21', 'Mùi', 'Quý', 'Dậu'], ['tuanpm', 'Tuấn PM', 'Nam', 'Thân', '28', 'Thân', 'Ất', 'Mão'], ['yenbth', 'Bùi Thị Hải Yến', 'Nữ', 'Tuất', '12', 'Ngọ', 'Đinh', 'Mão']];
+    function presetProfilesData() {
+      var rawData = [['anhctv', 'Chu Thị Vân Anh', 'Nữ', 'Mão', '14', 'Dần', 'Bính', 'Dần'], ['chind', 'Nguyễn Diệp Chi', 'Nữ', 'Mão', '23', 'Tỵ', 'Giáp', 'Ngọ'], ['dangnh', 'Nguyễn Hải Đăng', 'Nam', 'Thân', '1', 'Hợi', 'Tân', 'Mùi'], ['ducnm', 'Nguyễn Minh Đức', 'Nam', 'Mão', '15', 'Hợi', 'Mậu', 'Tý'], ['gianghh', 'Hà Hương Giang', 'Nữ', 'Dần', '7', 'Thìn', 'Tân', 'Mùi'], ['hoactq', 'Chu Thị Quỳnh Hoa', 'Nữ', 'Dần', '28', 'Thân', 'Tân', 'Mùi'], ['huonghh', 'Hàn Huyền Hương', 'Nữ', 'Tỵ', '20', 'Dần', 'Tân', 'Mùi'], ['huyennth', 'Nguyễn Thị Thu Huyền', 'Nữ', 'Tỵ', '5', 'Thìn', 'Giáp', 'Tý'], ['khoin', 'Nguyễn Khôi', 'Nam', 'Mùi', '2', 'Thìn', 'Tân', 'Mùi'], ['nam_1', 'Nam 1', 'Nam', 'Mão', '16', 'Ngọ', 'Quý', 'Dậu'], ['nam_2', 'Nam 2', 'Nam', 'Dần', '29', 'Tý', 'Kỷ', 'Mùi'], ['ngocpb', 'Phùng Bá Ngọc', 'Nam', 'Tý', '22', 'Sửu', 'Nhâm', 'Thân'], ['nu_1', 'Nữ 1', 'Nữ', 'Hợi', '10', 'Hợi', 'Giáp', 'Thìn'], ['nu_2', 'Nữ 2', 'Nữ', 'Mão', '3', 'Tuất', 'Canh', 'Ngọ'], ['nu_3', 'Nữ 3', 'Nữ', 'Dần', '24', 'Mùi', 'Đinh', 'Mão'], ['nu_4', 'Nữ 4', 'Nữ', 'Sửu', '29', 'Dần', 'Đinh', 'Sửu'], ['nu_5', 'Nữ 5', 'Nữ', 'Mùi', '14', 'Dậu', 'Quý', 'Dậu'], ['nu_6', 'Nữ 6', 'Nữ', 'Mão', '26', 'Ngọ', 'Tân', 'Hợi'], ['oanhntm', 'Nguyễn Thị Mai Oanh', 'Nữ', 'Tỵ', '14', 'Sửu', 'Giáp', 'Dần'], ['thanhnx', 'Nguyễn Xuân Thành', 'Nam', 'Tỵ', '22', 'Thìn', 'Tân', 'Mùi'], ['trungnt', 'Trung NT', 'Nam', 'Tý', '10', 'Ngọ', 'Nhâm', 'Tý'], ['trungnt2', 'Nguyễn Thành Trung', 'Nam', 'Hợi', '19', 'Dậu', 'Nhâm', 'Tuất'], ['trungpt', 'Phùng Thành Trung', 'Nam', 'Tý', '21', 'Mùi', 'Quý', 'Dậu'], ['tuanpm', 'Tuấn PM', 'Nam', 'Thân', '28', 'Thân', 'Ất', 'Mão'], ['yenbth', 'Bùi Thị Hải Yến', 'Nữ', 'Tuất', '12', 'Ngọ', 'Đinh', 'Mão']];
 
       var profiles = {};
 
-      raw_data.forEach(function (arr) {
-        var profile_data = {
+      rawData.forEach(function (arr) {
+        var profileData = {
           key: arr[0],
           name: arr[1],
           gender: Ziwei.Configs.Genders.Converts[arr[2]],
@@ -1161,19 +1161,17 @@ var Ziwei = (function () {
           }
         };
 
-        profiles[arr[0]] = new Ziwei.Models.Profile(profile_data);
+        profiles[arr[0]] = new Ziwei.Models.Profile(profileData);
       });
 
       return profiles;
     }
   };
 
-  _Ziwei_Calculator.prototype.calcResultTable = function () {
+  _Ziwei_Calculator.prototype.calcResultTable = function (profile) {
     var _this = this;
 
-    var _profile = this.currentProfile;
-
-    var _calcSelfBodyPosition = this.calcSelfBodyPosition(_profile.birthHour, _profile.birthMonth);
+    var _calcSelfBodyPosition = this.calcSelfBodyPosition(profile.birthHour, profile.birthMonth);
 
     var _calcSelfBodyPosition2 = _slicedToArray(_calcSelfBodyPosition, 2);
 
@@ -1182,32 +1180,32 @@ var Ziwei = (function () {
 
     var palaces = this.calcPalacesPositions(selfPosition);
 
-    var _calcCuc = this.calcCuc(selfPosition, _profile.birthYear.stem);
+    var _calcCuc = this.calcCuc(selfPosition, profile.birthYear.stem);
 
     var _calcCuc2 = _slicedToArray(_calcCuc, 2);
 
     var cucElement = _calcCuc2[0];
     var cucNumber = _calcCuc2[1];
 
-    _profile.updateCuc(cucElement, cucNumber);
+    profile.updateCuc(cucElement, cucNumber);
 
-    var forteenMainStars = this.calcForteenMainStars(cucElement, cucNumber, _profile.birthDay);
-    var otherImportantStars = this.calcOtherImportantStars(_profile.birthYear.stem, _profile.birthYear.branch);
+    var forteenMainStars = this.calcForteenMainStars(cucElement, cucNumber, profile.birthDay);
+    var otherImportantStars = this.calcOtherImportantStars(profile.birthYear.stem, profile.birthYear.branch);
     var locTonPosition = otherImportantStars.findKey(function (position, stars) {
       return stars.includes('loc_ton');
     });
 
-    var opportunityAges = this.calcOpportunityAges(selfPosition, cucNumber, _profile.fateDirection);
+    var opportunityAges = this.calcOpportunityAges(selfPosition, cucNumber, profile.fateDirection);
 
-    var thaiTueConstellation = this.calcThaiTueConstellation(_profile.birthYear.branch);
-    var trangSinhConstellation = this.calcTrangSinhConstellation(cucNumber, _profile.fateDirection);
-    var locTonConstellation = this.calcLocTonConstellation(locTonPosition, _profile.fateDirection);
+    var thaiTueConstellation = this.calcThaiTueConstellation(profile.birthYear.branch);
+    var trangSinhConstellation = this.calcTrangSinhConstellation(cucNumber, profile.fateDirection);
+    var locTonConstellation = this.calcLocTonConstellation(locTonPosition, profile.fateDirection);
 
-    var sixDeadlyStars = this.calcSixDeadlyStars(_profile.birthHour, locTonPosition, _profile.birthYear.branch);
-    var sixLuckyStars = this.calcSixLuckyStars(_profile.birthMonth, _profile.birthHour);
+    var sixDeadlyStars = this.calcSixDeadlyStars(profile.birthHour, locTonPosition, profile.birthYear.branch);
+    var sixLuckyStars = this.calcSixLuckyStars(profile.birthMonth, profile.birthHour);
 
-    var normalStars = this.calcNormalStars(_profile.birthMonth, _profile.birthYear.branch);
-    var fourTransformationStars = this.calcFourTransformationStars(_profile.birthYear.stem, forteenMainStars, sixLuckyStars);
+    var normalStars = this.calcNormalStars(profile.birthMonth, profile.birthYear.branch);
+    var fourTransformationStars = this.calcFourTransformationStars(profile.birthYear.stem, forteenMainStars, sixLuckyStars);
 
     var branches = Ziwei.Configs.Branches.Names.allKeys();
     var table = {};
@@ -1247,7 +1245,7 @@ var Ziwei = (function () {
     });
 
     var resultTable = new Ziwei.Models.ResultTable({
-      'profile': _profile,
+      'profile': profile,
       'palaces': table,
       'tuanCoordinate': this.calcTuanCoordinate(),
       'trietCoordinate': this.calcTrietCoordinate(),
@@ -1257,17 +1255,24 @@ var Ziwei = (function () {
     return resultTable;
   };
 
-  _Ziwei_Calculator.prototype.calculateProfile = function () {
+  _Ziwei_Calculator.prototype.calculatePresetProfile = function () {
     var profileKey = arguments.length <= 0 || arguments[0] === undefined ? 'thanhnx' : arguments[0];
 
-    this.currentProfile = this.profiles[profileKey];
+    var profile = this.profiles[profileKey];
 
-    if (this.currentProfile === undefined) {
+    if (profile === undefined) {
       throw "Invalid profile key";
       return;
     }
 
-    return this.calcResultTable();
+    return this.calcResultTable(profile);
+  };
+
+  _Ziwei_Calculator.prototype.calculateUserInputProfile = function () {
+    var args = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    var profile = new Ziwei.Models.Profile(args);
+    return this.calcResultTable(profile);
   };
   _Ziwei_Calculator.prototype.calcSelfBodyPosition = function (birthHour, birthMonth) {
     var hourIndex = Ziwei.Configs.Branches.Indexes[birthHour];

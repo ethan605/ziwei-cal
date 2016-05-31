@@ -1,8 +1,8 @@
 _Ziwei_Calculator = function() {
-  this.profiles = prepareProfilesData();
+  this.profiles = presetProfilesData();
 
-  function prepareProfilesData() {
-    var raw_data = [
+  function presetProfilesData() {
+    var rawData = [
       ['anhctv', 'Chu Thị Vân Anh', 'Nữ', 'Mão', '14', 'Dần', 'Bính', 'Dần'],
       ['chind', 'Nguyễn Diệp Chi', 'Nữ', 'Mão', '23', 'Tỵ', 'Giáp', 'Ngọ'],
       ['dangnh', 'Nguyễn Hải Đăng', 'Nam', 'Thân', '1', 'Hợi', 'Tân', 'Mùi'],
@@ -32,8 +32,8 @@ _Ziwei_Calculator = function() {
 
     var profiles = {};
 
-    raw_data.forEach((arr) => {
-      var profile_data = {
+    rawData.forEach((arr) => {
+      var profileData = {
         key: arr[0],
         name: arr[1],
         gender: Ziwei.Configs.Genders.Converts[arr[2]],
@@ -46,35 +46,34 @@ _Ziwei_Calculator = function() {
         }
       };
 
-      profiles[arr[0]] = new Ziwei.Models.Profile(profile_data);
+      profiles[arr[0]] = new Ziwei.Models.Profile(profileData);
     });
 
     return profiles;
   }
 };
 
-_Ziwei_Calculator.prototype.calcResultTable = function() {
-  var _profile = this.currentProfile;
-  var [selfPosition, bodyPosition] = this.calcSelfBodyPosition(_profile.birthHour, _profile.birthMonth);
+_Ziwei_Calculator.prototype.calcResultTable = function(profile) {
+  var [selfPosition, bodyPosition] = this.calcSelfBodyPosition(profile.birthHour, profile.birthMonth);
   var palaces = this.calcPalacesPositions(selfPosition);
-  var [cucElement, cucNumber] = this.calcCuc(selfPosition, _profile.birthYear.stem);
-  _profile.updateCuc(cucElement, cucNumber);
+  var [cucElement, cucNumber] = this.calcCuc(selfPosition, profile.birthYear.stem);
+  profile.updateCuc(cucElement, cucNumber);
 
-  var forteenMainStars = this.calcForteenMainStars(cucElement, cucNumber, _profile.birthDay);
-  var otherImportantStars = this.calcOtherImportantStars(_profile.birthYear.stem, _profile.birthYear.branch);
+  var forteenMainStars = this.calcForteenMainStars(cucElement, cucNumber, profile.birthDay);
+  var otherImportantStars = this.calcOtherImportantStars(profile.birthYear.stem, profile.birthYear.branch);
   var locTonPosition = otherImportantStars.findKey((position, stars) => stars.includes('loc_ton'));
 
-  var opportunityAges = this.calcOpportunityAges(selfPosition, cucNumber, _profile.fateDirection);
+  var opportunityAges = this.calcOpportunityAges(selfPosition, cucNumber, profile.fateDirection);
 
-  var thaiTueConstellation = this.calcThaiTueConstellation(_profile.birthYear.branch);
-  var trangSinhConstellation = this.calcTrangSinhConstellation(cucNumber, _profile.fateDirection);
-  var locTonConstellation = this.calcLocTonConstellation(locTonPosition, _profile.fateDirection);
+  var thaiTueConstellation = this.calcThaiTueConstellation(profile.birthYear.branch);
+  var trangSinhConstellation = this.calcTrangSinhConstellation(cucNumber, profile.fateDirection);
+  var locTonConstellation = this.calcLocTonConstellation(locTonPosition, profile.fateDirection);
 
-  var sixDeadlyStars = this.calcSixDeadlyStars(_profile.birthHour, locTonPosition, _profile.birthYear.branch);
-  var sixLuckyStars = this.calcSixLuckyStars(_profile.birthMonth, _profile.birthHour);
+  var sixDeadlyStars = this.calcSixDeadlyStars(profile.birthHour, locTonPosition, profile.birthYear.branch);
+  var sixLuckyStars = this.calcSixLuckyStars(profile.birthMonth, profile.birthHour);
 
-  var normalStars = this.calcNormalStars(_profile.birthMonth, _profile.birthYear.branch);
-  var fourTransformationStars = this.calcFourTransformationStars(_profile.birthYear.stem, forteenMainStars, sixLuckyStars);
+  var normalStars = this.calcNormalStars(profile.birthMonth, profile.birthYear.branch);
+  var fourTransformationStars = this.calcFourTransformationStars(profile.birthYear.stem, forteenMainStars, sixLuckyStars);
 
   var branches = Ziwei.Configs.Branches.Names.allKeys();
   var table = {};
@@ -114,7 +113,7 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
   });
 
   var resultTable = new Ziwei.Models.ResultTable({
-    'profile': _profile,
+    'profile': profile,
     'palaces': table,
     'tuanCoordinate': this.calcTuanCoordinate(),
     'trietCoordinate': this.calcTrietCoordinate(),
@@ -124,13 +123,18 @@ _Ziwei_Calculator.prototype.calcResultTable = function() {
   return resultTable;
 };
 
-_Ziwei_Calculator.prototype.calculateProfile = function(profileKey = 'thanhnx') {
-  this.currentProfile = this.profiles[profileKey];
+_Ziwei_Calculator.prototype.calculatePresetProfile = function(profileKey = 'thanhnx') {
+  var profile = this.profiles[profileKey];
 
-  if (this.currentProfile === undefined) {
+  if (profile === undefined) {
     throw "Invalid profile key";
     return;
   }
 
-  return this.calcResultTable();
+  return this.calcResultTable(profile);
+};
+
+_Ziwei_Calculator.prototype.calculateUserInputProfile = function(args = {}) {
+  var profile = new Ziwei.Models.Profile(args);
+  return this.calcResultTable(profile);
 };
