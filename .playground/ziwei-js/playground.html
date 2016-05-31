@@ -156,8 +156,10 @@
 
     $(document).ready(() => {
       var calculator = new Ziwei.Calculator();
-      var resultTable = calculator.calculatePresetProfile();
-      Ziwei.Calculator.renderHtml(resultTable);
+
+      // For test only
+      // var resultTable = calculator.calculatePresetProfile();
+      // Ziwei.Calculator.renderHtml(resultTable);
 
       setupDropdownValues();
       setupCalcButtonHandler(calculator);
