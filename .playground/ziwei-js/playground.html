@@ -145,6 +145,11 @@
       setupDropdownValues();
       setupCalcButtonHandler(calculator);
       setupTestButtonHandler(calculator);
+
+      $('#test-mode-checkbox').click(function() {
+        $('#main-controls').hidden = this.checked;
+        $('#test-controls').hidden = !this.checked;
+      });
     });
   </script>
 </head>
@@ -225,7 +230,7 @@
     </div>
   </script>
   <div id="controls">
-    <div style="padding-bottom: 10px;">
+    <div id="main-controls" style="padding-bottom: 10px;">
       Tên: <input id="profileName" type="text" placeholder="Họ và tên">
       <select id="gender">
         <option value='nam'>Nam</option>
@@ -237,10 +242,11 @@
       Năm: <select id="birthYearStem"></select><select id="birthYearBranch"></select>
       <button id="calcButton" type="button">Lập số</button>
     </div>
-    <div>
+    <div id="test-controls" style="display: none;">
       Test: <select id="presetProfile"></select>
       <button id="testButton" type="button">Test</button>
     </div>
+    <div><input id="test-mode-checkbox" type="checkbox" value="test">Test mode<br></div>
   </div>
   <div id="result-display"></div>
 </body>
