@@ -90,17 +90,14 @@ _Ziwei_Models_Profile.prototype.renderHtml = function(centerInfoSource) {
   return centerInfoHtml;
 };
 
-_Ziwei_Calculator.renderHtml = function() {
-  var calculator = new Ziwei.Calculator();
-  var resultTable = calculator.calculateProfile();
-
+_Ziwei_Calculator.renderHtml = function(resultTable) {
   var palaceSource = $("#palace-template").html();
   var tableSource = $("#result-template").html();
   var centerInfoSource = $("#center-info-template").html();
 
   // Insert table HTML
   var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
-  $("body").append(tableHtml);
+  $("div#result-display").replaceWith(tableHtml);
 
   // Draw connected lines
   resultTable.drawConnectedLines('canvas');

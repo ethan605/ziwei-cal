@@ -72,8 +72,8 @@ Array.prototype.convertLineOriginCoordinateToPos = function() {
   var [xCoord, yCoord] = this;
   
   return {
-    left: 164*xCoord,
-    top: 284*yCoord
+    left: 284*xCoord,
+    top: 164*yCoord
   };
 };
 
@@ -86,8 +86,8 @@ Array.prototype.drawLineTo = function(toCoord, canvasId, color = 'black') {
   var fromPos = this.convertLineOriginCoordinateToPos();
   var toPos = toCoord.convertLineOriginCoordinateToPos();
 
-  context.moveTo(fromPos.top, fromPos.left);
-  context.lineTo(toPos.top, toPos.left);
+  context.moveTo(fromPos.left, fromPos.top);
+  context.lineTo(toPos.left, toPos.top);
   context.lineWidth = 1;
 
   context.strokeStyle = color;

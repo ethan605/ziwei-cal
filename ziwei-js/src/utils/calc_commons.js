@@ -50,8 +50,8 @@ _Ziwei_Calculator.prototype.calcConnectedPalaceCoordinates = function(selfPositi
 
   var trilogyElement = Ziwei.Configs.BranchSets.Trilogy.ByBranches[selfPosition];
   var sameSetPositions = Ziwei.Configs.BranchSets.Trilogy.ByElements[trilogyElement].slice();
-  var selfPositionIndex = selfPosition.indexOf(selfPosition);
-  sameSetPositions = sameSetPositions.filter((x, i) => i !== selfPositionIndex);
+  var selfPositionIndex = sameSetPositions.indexOf(selfPosition);
+  sameSetPositions.splice(selfPositionIndex, 1); // Remove selfPosition element
 
   var sameSetCoordinates = sameSetPositions.map((position) =>
     Ziwei.Configs.Palaces.DrawingRootCoordinates[position]

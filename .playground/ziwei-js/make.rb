@@ -78,21 +78,16 @@ def clean_up_and_make_copy
   `rm -rf #{dst_dir}/ziwei-js`
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js")
   `cp #{Constants::MINIFIED_FILE_NAME} #{dst_dir}/ziwei-js/`
+  `cp ziwei.html #{dst_dir}/ziwei-js/`
 
   `mv #{Constants::ES6_FILE_NAME} #{Constants::ES5_FILE_NAME} vendors`
   `mv #{Constants::MINIFIED_FILE_NAME} vendors`
 
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js/src")
   `cp ziwei.js #{dst_dir}/ziwei-js/src/`
-  %w[configs models utils].each {|dir| `cp -r #{dir} #{dst_dir}/ziwei-js/src/`}
+  %w[configs models utils views].each {|dir| `cp -r #{dir} #{dst_dir}/ziwei-js/src/`}
 end
 
 join_js_files
 convert_and_minify
 clean_up_and_make_copy
-
-# calc = new Ziwei.Calculator();
-# rt = calc.calculateProfile();
-# p = rt.palaces.find((p) => p.position === 'than');
-# p.getFullNames();
-# p.getShortNames();

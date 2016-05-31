@@ -94,8 +94,8 @@ var Ziwei = (function () {
     var yCoord = _ref2[1];
 
     return {
-      left: 164 * xCoord,
-      top: 284 * yCoord
+      left: 284 * xCoord,
+      top: 164 * yCoord
     };
   };
 
@@ -110,8 +110,8 @@ var Ziwei = (function () {
     var fromPos = this.convertLineOriginCoordinateToPos();
     var toPos = toCoord.convertLineOriginCoordinateToPos();
 
-    context.moveTo(fromPos.top, fromPos.left);
-    context.lineTo(toPos.top, toPos.left);
+    context.moveTo(fromPos.left, fromPos.top);
+    context.lineTo(toPos.left, toPos.top);
     context.lineWidth = 1;
 
     context.strokeStyle = color;
@@ -1320,10 +1320,8 @@ var Ziwei = (function () {
 
     var trilogyElement = Ziwei.Configs.BranchSets.Trilogy.ByBranches[selfPosition];
     var sameSetPositions = Ziwei.Configs.BranchSets.Trilogy.ByElements[trilogyElement].slice();
-    var selfPositionIndex = selfPosition.indexOf(selfPosition);
-    sameSetPositions = sameSetPositions.filter(function (x, i) {
-      return i !== selfPositionIndex;
-    });
+    var selfPositionIndex = sameSetPositions.indexOf(selfPosition);
+    sameSetPositions.splice(selfPositionIndex, 1); // Remove selfPosition element
 
     var sameSetCoordinates = sameSetPositions.map(function (position) {
       return Ziwei.Configs.Palaces.DrawingRootCoordinates[position];
@@ -1877,17 +1875,14 @@ var Ziwei = (function () {
     return centerInfoHtml;
   };
 
-  _Ziwei_Calculator.renderHtml = function () {
-    var calculator = new Ziwei.Calculator();
-    var resultTable = calculator.calculateProfile();
-
+  _Ziwei_Calculator.renderHtml = function (resultTable) {
     var palaceSource = $("#palace-template").html();
     var tableSource = $("#result-template").html();
     var centerInfoSource = $("#center-info-template").html();
 
     // Insert table HTML
     var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
-    $("body").append(tableHtml);
+    $("div#result-display").replaceWith(tableHtml);
 
     // Draw connected lines
     resultTable.drawConnectedLines('canvas');

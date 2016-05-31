@@ -74,8 +74,8 @@ Array.prototype.convertLineOriginCoordinateToPos = function() {
   var [xCoord, yCoord] = this;
   
   return {
-    left: 164*xCoord,
-    top: 284*yCoord
+    left: 284*xCoord,
+    top: 164*yCoord
   };
 };
 
@@ -88,8 +88,8 @@ Array.prototype.drawLineTo = function(toCoord, canvasId, color = 'black') {
   var fromPos = this.convertLineOriginCoordinateToPos();
   var toPos = toCoord.convertLineOriginCoordinateToPos();
 
-  context.moveTo(fromPos.top, fromPos.left);
-  context.lineTo(toPos.top, toPos.left);
+  context.moveTo(fromPos.left, fromPos.top);
+  context.lineTo(toPos.left, toPos.top);
   context.lineWidth = 1;
 
   context.strokeStyle = color;
@@ -1267,8 +1267,8 @@ _Ziwei_Calculator.prototype.calcConnectedPalaceCoordinates = function(selfPositi
 
   var trilogyElement = Ziwei.Configs.BranchSets.Trilogy.ByBranches[selfPosition];
   var sameSetPositions = Ziwei.Configs.BranchSets.Trilogy.ByElements[trilogyElement].slice();
-  var selfPositionIndex = selfPosition.indexOf(selfPosition);
-  sameSetPositions = sameSetPositions.filter((x, i) => i !== selfPositionIndex);
+  var selfPositionIndex = sameSetPositions.indexOf(selfPosition);
+  sameSetPositions.splice(selfPositionIndex, 1); // Remove selfPosition element
 
   var sameSetCoordinates = sameSetPositions.map((position) =>
     Ziwei.Configs.Palaces.DrawingRootCoordinates[position]
@@ -1813,17 +1813,14 @@ _Ziwei_Models_Profile.prototype.renderHtml = function(centerInfoSource) {
   return centerInfoHtml;
 };
 
-_Ziwei_Calculator.renderHtml = function() {
-  var calculator = new Ziwei.Calculator();
-  var resultTable = calculator.calculateProfile();
-
+_Ziwei_Calculator.renderHtml = function(resultTable) {
   var palaceSource = $("#palace-template").html();
   var tableSource = $("#result-template").html();
   var centerInfoSource = $("#center-info-template").html();
 
   // Insert table HTML
   var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
-  $("body").append(tableHtml);
+  $("div#result-display").replaceWith(tableHtml);
 
   // Draw connected lines
   resultTable.drawConnectedLines('canvas');
