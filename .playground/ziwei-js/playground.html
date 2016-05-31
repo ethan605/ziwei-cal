@@ -89,7 +89,7 @@
         '<option value="' + branch + '">' + branchNames[branch] + ' (' + (index+1).limitInc(-2) + ')</value>'
       );
 
-      var lunarMonths = $.merge(lunarMonths.slice(2, lunarMonths.length), lunarMonths.slice(0, 1)).join("\n");
+      var lunarMonths = $.merge(lunarMonths.slice(2, lunarMonths.length), lunarMonths.slice(0, 2)).join("\n");
       $('#birthMonth').append(lunarMonths);
 
       // Birth year stem: Giap - At - Binh - Dinh - Mau - Ky - Canh - Tan - Nham - Quy
@@ -128,13 +128,14 @@
     };
 
     function setupTestButtonHandler(calculator) {
-      var profileOptions = calculator.profiles.map((key, profile) =>
+      var profileOptions = calculator.profiles.mapKeyValues((key, profile) =>
         '<option value="' + key + '">' + profile.name + '</value>'
       ).join("\n");
       $('#presetProfile').append(profileOptions);
 
       $('#testButton').click(() => {
-        var profileKey = $("presetProfile").val();
+        var profileKey = $("#presetProfile").val();
+        console.log(profileKey);
         resultTable = calculator.calculatePresetProfile(profileKey);
         Ziwei.Calculator.renderHtml(resultTable);
       });
@@ -147,8 +148,8 @@
       setupTestButtonHandler(calculator);
 
       $('#test-mode-checkbox').click(function() {
-        $('#main-controls').hidden = this.checked;
-        $('#test-controls').hidden = !this.checked;
+        $('#main-controls')[0].hidden = this.checked;
+        $('#test-controls')[0].hidden = !this.checked;
       });
     });
   </script>
@@ -229,24 +230,34 @@
       </span>
     </div>
   </script>
-  <div id="controls">
-    <div id="main-controls" style="padding-bottom: 10px;">
-      Tên: <input id="profileName" type="text" placeholder="Họ và tên">
-      <select id="gender">
-        <option value='nam'>Nam</option>
-        <option value='nu'>Nữ</option>
-      </select>
-      Giờ: <select id="birthHour"></select>
-      Ngày: <select id="birthDay"></select>
-      Tháng: <select id="birthMonth"></select>
-      Năm: <select id="birthYearStem"></select><select id="birthYearBranch"></select>
-      <button id="calcButton" type="button">Lập số</button>
-    </div>
-    <div id="test-controls" style="display: none;">
-      Test: <select id="presetProfile"></select>
-      <button id="testButton" type="button">Test</button>
-    </div>
-    <div><input id="test-mode-checkbox" type="checkbox" value="test">Test mode<br></div>
+  <div id="controls" style="padding-bottom: 10px;">
+    <table>
+      <tr>
+        <td>
+          <div id="test-mode"><input id="test-mode-checkbox" type="checkbox" />Test mode</div>
+        </td>
+        <td>
+          <div id="main-controls">
+            Tên: <input id="profileName" type="text" placeholder="Họ và tên">
+            <select id="gender">
+              <option value='nam'>Nam</option>
+              <option value='nu'>Nữ</option>
+            </select>
+            Giờ: <select id="birthHour"></select>
+            Ngày: <select id="birthDay"></select>
+            Tháng: <select id="birthMonth"></select>
+            Năm: <select id="birthYearStem"></select><select id="birthYearBranch"></select>
+            <button id="calcButton" type="button">Lập số</button>
+          </div>
+        </td>
+        <td>
+          <div id="test-controls" hidden>
+            Test: <select id="presetProfile"></select>
+            <button id="testButton" type="button">Test</button>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
   <div id="result-display"></div>
 </body>
