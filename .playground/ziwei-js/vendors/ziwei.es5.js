@@ -1883,6 +1883,7 @@ var Ziwei = (function () {
     // Insert table HTML
     var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
     $("div#result-display").replaceWith(tableHtml);
+    document.title = resultTable.profile.name + " - Ziwei Calculator in JS";
 
     // Draw connected lines
     resultTable.drawConnectedLines('canvas');

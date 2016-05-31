@@ -1821,6 +1821,7 @@ _Ziwei_Calculator.renderHtml = function(resultTable) {
   // Insert table HTML
   var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
   $("div#result-display").replaceWith(tableHtml);
+  document.title = resultTable.profile.name + " - Ziwei Calculator in JS"
 
   // Draw connected lines
   resultTable.drawConnectedLines('canvas');

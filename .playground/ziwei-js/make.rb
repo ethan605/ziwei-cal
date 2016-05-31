@@ -78,10 +78,9 @@ def clean_up_and_make_copy
   `rm -rf #{dst_dir}/ziwei-js`
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js")
 
-  FileUtils::mkdir_p("#{dst_dir}/ziwei-js/html")
-  `cp #{Constants::MINIFIED_FILE_NAME} #{dst_dir}/ziwei-js/html`
-  `cp ziwei.html #{dst_dir}/ziwei-js/html`
-  `cp views/styles.css #{dst_dir}/ziwei-js/html/ziwei.css`
+  `cp #{Constants::MINIFIED_FILE_NAME} build/`
+  `cp views/styles.css build/ziwei.css`
+  `cp -r build #{dst_dir}/ziwei-js/html`
 
   `mv #{Constants::ES6_FILE_NAME} #{Constants::ES5_FILE_NAME} vendors`
   `mv #{Constants::MINIFIED_FILE_NAME} vendors`
