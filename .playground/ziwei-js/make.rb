@@ -79,7 +79,7 @@ def clean_up_and_make_copy
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js")
   `cp #{Constants::MINIFIED_FILE_NAME} #{dst_dir}/ziwei-js/`
 
-  `rm #{Constants::ES6_FILE_NAME} #{Constants::ES5_FILE_NAME}`
+  `mv #{Constants::ES6_FILE_NAME} #{Constants::ES5_FILE_NAME} vendors`
   `mv #{Constants::MINIFIED_FILE_NAME} vendors`
 
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js/src")

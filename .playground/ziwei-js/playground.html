@@ -29,7 +29,7 @@
     moO6ensvtFr2mFhFLtKCVOSu37w1E348f5OczZOhxTbzL+FXtFV64DG6AAAAAElFTkSuQmCC"
     rel="icon" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="views/styles.css">
-  <script type="text/javascript" src="configs/branch_sets.js"></script>
+  <!-- <script type="text/javascript" src="configs/branch_sets.js"></script>
   <script type="text/javascript" src="configs/branches.js"></script>
   <script type="text/javascript" src="configs/forteen_main_stars.js"></script>
   <script type="text/javascript" src="configs/four_transformation_stars.js"></script>
@@ -62,18 +62,17 @@
   <script type="text/javascript" src="utils/calc_tuan_triet.js"></script>
   <script type="text/javascript" src="utils/reuse_utils.js"></script>
   <script type="text/javascript" src="utils/views_generator.js"></script>
-  <script type="text/javascript" src="ziwei.js"></script>
+  <script type="text/javascript" src="ziwei.js"></script> -->
   <!-- <script type="text/javascript" src="vendors/ziwei.es6.js"></script> -->
   <!-- <script type="text/javascript" src="vendors/ziwei.es5.js"></script> -->
-  <!-- <script type="text/javascript" src="vendors/ziwei.min.js"></script> -->
+  <script type="text/javascript" src="vendors/ziwei.min.js"></script>
   <script type="text/javascript" src="vendors/jquery.min.js"></script>
   <script type="text/javascript" src="vendors/handlebars.min.js"></script>
   <script type="text/javascript">
     $(document).ready(() => Ziwei.Calculator.renderHtml());
   </script>
 </head>
-<body id="body">
-  <canvas id="canvas" width="1138px" height="640px"></canvas>
+<body>
   <script id="result-template" type="text/x-handlebars-template">
     <div class="tuan-triet" style="top: {{ tuanPos.top }}px; left: {{ tuanPos.left }}px;">
       <span>Tuần</span>
@@ -146,5 +145,6 @@
       </span>
     </div>
   </script>
+  <canvas id="canvas" width="1138px" height="640px"></canvas>
 </body>
 </html>

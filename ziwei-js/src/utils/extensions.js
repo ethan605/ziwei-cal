@@ -59,14 +59,39 @@ String.prototype.getPlaceQualityColorStyle = function() {
   return color === undefined ? "" : `color: ${color};`;
 };
 
-Array.prototype.convertCoordinateToAbsPos = function() {
-  var xCoord = this[0];
-  var yCoord = this[1];
+Array.prototype.convertPalaceCoordinateToPos = function() {
+  var [xCoord, yCoord] = this;
 
   return {
     left: (8 + 284*xCoord - 142 - 25),
     top: (8 + 164*yCoord - 10)
   };
+};
+
+Array.prototype.convertLineOriginCoordinateToPos = function() {
+  var [xCoord, yCoord] = this;
+  
+  return {
+    left: 164*xCoord,
+    top: 284*yCoord
+  };
+};
+
+Array.prototype.drawLineTo = function(toCoord, canvasId, color = 'black') {
+  var canvas = document.getElementById(canvasId);
+  var context = canvas.getContext("2d");
+
+  context.beginPath();
+  
+  var fromPos = this.convertLineOriginCoordinateToPos();
+  var toPos = toCoord.convertLineOriginCoordinateToPos();
+
+  context.moveTo(fromPos.top, fromPos.left);
+  context.lineTo(toPos.top, toPos.left);
+  context.lineWidth = 1;
+
+  context.strokeStyle = color;
+  context.stroke();
 };
 
 Array.prototype.transpose = function() {

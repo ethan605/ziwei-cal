@@ -1,13 +1,13 @@
 _Ziwei_Models_ResultPalace = class {
   constructor(configs = {}) {
-    this.position = configs['position'];
-    this.name = configs['name'];
-    this.isBody = configs['isBody'];
-    this.mainStars = configs['mainStars'];
-    this.goodStars = configs['goodStars'];
-    this.badStars = configs['badStars'];
-    this.trangSinhConstellation = configs['trangSinhConstellation'];
-    this.opportunityAge = configs['opportunityAge'];
+    this.position = configs.position;
+    this.name = configs.name;
+    this.isBody = configs.isBody;
+    this.mainStars = configs.mainStars;
+    this.goodStars = configs.goodStars;
+    this.badStars = configs.badStars;
+    this.trangSinhConstellation = configs.trangSinhConstellation;
+    this.opportunityAge = configs.opportunityAge;
   };
 
   getFullNames() {
@@ -16,7 +16,7 @@ _Ziwei_Models_ResultPalace = class {
     return {
       position: _self.position.getFullName('Branches'),
       name: _self.name.getFullName('Palaces'),
-      body: _self.is_body ? 'Thân' : '',
+      body: _self.isBody ? 'Thân' : '',
       mainStars: _self.mainStars.map(function(star) {
         var quality = Ziwei.Configs.ForteenMainStars.Places[star][_self.position];
         return star.getFullName('ForteenMainStars') + ` (${quality})`;
@@ -34,7 +34,7 @@ _Ziwei_Models_ResultPalace = class {
     return {
       position: _self.position.getFullName('Branches'),
       name: _self.name.getShortName('Palaces'),
-      body: _self.is_body ? 'Thân' : '',
+      body: _self.isBody ? 'Thân' : '',
       mainStars: _self.mainStars.map(function(star) {
         var quality = Ziwei.Configs.ForteenMainStars.Places[star][_self.position];
         return star.getShortName('ForteenMainStars') + ` (${quality})`;
