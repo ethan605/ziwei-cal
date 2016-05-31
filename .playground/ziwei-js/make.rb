@@ -77,8 +77,11 @@ def clean_up_and_make_copy
   dst_dir = "../.."
   `rm -rf #{dst_dir}/ziwei-js`
   FileUtils::mkdir_p("#{dst_dir}/ziwei-js")
-  `cp #{Constants::MINIFIED_FILE_NAME} #{dst_dir}/ziwei-js/`
-  `cp ziwei.html #{dst_dir}/ziwei-js/`
+
+  FileUtils::mkdir_p("#{dst_dir}/ziwei-js/html")
+  `cp #{Constants::MINIFIED_FILE_NAME} #{dst_dir}/ziwei-js/html`
+  `cp ziwei.html #{dst_dir}/ziwei-js/html`
+  `cp views/styles.css #{dst_dir}/ziwei-js/html/ziwei.css`
 
   `mv #{Constants::ES6_FILE_NAME} #{Constants::ES5_FILE_NAME} vendors`
   `mv #{Constants::MINIFIED_FILE_NAME} vendors`
