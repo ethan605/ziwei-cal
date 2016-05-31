@@ -61,32 +61,36 @@ String.prototype.getPlaceQualityColorStyle = function() {
   return color === undefined ? "" : `color: ${color};`;
 };
 
-Array.prototype.convertPalaceCoordinateToPos = function() {
+Array.prototype.convertPalaceCoordinateToPos = function(padding = {top: 8, left: 8}, useFullNames = true) {
   var [xCoord, yCoord] = this;
 
+  var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+
   return {
-    left: (8 + 284*xCoord - 142 - 25),
-    top: (8 + 164*yCoord - 10)
+    left: padding.left + (tableSize.width+4)*(xCoord - 0.5) - 25,
+    top: padding.top + (tableSize.height+4)*yCoord - 10
   };
 };
 
-Array.prototype.convertLineOriginCoordinateToPos = function() {
+Array.prototype.convertLineOriginCoordinateToPos = function(useFullNames = true) {
   var [xCoord, yCoord] = this;
+
+  var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
   
   return {
-    left: 284*xCoord,
-    top: 164*yCoord
+    left: (tableSize.width+4)*xCoord,
+    top: (tableSize.height+4)*yCoord
   };
 };
 
-Array.prototype.drawLineTo = function(toCoord, canvasId, color = 'black') {
+Array.prototype.drawLineTo = function(toCoord, canvasId, color = 'black', useFullNames = true) {
   var canvas = document.getElementById(canvasId);
   var context = canvas.getContext("2d");
 
   context.beginPath();
   
-  var fromPos = this.convertLineOriginCoordinateToPos();
-  var toPos = toCoord.convertLineOriginCoordinateToPos();
+  var fromPos = this.convertLineOriginCoordinateToPos(useFullNames);
+  var toPos = toCoord.convertLineOriginCoordinateToPos(useFullNames);
 
   context.moveTo(fromPos.left, fromPos.top);
   context.lineTo(toPos.left, toPos.top);
@@ -1205,19 +1209,23 @@ _Ziwei_Calculator.prototype.calcResultTable = function(profile) {
 };
 
 _Ziwei_Calculator.prototype.calculatePresetProfile = function(profileKey = 'thanhnx') {
-  var profile = this.profiles[profileKey];
+  this.currentProfile = this.profiles[profileKey];
 
-  if (profile === undefined) {
+  if (this.currentProfile === undefined) {
     throw "Invalid profile key";
     return;
   }
 
-  return this.calcResultTable(profile);
+  return this.calcResultTable(this.currentProfile);
 };
 
 _Ziwei_Calculator.prototype.calculateUserInputProfile = function(args = {}) {
-  var profile = new Ziwei.Models.Profile(args);
-  return this.calcResultTable(profile);
+  this.currentProfile = new Ziwei.Models.Profile(args);
+  return this.calcResultTable(this.currentProfile);
+};
+
+_Ziwei_Calculator.prototype.calculateCurrentProfile = function() {
+  return this.calcResultTable(this.currentProfile);
 };
   _Ziwei_Calculator.prototype.calcSelfBodyPosition = function(birthHour, birthMonth) {
   var hourIndex = Ziwei.Configs.Branches.Indexes[birthHour];
@@ -1725,6 +1733,23 @@ _Ziwei_Calculator.prototype.insertMultipleStarsToPalace = function(palace, stars
   //   palace[`${quality}Stars`].push(star);
   // });
 };
+_Ziwei_Models_ResultPalace.tableSize = function(useFullNames = true) {
+  return {
+    'width': useFullNames ? 280 : 140,
+    'height': useFullNames ? 160 : 160
+  };
+};
+
+_Ziwei_Models_ResultTable.tableSize = function(useFullNames = true) {
+  return {
+    'width': useFullNames ? 1138 : 578,
+    'height': useFullNames ? 658 : 658
+  };
+};
+
+_Ziwei_Calculator.checkMobileDevice = function() {
+  return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+};
 _Ziwei_Models_ResultPalace.prototype.renderHtml = function(palaceSource, useFullNames = true) {
   var buildMainStarName = function(star, position, useFullNames = true) {
     var starName = useFullNames ? star.getFullName('ForteenMainStars') : star.getShortName('ForteenMainStars');
@@ -1750,6 +1775,7 @@ _Ziwei_Models_ResultPalace.prototype.renderHtml = function(palaceSource, useFull
   };
 
   var context = useFullNames ? this.getFullNames() : this.getShortNames();
+  context.size = Ziwei.Models.ResultPalace.tableSize(useFullNames);
   context.mainStars = renderStarsHtml(this.position, this.mainStars, 'main-star', useFullNames);
   context.goodStars = renderStarsHtml(this.position, this.goodStars, 'good-star', useFullNames, false);
   context.badStars = renderStarsHtml(this.position, this.badStars, 'bad-star', useFullNames, false);
@@ -1762,33 +1788,31 @@ _Ziwei_Models_ResultPalace.prototype.renderHtml = function(palaceSource, useFull
   return palaceHtml;
 };
 
-_Ziwei_Models_ResultTable.prototype.renderHtml = function(tableSource, palaceSource, centerInfoSource) {
+_Ziwei_Models_ResultTable.prototype.renderHtml = function(tableSource, palaceSource, centerInfoSource, useFullNames = true) {
   var template = Handlebars.compile(tableSource);
   var renderedPalaces = {};
 
   this.palaces.forEach((position, palace) => {
-    renderedPalaces[position] = palace.renderHtml(palaceSource);
+    renderedPalaces[position] = palace.renderHtml(palaceSource, useFullNames);
   });
 
-  var tuanAbsPos = this.tuanCoordinate.convertPalaceCoordinateToPos();
-  var trietAbsPos = this.trietCoordinate.convertPalaceCoordinateToPos();
-
   var context = {
-    tuanPos: tuanAbsPos,
-    trietPos: trietAbsPos,
-    renderedPalaces: renderedPalaces,
-    centerInfo: this.profile.renderHtml(centerInfoSource)
+    'canvas': Ziwei.Models.ResultTable.tableSize(useFullNames),
+    'tuanPos': {top: -100, left: -100},
+    'trietPos': {top: -100, left: -100},
+    'renderedPalaces': renderedPalaces,
+    'centerInfo': this.profile.renderHtml(centerInfoSource)
   }
 
   var tableHtml = template(context);
   return tableHtml;
 };
 
-_Ziwei_Models_ResultTable.prototype.drawConnectedLines = function(canvasId) {
+_Ziwei_Models_ResultTable.prototype.drawConnectedLines = function(canvasId, useFullNames = true) {
   this.connectedCoordinates.forEach((coordinatePair, index) => {
     var [fromCoord, toCoord] = coordinatePair;
     var color = index === 0 ? "red" : "blue"; // Red line for opposite connection
-    fromCoord.drawLineTo(toCoord, canvasId, color);
+    fromCoord.drawLineTo(toCoord, canvasId, color, useFullNames);
   });
 };
 
@@ -1817,18 +1841,29 @@ _Ziwei_Models_Profile.prototype.renderHtml = function(centerInfoSource) {
   return centerInfoHtml;
 };
 
-_Ziwei_Calculator.renderHtml = function(resultTable) {
-  var palaceSource = $("#palace-template").html();
-  var tableSource = $("#result-template").html();
-  var centerInfoSource = $("#center-info-template").html();
+_Ziwei_Calculator.renderHtml = function(resultTable, useFullNames = true) {
+  var palaceSource = $('#palace-template').html();
+  var tableSource = $('#result-template').html();
+  var centerInfoSource = $('#center-info-template').html();
 
   // Insert table HTML
-  var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
-  $("div#result-display").replaceWith(tableHtml);
-  document.title = resultTable.profile.name + " - Ziwei Calculator in JS"
+  var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource, useFullNames);
+  $('div#result-display').replaceWith(tableHtml);
+
+  // Change HTML page attributes
+  document.title = resultTable.profile.name + " - Ziwei Calculator in JS";
+  var tableSize = Ziwei.Models.ResultTable.tableSize(useFullNames);
+  $('body').width(tableSize.width);
+
+  // Re-position Tuan & Triet
+  var padding = $('#result-display').position();
+  ['tuan', 'triet'].forEach((star) => {
+    var starAbsPos = resultTable[star + 'Coordinate'].convertPalaceCoordinateToPos(padding, useFullNames);
+    $(`#${star}-khong`).css(starAbsPos);
+  });
 
   // Draw connected lines
-  resultTable.drawConnectedLines('canvas');
+  resultTable.drawConnectedLines('connected-lines', useFullNames);
 }
   return {
     Configs: {

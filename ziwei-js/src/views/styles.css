@@ -74,7 +74,6 @@ div.tuan-triet {
   border-color: black;
 }
 
-canvas {
-  /*display: none;*/
+canvas#connected-lines {
   position: absolute;
 }

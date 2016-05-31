@@ -61,11 +61,9 @@
   <script type="text/javascript" src="utils/calc_six_lucky_stars.js"></script>
   <script type="text/javascript" src="utils/calc_tuan_triet.js"></script>
   <script type="text/javascript" src="utils/reuse_utils.js"></script>
-  <script type="text/javascript" src="utils/views_generator.js"></script>
+  <script type="text/javascript" src="utils/views_utils.js"></script>
+  <script type="text/javascript" src="utils/views_renderers.js"></script>
   <script type="text/javascript" src="ziwei.js"></script>
-  <!-- <script type="text/javascript" src="vendors/ziwei.es6.js"></script> -->
-  <!-- <script type="text/javascript" src="vendors/ziwei.es5.js"></script> -->
-  <!-- <script type="text/javascript" src="vendors/ziwei.min.js"></script> -->
   <script type="text/javascript" src="vendors/jquery.min.js"></script>
   <script type="text/javascript" src="vendors/handlebars.min.js"></script>
   <script type="text/javascript">
@@ -123,7 +121,7 @@
           }
         });
 
-        Ziwei.Calculator.renderHtml(resultTable);
+        Ziwei.Calculator.renderHtml(resultTable, $('#full-mode-checkbox')[0].checked);
       });
     };
 
@@ -135,33 +133,43 @@
 
       $('#testButton').click(() => {
         var profileKey = $("#presetProfile").val();
-        console.log(profileKey);
-        resultTable = calculator.calculatePresetProfile(profileKey);
-        Ziwei.Calculator.renderHtml(resultTable);
+        var resultTable = calculator.calculatePresetProfile(profileKey);
+        Ziwei.Calculator.renderHtml(resultTable, $('#full-mode-checkbox')[0].checked);
       });
     };
 
-    $(document).ready(() => {
-      var calculator = new Ziwei.Calculator();
-      setupDropdownValues();
-      setupCalcButtonHandler(calculator);
-      setupTestButtonHandler(calculator);
-
+    function setupCheckersHandler(calculator) {
       $('#test-mode-checkbox').click(function() {
         $('#main-controls')[0].hidden = this.checked;
         $('#test-controls')[0].hidden = !this.checked;
       });
+
+      $('#full-mode-checkbox').click(function() {
+        var resultTable = calculator.calculateCurrentProfile();
+        Ziwei.Calculator.renderHtml(resultTable, this.checked);
+      });
+
+      $('#full-mode-checkbox')[0].checked = !Ziwei.Calculator.checkMobileDevice();
+    };
+
+    $(document).ready(() => {
+      var calculator = new Ziwei.Calculator();
+
+      setupDropdownValues();
+      setupCalcButtonHandler(calculator);
+      setupTestButtonHandler(calculator);
+      setupCheckersHandler(calculator);
     });
   </script>
 </head>
 <body>
   <script id="result-template" type="text/x-handlebars-template">
     <div id="result-display">
-      <canvas id="canvas" width="1138px" height="640px"></canvas>
-      <div class="tuan-triet" style="top: {{ tuanPos.top }}px; left: {{ tuanPos.left }}px;">
+      <canvas id="connected-lines" width="{{ canvas.width }}px" height="{{ canvas.height }}px"></canvas>
+      <div id="tuan-khong" class="tuan-triet" style="top: {{ tuanPos.top }}px; left: {{ tuanPos.left }}px;">
         <span>Tuần</span>
       </div>
-      <div class="tuan-triet" style="top: {{ trietPos.top }}px; left: {{ trietPos.left }}px;">
+      <div id="triet-khong" class="tuan-triet" style="top: {{ trietPos.top }}px; left: {{ trietPos.left }}px;">
         <span>Triệt</span>
       </div>
       <table class="result-table" border="1">
@@ -190,7 +198,7 @@
     </div>
   </script>
   <script id="palace-template" type="text/x-handlebars-template">
-    <table class="palace {{ selfClass }} {{ bodyClass }}" width="280px" height="160px">
+    <table class="palace {{ selfClass }} {{ bodyClass }}" width="{{ size.width }}px" height="{{ size.height }}px">
       <tr height="15%">
         <td width="30%" class="top left">{{ name }}</td>
         <td width="40%" class="top center empty"></td>
@@ -234,23 +242,24 @@
     <table>
       <tr>
         <td>
-          <div id="test-mode"><input id="test-mode-checkbox" type="checkbox" />Test mode</div>
+          <div>
+            <span><input id="test-mode-checkbox" type="checkbox" />Test mode</span>
+            <span><input id="full-mode-checkbox" type="checkbox" checked />Full mode</span>
+          </div>
         </td>
-        <td>
+        <td height="50px" style="border: solid; border-width: 1px;">
           <div id="main-controls">
             Tên: <input id="profileName" type="text" placeholder="Họ và tên">
             <select id="gender">
               <option value='nam'>Nam</option>
               <option value='nu'>Nữ</option>
             </select>
-            Giờ: <select id="birthHour"></select>
+            Giờ: <select id="birthHour"></select><br />
             Ngày: <select id="birthDay"></select>
             Tháng: <select id="birthMonth"></select>
             Năm: <select id="birthYearStem"></select><select id="birthYearBranch"></select>
             <button id="calcButton" type="button">Lập số</button>
           </div>
-        </td>
-        <td>
           <div id="test-controls" hidden>
             Test: <select id="presetProfile"></select>
             <button id="testButton" type="button">Test</button>

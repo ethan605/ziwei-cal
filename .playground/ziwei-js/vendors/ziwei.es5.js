@@ -76,39 +76,49 @@ var Ziwei = (function () {
   };
 
   Array.prototype.convertPalaceCoordinateToPos = function () {
+    var padding = arguments.length <= 0 || arguments[0] === undefined ? { top: 8, left: 8 } : arguments[0];
+    var useFullNames = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+
     var _ref = _slicedToArray(this, 2);
 
     var xCoord = _ref[0];
     var yCoord = _ref[1];
 
+    var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+
     return {
-      left: 8 + 284 * xCoord - 142 - 25,
-      top: 8 + 164 * yCoord - 10
+      left: padding.left + (tableSize.width + 4) * (xCoord - 0.5) - 25,
+      top: padding.top + (tableSize.height + 4) * yCoord - 10
     };
   };
 
   Array.prototype.convertLineOriginCoordinateToPos = function () {
+    var useFullNames = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
     var _ref2 = _slicedToArray(this, 2);
 
     var xCoord = _ref2[0];
     var yCoord = _ref2[1];
 
+    var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+
     return {
-      left: 284 * xCoord,
-      top: 164 * yCoord
+      left: (tableSize.width + 4) * xCoord,
+      top: (tableSize.height + 4) * yCoord
     };
   };
 
   Array.prototype.drawLineTo = function (toCoord, canvasId) {
     var color = arguments.length <= 2 || arguments[2] === undefined ? 'black' : arguments[2];
+    var useFullNames = arguments.length <= 3 || arguments[3] === undefined ? true : arguments[3];
 
     var canvas = document.getElementById(canvasId);
     var context = canvas.getContext("2d");
 
     context.beginPath();
 
-    var fromPos = this.convertLineOriginCoordinateToPos();
-    var toPos = toCoord.convertLineOriginCoordinateToPos();
+    var fromPos = this.convertLineOriginCoordinateToPos(useFullNames);
+    var toPos = toCoord.convertLineOriginCoordinateToPos(useFullNames);
 
     context.moveTo(fromPos.left, fromPos.top);
     context.lineTo(toPos.left, toPos.top);
@@ -1258,21 +1268,25 @@ var Ziwei = (function () {
   _Ziwei_Calculator.prototype.calculatePresetProfile = function () {
     var profileKey = arguments.length <= 0 || arguments[0] === undefined ? 'thanhnx' : arguments[0];
 
-    var profile = this.profiles[profileKey];
+    this.currentProfile = this.profiles[profileKey];
 
-    if (profile === undefined) {
+    if (this.currentProfile === undefined) {
       throw "Invalid profile key";
       return;
     }
 
-    return this.calcResultTable(profile);
+    return this.calcResultTable(this.currentProfile);
   };
 
   _Ziwei_Calculator.prototype.calculateUserInputProfile = function () {
     var args = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    var profile = new Ziwei.Models.Profile(args);
-    return this.calcResultTable(profile);
+    this.currentProfile = new Ziwei.Models.Profile(args);
+    return this.calcResultTable(this.currentProfile);
+  };
+
+  _Ziwei_Calculator.prototype.calculateCurrentProfile = function () {
+    return this.calcResultTable(this.currentProfile);
   };
   _Ziwei_Calculator.prototype.calcSelfBodyPosition = function (birthHour, birthMonth) {
     var hourIndex = Ziwei.Configs.Branches.Indexes[birthHour];
@@ -1778,6 +1792,28 @@ var Ziwei = (function () {
     //   palace[`${quality}Stars`].push(star);
     // });
   };
+  _Ziwei_Models_ResultPalace.tableSize = function () {
+    var useFullNames = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+    return {
+      'width': useFullNames ? 280 : 140,
+      'height': useFullNames ? 160 : 160
+    };
+  };
+
+  _Ziwei_Models_ResultTable.tableSize = function () {
+    var useFullNames = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+    return {
+      'width': useFullNames ? 1138 : 578,
+      'height': useFullNames ? 658 : 658
+    };
+  };
+
+  _Ziwei_Calculator.checkMobileDevice = function () {
+    return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(navigator.userAgent)
+    );
+  };
   _Ziwei_Models_ResultPalace.prototype.renderHtml = function (palaceSource) {
     var useFullNames = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
@@ -1809,6 +1845,7 @@ var Ziwei = (function () {
     };
 
     var context = useFullNames ? this.getFullNames() : this.getShortNames();
+    context.size = Ziwei.Models.ResultPalace.tableSize(useFullNames);
     context.mainStars = renderStarsHtml(this.position, this.mainStars, 'main-star', useFullNames);
     context.goodStars = renderStarsHtml(this.position, this.goodStars, 'good-star', useFullNames, false);
     context.badStars = renderStarsHtml(this.position, this.badStars, 'bad-star', useFullNames, false);
@@ -1822,21 +1859,21 @@ var Ziwei = (function () {
   };
 
   _Ziwei_Models_ResultTable.prototype.renderHtml = function (tableSource, palaceSource, centerInfoSource) {
+    var useFullNames = arguments.length <= 3 || arguments[3] === undefined ? true : arguments[3];
+
     var template = Handlebars.compile(tableSource);
     var renderedPalaces = {};
 
     this.palaces.forEach(function (position, palace) {
-      renderedPalaces[position] = palace.renderHtml(palaceSource);
+      renderedPalaces[position] = palace.renderHtml(palaceSource, useFullNames);
     });
 
-    var tuanAbsPos = this.tuanCoordinate.convertPalaceCoordinateToPos();
-    var trietAbsPos = this.trietCoordinate.convertPalaceCoordinateToPos();
-
     var context = {
-      tuanPos: tuanAbsPos,
-      trietPos: trietAbsPos,
-      renderedPalaces: renderedPalaces,
-      centerInfo: this.profile.renderHtml(centerInfoSource)
+      'canvas': Ziwei.Models.ResultTable.tableSize(useFullNames),
+      'tuanPos': { top: -100, left: -100 },
+      'trietPos': { top: -100, left: -100 },
+      'renderedPalaces': renderedPalaces,
+      'centerInfo': this.profile.renderHtml(centerInfoSource)
     };
 
     var tableHtml = template(context);
@@ -1844,6 +1881,8 @@ var Ziwei = (function () {
   };
 
   _Ziwei_Models_ResultTable.prototype.drawConnectedLines = function (canvasId) {
+    var useFullNames = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+
     this.connectedCoordinates.forEach(function (coordinatePair, index) {
       var _coordinatePair = _slicedToArray(coordinatePair, 2);
 
@@ -1851,7 +1890,7 @@ var Ziwei = (function () {
       var toCoord = _coordinatePair[1];
 
       var color = index === 0 ? "red" : "blue"; // Red line for opposite connection
-      fromCoord.drawLineTo(toCoord, canvasId, color);
+      fromCoord.drawLineTo(toCoord, canvasId, color, useFullNames);
     });
   };
 
@@ -1881,17 +1920,30 @@ var Ziwei = (function () {
   };
 
   _Ziwei_Calculator.renderHtml = function (resultTable) {
-    var palaceSource = $("#palace-template").html();
-    var tableSource = $("#result-template").html();
-    var centerInfoSource = $("#center-info-template").html();
+    var useFullNames = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+
+    var palaceSource = $('#palace-template').html();
+    var tableSource = $('#result-template').html();
+    var centerInfoSource = $('#center-info-template').html();
 
     // Insert table HTML
-    var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
-    $("div#result-display").replaceWith(tableHtml);
+    var tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource, useFullNames);
+    $('div#result-display').replaceWith(tableHtml);
+
+    // Change HTML page attributes
     document.title = resultTable.profile.name + " - Ziwei Calculator in JS";
+    var tableSize = Ziwei.Models.ResultTable.tableSize(useFullNames);
+    $('body').width(tableSize.width);
+
+    // Re-position Tuan & Triet
+    var padding = $('#result-display').position();
+    ['tuan', 'triet'].forEach(function (star) {
+      var starAbsPos = resultTable[star + 'Coordinate'].convertPalaceCoordinateToPos(padding, useFullNames);
+      $('#' + star + '-khong').css(starAbsPos);
+    });
 
     // Draw connected lines
-    resultTable.drawConnectedLines('canvas');
+    resultTable.drawConnectedLines('connected-lines', useFullNames);
   };
   return {
     Configs: {

@@ -59,32 +59,36 @@ String.prototype.getPlaceQualityColorStyle = function() {
   return color === undefined ? "" : `color: ${color};`;
 };
 
-Array.prototype.convertPalaceCoordinateToPos = function() {
+Array.prototype.convertPalaceCoordinateToPos = function(padding = {top: 8, left: 8}, useFullNames = true) {
   var [xCoord, yCoord] = this;
 
+  var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+
   return {
-    left: (8 + 284*xCoord - 142 - 25),
-    top: (8 + 164*yCoord - 10)
+    left: padding.left + (tableSize.width+4)*(xCoord - 0.5) - 25,
+    top: padding.top + (tableSize.height+4)*yCoord - 10
   };
 };
 
-Array.prototype.convertLineOriginCoordinateToPos = function() {
+Array.prototype.convertLineOriginCoordinateToPos = function(useFullNames = true) {
   var [xCoord, yCoord] = this;
+
+  var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
   
   return {
-    left: 284*xCoord,
-    top: 164*yCoord
+    left: (tableSize.width+4)*xCoord,
+    top: (tableSize.height+4)*yCoord
   };
 };
 
-Array.prototype.drawLineTo = function(toCoord, canvasId, color = 'black') {
+Array.prototype.drawLineTo = function(toCoord, canvasId, color = 'black', useFullNames = true) {
   var canvas = document.getElementById(canvasId);
   var context = canvas.getContext("2d");
 
   context.beginPath();
   
-  var fromPos = this.convertLineOriginCoordinateToPos();
-  var toPos = toCoord.convertLineOriginCoordinateToPos();
+  var fromPos = this.convertLineOriginCoordinateToPos(useFullNames);
+  var toPos = toCoord.convertLineOriginCoordinateToPos(useFullNames);
 
   context.moveTo(fromPos.left, fromPos.top);
   context.lineTo(toPos.left, toPos.top);

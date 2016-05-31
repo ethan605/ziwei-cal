@@ -124,17 +124,21 @@ _Ziwei_Calculator.prototype.calcResultTable = function(profile) {
 };
 
 _Ziwei_Calculator.prototype.calculatePresetProfile = function(profileKey = 'thanhnx') {
-  var profile = this.profiles[profileKey];
+  this.currentProfile = this.profiles[profileKey];
 
-  if (profile === undefined) {
+  if (this.currentProfile === undefined) {
     throw "Invalid profile key";
     return;
   }
 
-  return this.calcResultTable(profile);
+  return this.calcResultTable(this.currentProfile);
 };
 
 _Ziwei_Calculator.prototype.calculateUserInputProfile = function(args = {}) {
-  var profile = new Ziwei.Models.Profile(args);
-  return this.calcResultTable(profile);
+  this.currentProfile = new Ziwei.Models.Profile(args);
+  return this.calcResultTable(this.currentProfile);
+};
+
+_Ziwei_Calculator.prototype.calculateCurrentProfile = function() {
+  return this.calcResultTable(this.currentProfile);
 };
