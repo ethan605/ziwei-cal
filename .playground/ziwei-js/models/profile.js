@@ -1,7 +1,7 @@
 _Ziwei_Models_Profile = class {
   constructor(args = {}) {
     this.key = args['key'] || "keyname";
-    this.name = args['name'] || "Họ Và Tên";
+    this.name = args['name'] || "<N/A>";
 
     this.gender = args['gender'];
     if (Ziwei.Configs.Genders.Names[this.gender] === undefined)
