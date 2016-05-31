@@ -1,0 +1,80 @@
+body {
+  font-family: Roboto;
+  width: 1120px;
+}
+td.center {
+  text-align: center;
+}
+td.right {
+  text-align: right;
+}
+td.main-stars {
+  font-size: 0.9em;
+  font-weight: bold;
+  vertical-align: top;
+}
+td.good-stars, td.bad-stars {
+  font-size: 0.7em;
+  vertical-align: top;
+}
+
+td.top, td.bottom {
+  font-size: 0.75em;
+}
+td.bottom {
+  line-height: 2.5em;
+  vertical-align: top;
+}
+td.top, td.bottom.center {
+  font-weight: bold;
+}
+td.top.left {
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+table.result-table {
+  border-style: groove;
+  border-color: darkgreen;
+  border-spacing: 0px;
+}
+table.palace {
+  background-color: lightyellow;
+}
+table.self.palace td.top.left, table.body.palace td.top.right {
+  color: red;
+}
+td.bottom.right {
+  color: blue;
+}
+td.bottom.left {
+  color: grey;
+}
+div span {
+  display: block;
+}
+div.center-info {
+  margin: auto;
+  width: 70%;
+  line-height: 2.5em;
+}
+
+div.tuan-triet {
+  display: none;
+  position: absolute;
+  width: 50px;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  line-height: 20px;
+  color: white;
+  background: red;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+canvas {
+  /*display: none;*/
+  position: absolute;
+}
