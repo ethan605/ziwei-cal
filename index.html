@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ziwei Calculator in JS</title>
+  <title>Ziwei Calculator in JS playground</title>
   <link href="data:image/x-icon;base64,
     iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAL
     EwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6
@@ -30,13 +30,91 @@
     rel="icon" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="ziwei.css">
   <script type="text/javascript" src="ziwei.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
   <script type="text/javascript">
+    function setupDropdownValues() {
+      // Birth dates: 1 - 30
+      var dates = Array.fromRange(1, 30).map((day) =>
+        '<option value="' + day + '">' + day + '</value>'
+      ).join("\n");
+      $('#birthDay').append(dates);
+
+      // Birth hour & birth year branch: Ty - Suu - Dan - Mao - Thin - Ty - Ngo - Mui - Than - Dau - Tuat - Hoi
+      var branchNames = Ziwei.Configs.Branches.Names;
+      var branches = branchNames.mapKeyValues((branch, name) =>
+        '<option value="' + branch + '">' + name + '</value>'
+      ).join("\n");
+      $('#birthHour').append(branches);
+      $('#birthYearBranch').append(branches);
+
+      // Birth month: Dan - Mao - Thin - Ty - Ngo - Mui - Than - Dau - Tuat - Hoi - Ty - Suu
+      var lunarMonths = branchNames.allKeys().map((branch, index) =>
+        '<option value="' + branch + '">' + branchNames[branch] + ' (' + (index+1).limitInc(-2) + ')</value>'
+      );
+
+      var lunarMonths = $.merge(lunarMonths.slice(2, lunarMonths.length), lunarMonths.slice(0, 2)).join("\n");
+      $('#birthMonth').append(lunarMonths);
+
+      // Birth year stem: Giap - At - Binh - Dinh - Mau - Ky - Canh - Tan - Nham - Quy
+      var stems = Ziwei.Configs.Stems.Names.mapKeyValues((stem, name) =>
+        '<option value="' + stem + '">' + name + '</value>'
+      ).join("\n");
+      $('#birthYearStem').append(stems);
+    };
+
+    function setupCalcButtonHandler(calculator) {
+      $('#calcButton').click(() => {
+        var name = $('#profileName').val() || '<N/A>';
+        var gender = $('#gender').val();
+        var birthHour = $('#birthHour').val();
+        var birthDay = parseInt($('#birthDay').val());
+        var birthMonth = $('#birthMonth').val();
+        var birthYearStem = $('#birthYearStem').val();
+        var birthYearBranch = $('#birthYearBranch').val();
+        var key = [gender, birthHour, birthDay, birthMonth, birthYearStem, birthYearBranch].join("_")
+        
+        var resultTable = calculator.calculateUserInputProfile({
+          'key': key,
+          'name': name,
+          'gender': gender,
+          'birthHour': birthHour,
+          'birthDay': birthDay,
+          'birthMonth': birthMonth,
+          'birthYear': {
+            'stem': birthYearStem,
+            'branch': birthYearBranch
+          }
+        });
+
+        Ziwei.Calculator.renderHtml(resultTable);
+      });
+    };
+
+    function setupTestButtonHandler(calculator) {
+      var profileOptions = calculator.profiles.mapKeyValues((key, profile) =>
+        '<option value="' + key + '">' + profile.name + '</value>'
+      ).join("\n");
+      $('#presetProfile').append(profileOptions);
+
+      $('#testButton').click(() => {
+        var profileKey = $("#presetProfile").val();
+        console.log(profileKey);
+        resultTable = calculator.calculatePresetProfile(profileKey);
+        Ziwei.Calculator.renderHtml(resultTable);
+      });
+    };
+
     $(document).ready(() => {
-      calculator = new Ziwei.Calculator();
-      resultTable = calculator.calculateProfile();
-      Ziwei.Calculator.renderHtml(resultTable);
+      var calculator = new Ziwei.Calculator();
+      setupDropdownValues();
+      setupCalcButtonHandler(calculator);
+      setupTestButtonHandler(calculator);
+
+      $('#test-mode-checkbox').click(function() {
+        $('#main-controls')[0].hidden = this.checked;
+        $('#test-controls')[0].hidden = !this.checked;
+      });
     });
   </script>
 </head>
@@ -116,6 +194,35 @@
       </span>
     </div>
   </script>
+  <div id="controls" style="padding-bottom: 10px;">
+    <table>
+      <tr>
+        <td>
+          <div id="test-mode"><input id="test-mode-checkbox" type="checkbox" />Test mode</div>
+        </td>
+        <td>
+          <div id="main-controls">
+            Tên: <input id="profileName" type="text" placeholder="Họ và tên">
+            <select id="gender">
+              <option value='nam'>Nam</option>
+              <option value='nu'>Nữ</option>
+            </select>
+            Giờ: <select id="birthHour"></select>
+            Ngày: <select id="birthDay"></select>
+            Tháng: <select id="birthMonth"></select>
+            Năm: <select id="birthYearStem"></select><select id="birthYearBranch"></select>
+            <button id="calcButton" type="button">Lập số</button>
+          </div>
+        </td>
+        <td>
+          <div id="test-controls" hidden>
+            Test: <select id="presetProfile"></select>
+            <button id="testButton" type="button">Test</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
   <div id="result-display"></div>
 </body>
 </html>
