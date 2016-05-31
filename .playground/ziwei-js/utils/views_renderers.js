@@ -108,7 +108,6 @@ _Ziwei_Calculator.renderHtml = function(resultTable, useFullNames = true) {
   ['tuan', 'triet'].forEach((star) => {
     var starAbsPos = resultTable[star + 'Coordinate'].convertPalaceCoordinateToPos(padding, useFullNames);
     $(`#${star}-khong`).css(starAbsPos);
-    console.log(starAbsPos);
   });
 
   // Draw connected lines

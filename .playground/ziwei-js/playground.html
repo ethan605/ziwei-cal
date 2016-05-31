@@ -123,7 +123,7 @@
           }
         });
 
-        Ziwei.Calculator.renderHtml(resultTable, $('#full-mode-checkbox')[0].checked);
+        Ziwei.Calculator.renderHtml(resultTable, $('#full-mode-button').hasClass('active'));
       });
     };
 
@@ -136,31 +136,44 @@
       $('#testButton').click(() => {
         var profileKey = $("#presetProfile").val();
         var resultTable = calculator.calculatePresetProfile(profileKey);
-        Ziwei.Calculator.renderHtml(resultTable, $('#full-mode-checkbox')[0].checked);
+        Ziwei.Calculator.renderHtml(resultTable, $('#full-mode-button').hasClass('active'));
       });
     };
 
     function setupCheckersHandler(calculator) {
-      $('#test-mode-checkbox').click(function() {
-        $('#main-controls')[0].hidden = this.checked;
-        $('#test-controls')[0].hidden = !this.checked;
+      var testModeButton = $('#test-mode-button');
+
+      testModeButton.click(function() {
+        testModeButton.toggleClass('active');
+        var activeState = testModeButton.hasClass('active');
+        testModeButton.text(activeState ? 'Nhập sẵn' : 'Nhập tay');
+        $('#main-controls')[0].hidden = activeState;
+        $('#test-controls')[0].hidden = !activeState;
       });
 
-      $('#full-mode-checkbox').click(function() {
+      var fullModeButton = $('#full-mode-button');
+
+      if (Ziwei.Calculator.checkMobileDevice()) {
+        fullModeButton.removeClass('active');
+        fullModeButton.text('Tên tắt');
+      }
+
+      fullModeButton.click(function() {
+        if (calculator.currentProfile === undefined) {
+          alert('Chưa lập số!');
+          return;
+        }
+
+        fullModeButton.toggleClass('active');
+        var activeState = fullModeButton.hasClass('active');
+        fullModeButton.text(activeState ? 'Tên đủ' : 'Tên tắt');
         var resultTable = calculator.calculateCurrentProfile();
-        Ziwei.Calculator.renderHtml(resultTable, this.checked);
+        Ziwei.Calculator.renderHtml(resultTable, activeState);
       });
-
-      $('#full-mode-checkbox')[0].checked = !Ziwei.Calculator.checkMobileDevice();
     };
 
     $(document).ready(() => {
       var calculator = new Ziwei.Calculator();
-
-      // For test only
-      // var resultTable = calculator.calculatePresetProfile();
-      // Ziwei.Calculator.renderHtml(resultTable);
-
       setupDropdownValues();
       setupCalcButtonHandler(calculator);
       setupTestButtonHandler(calculator);
@@ -248,13 +261,9 @@
     <table>
       <tr>
         <td>
-          <div class="checkbox">
-            <span>
-              <label><input id="test-mode-checkbox" type="checkbox" />Test mode</label>
-            </span>
-            <span>
-              <label><input id="full-mode-checkbox" type="checkbox" checked />Full mode</label>
-            </span>
+          <div id="mode-switcher">
+            <div><button id="test-mode-button" class="btn btn-success" type="button">Nhập tay</button></div>
+            <div><button id="full-mode-button" class="btn btn-success active" type="button" selected>Tên đủ</button></div>
           </div>
         </td>
         <td class="main-controls-form">
@@ -280,14 +289,14 @@
                   </form>
                 </td>
                 <td>
-                  <button id="calcButton" class="btn btn-primary" type="button">Lập số</button>
+                  <button id="calcButton" class="btn btn-primary btn-lg" type="button">Lập số</button>
                 </td>
               </tr>
             </table>
           </div>
           <div id="test-controls" hidden>
             Tên: <select id="presetProfile"></select>
-            <button id="testButton" class="btn btn-primary" type="button">Lập số</button>
+            <button id="testButton" class="btn btn-primary btn-lg" type="button">Lập số</button>
           </div>
         </td>
       </tr>

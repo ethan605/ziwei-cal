@@ -1944,7 +1944,6 @@ var Ziwei = (function () {
     ['tuan', 'triet'].forEach(function (star) {
       var starAbsPos = resultTable[star + 'Coordinate'].convertPalaceCoordinateToPos(padding, useFullNames);
       $('#' + star + '-khong').css(starAbsPos);
-      console.log(starAbsPos);
     });
 
     // Draw connected lines
