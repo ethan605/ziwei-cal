@@ -63,36 +63,36 @@ Array.prototype.convertPalaceCoordinateToPos = function() {
   var [xCoord, yCoord] = this;
 
   return {
-    left: (8 + 284*xCoord - 142 - 25),
-    top: (8 + 164*yCoord - 10)
+    left: (8 + 164*xCoord - 10),
+    top: (8 + 284*yCoord - 142 - 25)
   };
 };
 
-Array.prototype.convertLineOriginCoordinateToPos = function(argument) {
+Array.prototype.convertLineOriginCoordinateToPos = function() {
   var [xCoord, yCoord] = this;
   
   return {
-    left: 284*xCoord,
-    top: 164*yCoord
+    left: 164*xCoord,
+    top: 284*yCoord
   };
 };
 
-// Array.prototype.drawLine = function(canvasId = 'canvas', color = 'black') {
-//   var canvas = document.getElementById('canvas');
-//   var context = canvas.getContext("2d");
+Array.prototype.drawLineTo = function(toCoord, canvasId, color = 'black') {
+  var canvas = document.getElementById(canvasId);
+  var context = canvas.getContext("2d");
 
-//   context.beginPath();
+  context.beginPath();
   
-//   var fromPos = convertCoordToPos(fromCoord[0], fromCoord[1]);
-//   var toPos = convertCoordToPos(toCoord[0], toCoord[1]);
+  var fromPos = this.convertLineOriginCoordinateToPos();
+  var toPos = toCoord.convertLineOriginCoordinateToPos();
 
-//   context.moveTo(fromPos[0], fromPos[1]);
-//   context.lineTo(toPos[0], toPos[1]);
-//   context.lineWidth = 1;
+  context.moveTo(fromPos.top, fromPos.left);
+  context.lineTo(toPos.top, toPos.left);
+  context.lineWidth = 1;
 
-//   context.strokeStyle = color;
-//   context.stroke();
-// };
+  context.strokeStyle = color;
+  context.stroke();
+};
 
 Array.prototype.transpose = function() {
   var _self = this;

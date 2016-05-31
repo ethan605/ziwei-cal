@@ -30,10 +30,7 @@ _Ziwei_Models_ResultPalace.prototype.renderHtml = function(palaceSource, useFull
   context.bodyClass = context.body === 'Thân' ? 'body' : '';
 
   var template = Handlebars.compile(palaceSource);
-  var contentHtml = $(template(context));
-
-  // Workaround: $.html() is not wrapped by top most HTML tags
-  var palaceHtml = $("<div></div>").append(contentHtml).html();
+  var palaceHtml = template(context);
 
   return palaceHtml;
 };
@@ -53,6 +50,14 @@ _Ziwei_Models_ResultTable.prototype.renderHtml = function(tableSource, palaceSou
 
   var tableHtml = template(context);
   return tableHtml;
+};
+
+_Ziwei_Models_ResultTable.prototype.drawConnectedLines = function(canvasId) {
+  this.connectedCoordinates.forEach((coordinatePair, index) => {
+    var [fromCoord, toCoord] = coordinatePair;
+    var color = index === 0 ? "red" : "blue"; // Red line for opposite connection
+    fromCoord.drawLineTo(toCoord, canvasId, color);
+  });
 };
 
 _Ziwei_Models_Profile.prototype.renderHtml = function(centerInfoSource) {
@@ -90,4 +95,6 @@ _Ziwei_Calculator.renderHtml = function() {
 
   tableHtml = resultTable.renderHtml(tableSource, palaceSource, centerInfoSource);
   $("body").append(tableHtml);
+
+  resultTable.drawConnectedLines('canvas');
 }
