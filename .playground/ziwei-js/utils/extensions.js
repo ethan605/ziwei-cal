@@ -63,8 +63,8 @@ Array.prototype.convertPalaceCoordinateToPos = function() {
   var [xCoord, yCoord] = this;
 
   return {
-    left: (8 + 164*xCoord - 10),
-    top: (8 + 284*yCoord - 142 - 25)
+    left: (8 + 284*xCoord - 142 - 25),
+    top: (8 + 164*yCoord - 10)
   };
 };
 

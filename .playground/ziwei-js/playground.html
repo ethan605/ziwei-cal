@@ -75,6 +75,12 @@
 <body id="body">
   <canvas id="canvas" width="1138px" height="640px"></canvas>
   <script id="result-template" type="text/x-handlebars-template">
+    <div class="tuan-triet" style="top: {{ tuanPos.top }}px; left: {{ tuanPos.left }}px;">
+      <span>Tuần</span>
+    </div>
+    <div class="tuan-triet" style="top: {{ trietPos.top }}px; left: {{ trietPos.left }}px;">
+      <span>Triệt</span>
+    </div>
     <table class="result-table" border="1">
       <tr>
         <td>{{{ renderedPalaces.ty2 }}}</td>

@@ -43,7 +43,12 @@ _Ziwei_Models_ResultTable.prototype.renderHtml = function(tableSource, palaceSou
     renderedPalaces[position] = palace.renderHtml(palaceSource);
   });
 
+  var tuanAbsPos = this.tuanCoordinate.convertPalaceCoordinateToPos();
+  var trietAbsPos = this.trietCoordinate.convertPalaceCoordinateToPos();
+
   var context = {
+    tuanPos: tuanAbsPos,
+    trietPos: trietAbsPos,
     renderedPalaces: renderedPalaces,
     centerInfo: this.profile.renderHtml(centerInfoSource)
   }
