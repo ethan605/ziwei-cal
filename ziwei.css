@@ -64,7 +64,7 @@ div.center-info {
 }
 
 div.tuan-triet {
-  /*display: none;*/
+  display: none;
   position: absolute;
   width: 50px;
   text-align: center;
@@ -98,4 +98,11 @@ div#controls td.main-controls-form td {
 }
 form.form-inline div {
   padding-top: 3px;
+}
+
+div#mode-switcher div {
+  padding-top: 3px;
+}
+div#mode-switcher button {
+  width: 100px;
 }
