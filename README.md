@@ -41,8 +41,8 @@ The plain Ruby source code using following structure:
 
 Playground is a Rails project is wrapped in `.playground` directory, contains 2 projects:
 
-[*] `ziwei-js`
-[*] `ziwei-rails`
+..* `ziwei-js`
+..* `ziwei-rails`
 
 The Rails project uses `ruby-2.2.4` with `rails 4.2.6`
 
@@ -51,7 +51,7 @@ The Rails project uses `ruby-2.2.4` with `rails 4.2.6`
 #### 2.1.1. The plain Ruby source code
 It could be used independently from Rails with following initial command in `irb`:
 
-```
+```ruby
 load 'required.rb'
 ```
 
@@ -62,7 +62,7 @@ Change directory to `.playground/ziwei-playground/` and use `rails console` (wit
 
 The `ziwei` source code is placed under Rails's `lib` directory, with a config inserted to `application.rb` like this:
 
-```
+```ruby
 module ZiweiPlayground
   class Application < Rails::Application
     # Other configs
@@ -75,7 +75,7 @@ end
 
 You can play with the whole things under `playground` environment, then run `make.rb` to copy plain Ruby source codes to the main directory:
 
-```
+```ruby
 ruby ziwei/make.rb
 ```
 
@@ -84,7 +84,7 @@ P/s: don't forget to provide proper dependencies requirement in `required.rb`, o
 #### 2.1.3. The Calculator
 Initialize a new instance of the Calculator to start:
 
-```
+```ruby
 calc = Ziwei::Calculator.new
 ```
 
@@ -92,13 +92,13 @@ The calculator is already preset with several profiles.
 
 To calculate Zi Wei table for a specific profile, call method:
 
-```
+```ruby
 calc.calculate_profile("nam_1")
 ```
 
 To calculate Zi Wei table for all profiles, use `calc_all_profiles` method:
 
-```
+```ruby
 calc.calc_all_profiles
 ```
 
@@ -117,14 +117,14 @@ Functions & modules are equivalent to `Ruby` source codes.
 #### 2.2.2.
 and for Javascript source codes
 
-```
+```shell
 ruby make.rb
 ```
 
 #### 2.2.3. The Calculator
 Initialize a new instance of the Calculator to start:
 
-```
+```javascript
 var calc = new Ziwei.Calculator();
 ```
 
@@ -132,13 +132,13 @@ The calculator is already preset with several profiles.
 
 To calculate Zi Wei table for a specific profile, call method:
 
-```
+```javascript
 calc.calculateProfile('nam_1');
 ```
 
 To calculate Zi Wei table for an user-input profile:
 
-```
+```javascript
 var resultTable = calculator.calculateUserInputProfile({
   'key': key,
   'name': name,
