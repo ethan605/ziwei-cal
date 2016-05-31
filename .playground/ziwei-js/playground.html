@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Ziwei Calculator in JS playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="data:image/x-icon;base64,
     iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAL
     EwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6
@@ -28,6 +29,7 @@
     36VrHBfXjITJePYxtG4+HBwczPsePcKh4DLmYkG8sZbG4dAKnvrlLv58YGCT5Fz+H0PvSNA62fnO
     moO6ensvtFr2mFhFLtKCVOSu37w1E348f5OczZOhxTbzL+FXtFV64DG6AAAAAElFTkSuQmCC"
     rel="icon" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="vendors/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="views/styles.css">
   <script type="text/javascript" src="configs/branch_sets.js"></script>
   <script type="text/javascript" src="configs/branches.js"></script>
@@ -154,6 +156,8 @@
 
     $(document).ready(() => {
       var calculator = new Ziwei.Calculator();
+      var resultTable = calculator.calculatePresetProfile();
+      Ziwei.Calculator.renderHtml(resultTable);
 
       setupDropdownValues();
       setupCalcButtonHandler(calculator);
@@ -238,7 +242,7 @@
       </span>
     </div>
   </script>
-  <div id="controls" style="padding-bottom: 10px;">
+  <div id="controls">
     <table>
       <tr>
         <td>
@@ -247,22 +251,30 @@
             <span><input id="full-mode-checkbox" type="checkbox" checked />Full mode</span>
           </div>
         </td>
-        <td height="50px" style="border: solid; border-width: 1px;">
+        <td height="60px" style="border: solid; border-width: 1px;">
           <div id="main-controls">
-            Tên: <input id="profileName" type="text" placeholder="Họ và tên">
-            <select id="gender">
-              <option value='nam'>Nam</option>
-              <option value='nu'>Nữ</option>
-            </select>
-            Giờ: <select id="birthHour"></select><br />
-            Ngày: <select id="birthDay"></select>
-            Tháng: <select id="birthMonth"></select>
-            Năm: <select id="birthYearStem"></select><select id="birthYearBranch"></select>
-            <button id="calcButton" type="button">Lập số</button>
+            <table>
+              <tr>
+                <td>
+                  Tên: <input id="profileName" type="text" placeholder="Họ và tên">
+                  <select id="gender">
+                    <option value='nam'>Nam</option>
+                    <option value='nu'>Nữ</option>
+                  </select>
+                  Giờ: <select id="birthHour"></select><br />
+                  Ngày: <select id="birthDay"></select>
+                  Tháng: <select id="birthMonth"></select>
+                  Năm: <select id="birthYearStem"></select><select id="birthYearBranch"></select>
+                </td>
+                <td>
+                  <button id="calcButton" class="btn btn-primary" type="button">Lập số</button>
+                </td>
+              </tr>
+            </table>
           </div>
           <div id="test-controls" hidden>
-            Test: <select id="presetProfile"></select>
-            <button id="testButton" type="button">Test</button>
+            Tên: <select id="presetProfile"></select>
+            <button id="testButton" class="btn btn-primary" type="button">Lập số</button>
           </div>
         </td>
       </tr>

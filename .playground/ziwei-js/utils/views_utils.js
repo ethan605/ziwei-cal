@@ -1,7 +1,7 @@
 _Ziwei_Models_ResultPalace.tableSize = function(useFullNames = true) {
   return {
-    'width': useFullNames ? 280 : 140,
-    'height': useFullNames ? 160 : 160
+    'width': useFullNames ? 260 : 130,
+    'height': useFullNames ? 180 : 180
   };
 };
 
