@@ -246,25 +246,36 @@
     <table>
       <tr>
         <td>
-          <div>
-            <span><input id="test-mode-checkbox" type="checkbox" />Test mode</span>
-            <span><input id="full-mode-checkbox" type="checkbox" checked />Full mode</span>
+          <div class="checkbox">
+            <span>
+              <label><input id="test-mode-checkbox" type="checkbox" />Test mode</label>
+            </span>
+            <span>
+              <label><input id="full-mode-checkbox" type="checkbox" checked />Full mode</label>
+            </span>
           </div>
         </td>
-        <td height="60px" style="border: solid; border-width: 1px;">
+        <td class="main-controls-form">
           <div id="main-controls">
             <table>
               <tr>
                 <td>
-                  Tên: <input id="profileName" type="text" placeholder="Họ và tên">
-                  <select id="gender">
-                    <option value='nam'>Nam</option>
-                    <option value='nu'>Nữ</option>
-                  </select>
-                  Giờ: <select id="birthHour"></select><br />
-                  Ngày: <select id="birthDay"></select>
-                  Tháng: <select id="birthMonth"></select>
-                  Năm: <select id="birthYearStem"></select><select id="birthYearBranch"></select>
+                  <form class="form-inline">
+                    <div>
+                      Tên: <input id="profileName" class="form-control input-sm" type="text" placeholder="Họ và tên">
+                      <select id="gender" class="form-control input-sm">
+                        <option value='nam'>Nam</option>
+                        <option value='nu'>Nữ</option>
+                      </select>
+                      Giờ: <select id="birthHour" class="form-control input-sm"></select>
+                    </div>
+                    <div>
+                      Ngày: <select id="birthDay" class="form-control input-sm"></select>
+                      Tháng: <select id="birthMonth" class="form-control input-sm"></select>
+                      Năm: <select id="birthYearStem" class="form-control input-sm"></select>
+                      <select id="birthYearBranch" class="form-control input-sm"></select>
+                    </div>
+                  </form>
                 </td>
                 <td>
                   <button id="calcButton" class="btn btn-primary" type="button">Lập số</button>

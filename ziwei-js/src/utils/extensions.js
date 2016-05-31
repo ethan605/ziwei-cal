@@ -59,14 +59,15 @@ String.prototype.getPlaceQualityColorStyle = function() {
   return color === undefined ? "" : `color: ${color};`;
 };
 
-Array.prototype.convertPalaceCoordinateToPos = function(padding = {top: 8, left: 8}, useFullNames = true) {
+Array.prototype.convertPalaceCoordinateToPos = function(margin = {top: 8, left: 8}, useFullNames = true) {
   var [xCoord, yCoord] = this;
 
   var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+  var padding = 1;
 
   return {
-    left: padding.left + (tableSize.width+4)*(xCoord - 0.5) - 25,
-    top: padding.top + (tableSize.height+4)*yCoord - 10
+    left: margin.left + (tableSize.width+padding)*(xCoord - 0.5) - 25,
+    top: margin.top + (tableSize.height+padding)*yCoord - 8
   };
 };
 
@@ -74,10 +75,11 @@ Array.prototype.convertLineOriginCoordinateToPos = function(useFullNames = true)
   var [xCoord, yCoord] = this;
 
   var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+  var padding = 1;
   
   return {
-    left: (tableSize.width+4)*xCoord,
-    top: (tableSize.height+4)*yCoord
+    left: (tableSize.width+padding)*xCoord,
+    top: (tableSize.height+padding)*yCoord
   };
 };
 

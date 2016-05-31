@@ -61,14 +61,15 @@ String.prototype.getPlaceQualityColorStyle = function() {
   return color === undefined ? "" : `color: ${color};`;
 };
 
-Array.prototype.convertPalaceCoordinateToPos = function(padding = {top: 8, left: 8}, useFullNames = true) {
+Array.prototype.convertPalaceCoordinateToPos = function(margin = {top: 8, left: 8}, useFullNames = true) {
   var [xCoord, yCoord] = this;
 
   var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+  var padding = 1;
 
   return {
-    left: padding.left + (tableSize.width+4)*(xCoord - 0.5) - 25,
-    top: padding.top + (tableSize.height+4)*yCoord - 10
+    left: margin.left + (tableSize.width+padding)*(xCoord - 0.5) - 25,
+    top: margin.top + (tableSize.height+padding)*yCoord - 8
   };
 };
 
@@ -76,10 +77,11 @@ Array.prototype.convertLineOriginCoordinateToPos = function(useFullNames = true)
   var [xCoord, yCoord] = this;
 
   var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+  var padding = 1;
   
   return {
-    left: (tableSize.width+4)*xCoord,
-    top: (tableSize.height+4)*yCoord
+    left: (tableSize.width+padding)*xCoord,
+    top: (tableSize.height+padding)*yCoord
   };
 };
 
@@ -1735,15 +1737,17 @@ _Ziwei_Calculator.prototype.insertMultipleStarsToPalace = function(palace, stars
 };
 _Ziwei_Models_ResultPalace.tableSize = function(useFullNames = true) {
   return {
-    'width': useFullNames ? 280 : 140,
-    'height': useFullNames ? 160 : 160
+    'width': useFullNames ? 260 : 140,
+    'height': useFullNames ? 170 : 170
   };
 };
 
 _Ziwei_Models_ResultTable.tableSize = function(useFullNames = true) {
+  var palaceSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+
   return {
-    'width': useFullNames ? 1138 : 578,
-    'height': useFullNames ? 658 : 658
+    'width': 4+palaceSize.width*4,
+    'height': 4+palaceSize.height*4
   };
 };
 
@@ -1860,6 +1864,7 @@ _Ziwei_Calculator.renderHtml = function(resultTable, useFullNames = true) {
   ['tuan', 'triet'].forEach((star) => {
     var starAbsPos = resultTable[star + 'Coordinate'].convertPalaceCoordinateToPos(padding, useFullNames);
     $(`#${star}-khong`).css(starAbsPos);
+    console.log(starAbsPos);
   });
 
   // Draw connected lines

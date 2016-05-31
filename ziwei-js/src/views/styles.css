@@ -1,6 +1,7 @@
 body {
   font-family: Roboto;
   width: 1120px;
+  margin-left: 3px;
 }
 td.center {
   text-align: center;
@@ -9,12 +10,12 @@ td.right {
   text-align: right;
 }
 td.main-stars {
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: bold;
   vertical-align: top;
 }
 td.good-stars, td.bad-stars {
-  font-size: 0.7em;
+  font-size: 0.8em;
   vertical-align: top;
 }
 
@@ -28,8 +29,8 @@ td.bottom {
 td.top, td.bottom.center {
   font-weight: bold;
 }
-td.top.left {
-  font-size: 0.75em;
+td.top.left, td.top.right {
+  font-size: 0.85em;
   font-weight: bold;
 }
 
@@ -40,6 +41,9 @@ table.result-table {
 }
 table.palace {
   background-color: lightyellow;
+}
+table.palace td {
+  padding: 3px;
 }
 table.self.palace td.top.left, table.body.palace td.top.right {
   color: red;
@@ -60,13 +64,13 @@ div.center-info {
 }
 
 div.tuan-triet {
-  display: none;
+  /*display: none;*/
   position: absolute;
   width: 50px;
   text-align: center;
   font-size: 0.8em;
   font-weight: bold;
-  line-height: 20px;
+  line-height: 16px;
   color: white;
   background: red;
   border: 1px;
@@ -76,4 +80,22 @@ div.tuan-triet {
 
 canvas#connected-lines {
   position: absolute;
+}
+
+div#controls {
+  padding-bottom: 3px;
+}
+div#controls td {
+  padding: 0px 3px;
+}
+div#controls td.main-controls-form {
+  height: 70px;
+  border: solid;
+  border-width: 1px;
+}
+div#controls td.main-controls-form td {
+  padding: 0px 3px;
+}
+form.form-inline div {
+  padding-top: 3px;
 }

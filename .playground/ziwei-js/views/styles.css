@@ -86,5 +86,16 @@ div#controls {
   padding-bottom: 3px;
 }
 div#controls td {
-  padding: 0px 5px;
+  padding: 0px 3px;
+}
+div#controls td.main-controls-form {
+  height: 70px;
+  border: solid;
+  border-width: 1px;
+}
+div#controls td.main-controls-form td {
+  padding: 0px 3px;
+}
+form.form-inline div {
+  padding-top: 3px;
 }

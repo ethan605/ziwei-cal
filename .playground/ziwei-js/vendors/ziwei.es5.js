@@ -76,7 +76,7 @@ var Ziwei = (function () {
   };
 
   Array.prototype.convertPalaceCoordinateToPos = function () {
-    var padding = arguments.length <= 0 || arguments[0] === undefined ? { top: 8, left: 8 } : arguments[0];
+    var margin = arguments.length <= 0 || arguments[0] === undefined ? { top: 8, left: 8 } : arguments[0];
     var useFullNames = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
     var _ref = _slicedToArray(this, 2);
@@ -85,10 +85,11 @@ var Ziwei = (function () {
     var yCoord = _ref[1];
 
     var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+    var padding = 1;
 
     return {
-      left: padding.left + (tableSize.width + 4) * (xCoord - 0.5) - 25,
-      top: padding.top + (tableSize.height + 4) * yCoord - 10
+      left: margin.left + (tableSize.width + padding) * (xCoord - 0.5) - 25,
+      top: margin.top + (tableSize.height + padding) * yCoord - 8
     };
   };
 
@@ -101,10 +102,11 @@ var Ziwei = (function () {
     var yCoord = _ref2[1];
 
     var tableSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+    var padding = 1;
 
     return {
-      left: (tableSize.width + 4) * xCoord,
-      top: (tableSize.height + 4) * yCoord
+      left: (tableSize.width + padding) * xCoord,
+      top: (tableSize.height + padding) * yCoord
     };
   };
 
@@ -1796,17 +1798,19 @@ var Ziwei = (function () {
     var useFullNames = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
 
     return {
-      'width': useFullNames ? 280 : 140,
-      'height': useFullNames ? 160 : 160
+      'width': useFullNames ? 260 : 140,
+      'height': useFullNames ? 170 : 170
     };
   };
 
   _Ziwei_Models_ResultTable.tableSize = function () {
     var useFullNames = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
 
+    var palaceSize = Ziwei.Models.ResultPalace.tableSize(useFullNames);
+
     return {
-      'width': useFullNames ? 1138 : 578,
-      'height': useFullNames ? 658 : 658
+      'width': 4 + palaceSize.width * 4,
+      'height': 4 + palaceSize.height * 4
     };
   };
 
@@ -1940,6 +1944,7 @@ var Ziwei = (function () {
     ['tuan', 'triet'].forEach(function (star) {
       var starAbsPos = resultTable[star + 'Coordinate'].convertPalaceCoordinateToPos(padding, useFullNames);
       $('#' + star + '-khong').css(starAbsPos);
+      console.log(starAbsPos);
     });
 
     // Draw connected lines
